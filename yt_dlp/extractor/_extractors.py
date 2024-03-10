@@ -950,13 +950,41 @@ from .laola1tv import (
 )
 from .lastfm import (
     LastFMIE,
-    LastFMPlaylistIE,
-    LastFMUserIE,
-)
-from .laxarxames import LaXarxaMesIE
-from .lbry import (
-    LBRYIE,
-    LBRYChannelIE,
+from .common import InfoExtractor
+
+
+class LaXarxaMesIE(InfoExtractor):
+    _VALID_URL = r'https?://(?:www\.)?laxarxames\.cat/(?:[^/]+/)*?(player|movie-details)/(?P<id>[0-9]+)'
+    _NETRC_MACHINE = 'laxarxames'
+    _IS_LOGGED_IN = False
+    _LOGIN_URL = 'https://www.laxarxames.cat/login'
+    _TESTS = [{
+        'url': 'https://www.laxarxames.cat/player/3459421',
+        'md5': '0966f46c34275934c19af78f3df6e2bc',
+        'info_dict': {
+            'id': '3459421',
+            'ext': 'mp4',
+            'title': 'Resum | UA Horta — UD Viladecans',
+            'type': 'video/mp4',
+        },
+        'skip': 'Requires login',
+    }]
+
+    def _perform_login(self, username, password):
+        login = self._download_json(
+            'https://api.laxarxames.cat/Authorization/SignIn', None, note='Logging in', headers={
+                'X-Tenantorigin': 'https://laxarxames.cat',
+                'Content-Type': 'application/json',
+                'Accept': 'application/json, text/plain, */*',
+                'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko)',
+                'Origin': 'https://www.laxarxames.cat',
+            }, data=json.dumps({
+                'Username': username,
+                'Password': password,
+                'Device': {
+                    'PlatformCode': 'WEB',
+                    'Name': 'Mac OS ()',
+
     LBRYPlaylistIE,
 )
 from .lci import LCIIE
