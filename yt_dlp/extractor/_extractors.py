@@ -550,6 +550,7 @@ from .ellentube import (
 from .elonet import ElonetIE
 from .elpais import ElPaisIE
 from .eltrecetv import ElTreceTVIE
+from .elevensports import ElevenSportsIE  # Add this line
 from .embedly import EmbedlyIE
 from .epicon import (
     EpiconIE,
