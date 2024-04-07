@@ -950,13 +950,24 @@ from .laola1tv import (
 )
 from .lastfm import (
     LastFMIE,
-    LastFMPlaylistIE,
-    LastFMUserIE,
+from .common import InfoExtractor
+from .generic import (
+    unified_timestamp,
+    unsmuggle_url,
+    update_url_query,
+    url_or_none,
+    urljoin,
+)
+from .iframe import (
+    FacebookIE,
+    InstagramIE,
+    TwitterIE,
 )
 from .laxarxames import LaXarxaMesIE
 from .lbry import (
     LBRYIE,
     LBRYChannelIE,
+)
     LBRYPlaylistIE,
 )
 from .lci import LCIIE

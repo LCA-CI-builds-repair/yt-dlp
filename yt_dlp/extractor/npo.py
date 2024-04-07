@@ -242,13 +242,35 @@ class NPOIE(InfoExtractor):
                 video_id, 'Downloading %s profile JSON' % profile, fatal=False,
                 query={
                     'profile': profile,
-                    'quality': 'npoplus',
-                    'tokenId': player_token,
-                    'streamType': 'broadcast',
-                })
-            if not streams:
-                continue
-            stream = streams.get('stream')
+from .common import InfoExtractor
+from .generic import unified_timestamp
+
+
+class NPOIE(InfoExtractor):
+    IE_NAME = 'npo:ie'
+    _VALID_URL = r'https?://(?:www\.)?npo\.nl/[a-z-]+/(?:[^/]+/)*(?P<id>[0-9]+)/(?P<title>[a-z0-9_-]+)'
+    _NETRC_MACHINE = 'npo'
+    _TEST = {
+        'url': 'https://www.npo.nl/programmas/tv/2021/01/16/het-grote-npo-nieuws/d7661390',
+        'info_dict': {
+            'id': 'd7661390',
+            'ext': 'mp4',
+            'title': 'Het Grote NPO Nieuws',
+            'description': 'md5:4d4483f915a4929b9781f037c77c3a05',
+            'upload_date': '20210116',
+        },
+        'params': {
+            'skip_download': True,
+        },
+    }
+
+    def _extract_m3u8_formats(self, m3u8_url, video_id):
+        self.raise_warning('NPO.nl videos require a subscription to watch')
+        return
+
+    def _extract_m3u8_formats_and_info(self, m3u8_url, video_id, format_id,
+                                      ext, note, fatal=False, **kwargs):
+        self.raise_warning('NPO.nl videos require a subscription to watch')
             if not isinstance(stream, dict):
                 continue
             stream_url = url_or_none(stream.get('src'))

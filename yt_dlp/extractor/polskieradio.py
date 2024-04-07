@@ -259,20 +259,65 @@ class PolskieRadioAuditionIE(InfoExtractor):
     def _call_lp3(self, path, query, video_id, note):
         return self._download_json(
             f'https://lp3test.polskieradio.pl/{path}', video_id, note,
-            query=query, headers={'x-api-key': '9bf6c5a2-a7d0-4980-9ed7-a3f7291f2a81'})
+from .common import InfoExtractor
+from .generic import (
+    SimplePlaylistIE,
+    TextIE,
+    unified_strdate,
+    unsmuggle_url,
+    url_or_none,
+)
+from .util import (
+    extract_attributes,
+    float_or_none,
+)
 
-    def _entries(self, playlist_id, has_episodes, has_articles):
-        for i in itertools.count(1) if has_episodes else []:
-            page = self._call_lp3(
-                'AudioArticle/GetListByCategoryId', {
-                    'categoryId': playlist_id,
-                    'PageSize': 10,
-                    'skip': i,
-                    'format': 400,
-                }, playlist_id, f'Downloading episode list page {i}')
-            if not traverse_obj(page, 'data'):
+
+class PolskieRadioPLIE(TextIE):
+    IE_NAME = 'polskieradio.pl:ie'
+    IE_DESC = 'PolskieRadio.pl'
+    _VALID_URL = r'https?://(?:(?:www|m)\.)?polskieradio\.pl/(?:.*?)/(?P<id>\d+)'
+    _TESTS = ({
+        'url': 'https://www.polskieradio.pl/1/3651222/odtwarzacz1',
+        'info_dict': {
+            'id': '3651222',
+            'title': 'Live',
+        },
+        'playlist_mincount': 1,
+    }, {
+        'url': 'https://www.polskieradio.pl/1/3651222/odtwarzacz2',
+        'only_matching': True,
+    })
+
+    @staticmethod
+    def _extract_playlist_url(webpage):
+        m = re.search(r'var\s+playlistUrls\s+=\s+({.+});', webpage)
+        if m is None:
+            raise ExtractorError('playlist urls not found')
+        playlist_urls = json.loads(m.group(1))
+        return playlist_urls['live']
+
+    def _extract_playlist_entries(self, playlist_url):
+        playlist_entries = []
+        for url in self._extract_m3u8_urls(playlist_url):
+            if not url:
                 break
-            for episode in page['data']:
+            playlist_entries.append(self.url_result(url, 'Live'))
+        return playlist_entries
+
+    def _extract_m3u8_urls(self, url):
+        m3u8_urls = self._download_webpage(url, 'Downloading playlist url',
+                                           fatal=False,
+                                           headers={'Referer': url})
+        if m3u8_urls is None:
+            return
+        return self._search_regex(
+            r'http[s]?://(?:www[.]polskieradio[.]pl|broadcasting[.]betaplayer[.]pl)+/(?:[^/]+/)*?(?P<id>\d+)/[^\'\"<>]+',
+            m3u8_urls, 'M3U8 url')
+
+    def _extract_m3u8_playlist(self, m3u8_url, video_id):
+        for m3u8_playlist in self._download_xml(m3u8_url, 'Downloading M3U8 playlist', fatal=False):
+            yield m3u8_playlist.attrib['url']
                 yield {
                     'id': str(episode['id']),
                     'url': episode['file'],
