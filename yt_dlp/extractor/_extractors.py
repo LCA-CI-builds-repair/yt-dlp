@@ -541,11 +541,11 @@ from .eighttracks import EightTracksIE
 from .einthusan import EinthusanIE
 from .eitb import EitbIE
 from .elemental_tv import ElementalTVIE
-from .elevensports import ElevenSportsIE
+from extractor.webpage.elevensports import ElevenSportsIE
 from .ellentube import (
-    EllenTubeIE,
-    EllenTubeVideoIE,
-    EllenTubePlaylistIE,
+EllenTubeIE,
+EllenTubeVideoIE,
+EllenTubePlaylistIE,
 )
 from .elonet import ElonetIE
 from .elpais import ElPaisIE
