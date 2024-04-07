@@ -538,10 +538,11 @@ from .egghead import (
     EggheadLessonIE,
 )
 from .eighttracks import EightTracksIE
+```python
 from .einthusan import EinthusanIE
 from .eitb import EitbIE
 from .elemental_tv import ElementalTVIE
-from .elevensports import ElevenSportsIE
+# from .elevensports import ElevenSportsIE
 from .ellentube import (
     EllenTubeIE,
     EllenTubeVideoIE,
@@ -550,6 +551,7 @@ from .ellentube import (
 from .elonet import ElonetIE
 from .elpais import ElPaisIE
 from .eltrecetv import ElTreceTVIE
+```
 from .embedly import EmbedlyIE
 from .epicon import (
     EpiconIE,
