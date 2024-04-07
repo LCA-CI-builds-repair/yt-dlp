@@ -68,6 +68,7 @@ class VVVVIDIE(InfoExtractor):
             'channel': 'EMOTION Label Channel',
             'channel_follower_count': int,
             'channel_id': 'UCQ5URCSs1f5Cz9rh-cDGxNQ',
+            'end_time': int
             'channel_url': 'https://www.youtube.com/channel/UCQ5URCSs1f5Cz9rh-cDGxNQ',
             'comment_count': int,
             'duration': 133,
