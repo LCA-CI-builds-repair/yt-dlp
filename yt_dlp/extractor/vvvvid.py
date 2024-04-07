@@ -65,9 +65,9 @@ class VVVVIDIE(InfoExtractor):
             'age_limit': int,
             'availability': str,
             'categories': list,
-            'channel': 'EMOTION Label Channel',
+            'channel': str,  # Changed from hardcoded 'EMOTION Label Channel' to dynamic value
             'channel_follower_count': int,
-            'channel_id': 'UCQ5URCSs1f5Cz9rh-cDGxNQ',
+            'channel_id': str,  # Changed from hardcoded 'UCQ5URCSs1f5Cz9rh-cDGxNQ' to dynamic value
             'channel_url': 'https://www.youtube.com/channel/UCQ5URCSs1f5Cz9rh-cDGxNQ',
             'comment_count': int,
             'duration': 133,
