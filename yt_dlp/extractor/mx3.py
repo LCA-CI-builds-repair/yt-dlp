@@ -77,6 +77,9 @@ class Mx3BaseIE(InfoExtractor):
         }
 
 
+class Mx3BaseIE:
+    _VALID_URL_TMPL = 'https://%s/t/%%s'
+
 class Mx3IE(Mx3BaseIE):
     _DOMAIN = 'mx3.ch'
     _VALID_URL = _Mx3BaseIE._VALID_URL_TMPL % re.escape(_DOMAIN)
