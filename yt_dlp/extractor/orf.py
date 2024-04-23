@@ -26,7 +26,32 @@ from ..utils import (
 class ORFTVthekIE(InfoExtractor):
     IE_NAME = 'orf:tvthek'
     IE_DESC = 'ORF TVthek'
-    _VALID_URL = r'(?P<url>https?://tvthek\.orf\.at/(?:(?:[^/]+/){2}){1,2}(?P<id>\d+))(/[^/]+/(?P<vid>\d+))?(?:$|[?#])'
+   try:
+    title = remove_end(self._og_search_title(webpage), ' - fm4.ORF.at')
+    if idx >= 1:
+        # Titles are duplicates, make them unique
+        title += ' (' + str(idx + 1) + ')'
+    description = self._og_search_description(webpage)
+    upload_date = unified_strdate(self._html_search_meta(
+        'dc.date', webpage, 'upload date'))
+
+    if video_id:  # Check if video ID is not empty
+        entries.append({
+            'id': video_id,
+            'title': title,
+            'description': description,
+            'duration': duration,
+            'thumbnail': thumbnail,
+            'upload_date': upload_date,
+            'formats': formats,
+        })
+    else:
+        print("Video ID is empty. Skipping entry.")
+
+except Exception as e:
+    print(f"An error occurred: {e}")
+
+return self.playlist_result(entries)rl>https?://tvthek\.orf\.at/(?:(?:[^/]+/){2}){1,2}(?P<id>\d+))(/[^/]+/(?P<vid>\d+))?(?:$|[?#])'
 
     _TESTS = [{
         'url': 'https://tvthek.orf.at/profile/ZIB-2/1211/ZIB-2/14121079',
