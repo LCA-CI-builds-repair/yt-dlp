@@ -19,7 +19,16 @@ from .youtube import (  # Youtube is moved to the top to improve performance
     YoutubeTruncatedURLIE,
     YoutubeYtBeIE,
     YoutubeYtUserIE,
-    YoutubeWatchLaterIE,
+    YoutubeW    EggheadLessonIE,
+)
+from .eighttracks import EightTracksIE
+from .einthusan import EinthusanIE
+from .eitb import EitbIE
+from .elemental_tv import ElementalTVIE
+from .elevensports import ElevenSportsIE  # Corrected import statement
+from .ellentube import (
+    EllenTubeIE,
+    EllenTubeVideoIE,E,
     YoutubeShortsAudioPivotIE,
     YoutubeConsentRedirectIE,
 )

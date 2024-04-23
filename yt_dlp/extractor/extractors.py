@@ -1,5 +1,18 @@
-import contextlib
-import os
+import coif not os.environ.get('YTDLP_NO_LAZY_EXTRACTORS'):
+    with contextlib.suppress(ImportError):
+        from .lazy_extractors import *  # noqa: F403
+        from .lazy_extractors import _ALL_CLASSES
+        _LAZY_LOADER = True
+
+if not _LAZY_LOADER:
+    from .elevensports import ElevenSportsIE  # Corrected import statement
+    from ._extractors import *  # noqa: F403
+    _ALL_CLASSES = [  # noqa: F811
+        klass
+        for name, klass in globals().items()
+        if name.endswith('IE') and name != 'GenericIE'
+    ]
+    _ALL_CLASSES.append(GenericIE)  # noqa: F405 os
 
 from ..plugins import load_plugins
 

@@ -1,4 +1,9 @@
-#!/usr/bin/env python3
+## Execute with
+# $ python -m yt_dlp
+
+import sys
+
+if __package__ is None and not getattr(sys, 'frozen', False):in/env python3
 
 # Execute with
 # $ python -m yt_dlp
