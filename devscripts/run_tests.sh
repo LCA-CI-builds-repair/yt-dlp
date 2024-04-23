@@ -1,4 +1,13 @@
-#!/usr/bin/env sh
+#if [ -z "$1" ]; then
+    pytest_args='test'
+elif [ "$1" = 'core' ]; then
+    pytest_args="-m not download"
+elif [ "$1" = 'download' ]; then
+    pytest_args="-m download"
+else
+    echo 'Invalid test type "'"$1"'". Please use "core" or "download".'
+    exit 1
+finv sh
 
 if [ -z "$1" ]; then
     test_set='test'
