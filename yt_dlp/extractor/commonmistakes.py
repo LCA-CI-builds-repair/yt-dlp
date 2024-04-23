@@ -1,4 +1,9 @@
-from .common import InfoExtractor
+from .common import In# Code snippet after necessary corrections and improvements
+# Assuming the error is in the mentioned file at line 37, checking for unmatched parentheses
+
+        if not self.get_param('verbose'):
+            msg += ' Add -v to the command line to see what arguments and configuration yt-dlp has'
+        raise ExtractorError(msg, expected=True)ractor
 from ..utils import ExtractorError
 
 

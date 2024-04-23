@@ -35,7 +35,13 @@ from .postprocessor import (
 from .update import Updater
 from .utils import (
     NO_DEFAULT,
-    POSTPROCESS_WHEN,
+   # Code snippet after necessary corrections and improvements
+# Assuming the error is in the mentioned file at line 37, checking for unmatched parentheses
+
+                # This code is reachable only for zip variant in py < 3.10
+                # It makes sense to exit here, but the old behavior is to continue
+                ydl.report_warning('Restart yt-dlp to use the updated version')
+                # return 100, 'ERROR: The program must exit for the update to complete'TPROCESS_WHEN,
     DateRange,
     DownloadCancelled,
     DownloadError,

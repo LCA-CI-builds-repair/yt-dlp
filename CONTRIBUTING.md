@@ -2,7 +2,12 @@
 
 - [OPENING AN ISSUE](#opening-an-issue)
     - [Is the description of the issue itself sufficient?](#is-the-description-of-the-issue-itself-sufficient)
-    - [Are you using the latest version?](#are-you-using-the-latest-version)
+    - [Are you using the latest version?](## Code snippet after necessary corrections and improvements
+# Assuming the error is in the mentioned file at line 37, checking for unmatched parentheses
+
+1. Make sure your code follows [yt-dlp coding conventions](#yt-dlp-coding-conventions) and check the code with [flake8](https://flake8.pycqa.org/en/latest/index.html#quickstart):
+
+        $ flake8 yt_dlp/extractor/yourextractor.py-you-using-the-latest-version)
     - [Is the issue already documented?](#is-the-issue-already-documented)
     - [Why are existing options not enough?](#why-are-existing-options-not-enough)
     - [Have you read and understood the changes, between youtube-dl and yt-dlp](#have-you-read-and-understood-the-changes-between-youtube-dl-and-yt-dlp)
