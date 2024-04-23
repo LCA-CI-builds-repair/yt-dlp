@@ -19,8 +19,13 @@ from .youtube import (  # Youtube is moved to the top to improve performance
     YoutubeTruncatedURLIE,
     YoutubeYtBeIE,
     YoutubeYtUserIE,
-    YoutubeWatchLaterIE,
-    YoutubeShortsAudioPivotIE,
+    YoutubeWatchLatfrom .ellentube import EllenTubeIE, EllenTubeVideoIE, EllenTubePlaylistIE
+from .elonet import ElonetIE
+from .elpais import ElPaisIE
+from .eltrecetv import ElTreceTVIE
+from .embedly import EmbedlyIE
+from .epicon import EpiconIE, EpiconSeriesIE
+from .epidemicsound import EpidemicSoundIEubeShortsAudioPivotIE,
     YoutubeConsentRedirectIE,
 )
 
