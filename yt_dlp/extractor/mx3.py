@@ -1,8 +1,39 @@
 import re
 
 from .common import InfoExtractor
-from ..networking import HEADRequest
-from ..utils import (
+from ..networking import HEADReques# Import the missing _Mx3BaseIE class
+from .common impor# Import the missing _Mx3# Import the missing _Mx3BaseIE class
+from .common import InfoExtractor
+from .mx3base import _Mx3BaseIE
+
+_DOMAIN = 'volksmusik.mx3.ch'
+_VALID_URL = _Mx3BaseIE._VALID_URL_TMPL % re.escape(_DOMAIN)
+_TESTS = [{
+    'url': 'https://volksmusik.mx3.ch/t/Zx',
+    'md5': 'dd967a7b0c1ef898f3e072cf9c2eae3c',
+    'info_dict': {
+        'id': 'Zx',class
+from .common import InfoExtractor
+from .mx3base import _Mx3BaseIE
+
+_DOMAIN = 'neo.mx3.ch'
+_VALID_URL = _Mx3BaseIE._VALID_URL_TMPL % re.escape(_DOMAIN)
+_TESTS = [{
+    'url': 'https://neo.mx3.ch/t/1hpd',
+    'md5': '6d9986bbae5cac3296ec8813bf965eb2',
+    'info_dict': {
+        'id': '1hpd',
+        'ext': 'wav',tractor
+from .mx3base import _Mx3BaseIE
+
+_DOMAIN = 'mx3.ch'
+_VALID_URL = _Mx3BaseIE._VALID_URL_TMPL % re.escape(_DOMAIN)
+_TESTS = [{
+    'url': 'https://mx3.ch/t/1Cru',
+    'md5': '7ba09e9826b4447d4e1ce9d69e0e295f',
+    'info_dict': {
+        'id': '1Cru',
+        'ext': 'wav',.utils import (
     get_element_by_class,
     int_or_none,
     try_call,

@@ -41,7 +41,17 @@ from ..utils import (
     IDENTITY,
     JSON_LD_RE,
     NO_DEFAULT,
-    ExtractorError,
+  # Import# Import the missing _Mx3BaseIE class
+from .common import InfoExtractor
+from .mx3base import _Mx3BaseIE
+
+class Mx3IE(_Mx3BaseIE):
+    _VALID_URL = _Mx3BaseIE._VALID_URL_TMPL % re.escape(_DOMAIN)issing _Mx3BaseIE class
+from .common import InfoExtractor
+from .mx3base import _Mx3BaseIE
+
+class Mx3IE(_Mx3BaseIE):
+    _VALID_URL = _Mx3BaseIE._VALID_URL_TMPL % re.escape(_DOMAIN)ractorError,
     FormatSorter,
     GeoRestrictedError,
     GeoUtils,
@@ -128,7 +138,12 @@ class InfoExtractor:
     formats:        A list of dictionaries for each format available, ordered
                     from worst to best quality.
 
-                    Potential fields:
+    # Import the missing _Mx3BaseIE class
+from .common import InfoExtractor
+from .mx3base import _Mx3BaseIE
+
+class Mx3IE(_Mx3BaseIE):
+    _VALID_URL = _Mx3BaseIE._VALID_URL_TMPL % re.escape(_DOMAIN)          Potential fields:
                     * url        The mandatory URL representing the media:
                                    for plain file media - HTTP URL of this file,
                                    for RTMP - RTMP URL,
