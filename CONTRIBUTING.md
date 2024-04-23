@@ -1,6 +1,15 @@
 # CONTRIBUTING TO YT-DLP
 
-- [OPENING AN ISSUE](#opening-an-issue)
+- [OPENING A$ yt-dlp -vU <your command line>
+[debug] Command-line config: ['-v', 'demo.com']
+[debug] Encodings: locale UTF-8, fs utf-8, out utf-8, pref UTF-8
+[debug] yt-dlp version stable@2023.11.16 from yt-dlp/yt-dlp [24f827875] (source)
+[debug] Lazy loading extractors is enabled
+[debug] Python version 3.8.18 (CPython 64bit) - Linux-5.4.0-1055-azure-x86_64-with-glibc2.29
+[debug] exe versions: ffmpeg 4.2.4, ffprobe 4.2.4
+[debug] Proxy map: {}
+Current Build Hash 25cc412d1d3c0725a1f2f5b7e4682f6fb40e6d15f7024e96f7afd572e9919535
+yt-dlp is up to date (stable@2023.11.16 from yt-dlp/yt-dlp)#opening-an-issue)
     - [Is the description of the issue itself sufficient?](#is-the-description-of-the-issue-itself-sufficient)
     - [Are you using the latest version?](#are-you-using-the-latest-version)
     - [Is the issue already documented?](#is-the-issue-already-documented)

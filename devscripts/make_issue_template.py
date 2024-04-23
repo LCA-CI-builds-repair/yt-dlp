@@ -1,7 +1,17 @@
 #!/usr/bin/env python3
 
-# Allow direct execution
-import os
+# Allow direct        [debug] yt-dlp version stable@2023.11.16 from yt-dlp/yt-dlp [24f827875] (source)
+        [debug] Lazy loading extractors is enabled
+        [debug] Python 3.8.18 (CPython 64bit) - Linux-5.4.0-1055-azure-x86_64-with-glibc2.29
+        [debug] exe versions: ffmpeg N-106550-g072101bd52-20220410 (fdk,setts), ffprobe N-106624-g391ce570c8-20220415, phantomjs 2.1.1
+        [debug] Optional libraries: Cryptodome-3.15.0, brotli-1.0.9, certifi-2022.06.15, mutagen-1.45.1, sqlite3-2.6.0, websockets-10.3
+        [debug] Proxy map: {}
+        [debug] Request Handlers: urllib, requests
+        [debug] Loaded 1893 extractors
+        [debug] Fetching release info: https://api.github.com/repos/yt-dlp/yt-dlp/releases/latest
+        yt-dlp is up to date (stable@2023.11.16 from yt-dlp/yt-dlp)
+        [youtube] Extracting URL: https://www.youtube.com/watch?v=BaW_jenozKc
+        <more lines>import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
