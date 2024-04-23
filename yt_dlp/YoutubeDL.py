@@ -167,7 +167,16 @@ if compat_os_name == 'nt':
 class YoutubeDL:
     """YoutubeDL class.
 
-    YoutubeDL objects are the ones responsible of downloading the
+    YoutubeDL from utils import write_debug, current_git_head
+from postprocessor.ffmpeg import FFmpegPostProcessor
+
+write_debug(f'Git HEAD: {current_git_head()}')
+write_debug(system_identifier())
+
+exe_versions, ffmpeg_features = FFmpegPostProcessor.get_versions_and_features(self)
+ffmpeg_features = {key for key, val in ffmpeg_features.items() if val}
+if ffmpeg_features:
+    exe_versions['ffmpeg'] = exe_versions.get('ffmpeg', '') + ' (%s)' % ','.join(sorted(ffmpeg_features)) are the ones responsible of downloading the
     actual video file and writing it to disk if the user has requested
     it, among some other tasks. In most cases there should be one per
     program. As, given a video URL, the downloader doesn't know how to

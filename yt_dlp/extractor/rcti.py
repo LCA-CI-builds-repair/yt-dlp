@@ -7,7 +7,24 @@ from ..networking.exceptions import HTTPError
 from ..utils import (
     dict_get,
     ExtractorError,
-    strip_or_none,
+if video_meta.get('portrait_image'):
+    thumbnails.append({
+        'id': 'portrait_image',
+        'url': '%s%d%s' % (image_path, 2000, video_meta.get('portrait_image', ''))  # 2000px seems to be the highest resolution that can be given
+    })
+if video_meta.get('landscape_image'):
+    thumbnails.append({
+        'id': 'landscape_image',
+        'url': '%s%d%s' % (image_path, 2000, video_meta.get('landscape_image', ''))
+    })
+try:
+    formats = self._extract_m3u8_formats(video_url, display_id, 'mp4', headers={'Referer': 'https://www.rctiplus.com/'})
+except ExtractorError as e:
+    if isinstance(e.cause, HTTPError) and e.cause.status == 403:
+        self.raise_geo_restricted(countries=['ID'], metadata_available=True)
+    else:
+        raise e
+for f in formats:
     traverse_obj,
     try_get
 )
