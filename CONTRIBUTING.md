@@ -1,6 +1,14 @@
 # CONTRIBUTING TO YT-DLP
 
-- [OPENING AN ISSUE](#opening-an-issue)
+- [OPENING A$ yt-dlp -vU <your command line>
+[debug] Command-line config: ['-v']
+[debug] Encodings: locale UTF-8, fs utf-8, pref UTF-8, out utf-8 (No ANSI), error utf-8 (No ANSI), screen utf-8 (No ANSI)
+[debug] yt-dlp version stable@2023.10.13 [b634ba742] (source)
+[debug] Python version 3.11.6 (CPython 64bit) - Linux-5.4.0-74-generic-x86_64-with-glibc2.29
+[debug] exe versions: ffmpeg 4.2.4, ffprobe 4.2.4
+[debug] Proxy map: {}
+Current Build Hash 25cc412d1d3c0725a1f2f5b7e4682f6fb40e6d15f7024e96f7afd572e9919535
+yt-dlp is up to date (2021.09.25)#opening-an-issue)
     - [Is the description of the issue itself sufficient?](#is-the-description-of-the-issue-itself-sufficient)
     - [Are you using the latest version?](#are-you-using-the-latest-version)
     - [Is the issue already documented?](#is-the-issue-already-documented)
