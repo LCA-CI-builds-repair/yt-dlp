@@ -84,7 +84,7 @@ class GenericIE(InfoExtractor):
             'url': 'http://ai-radio.org:8000/radio.opus',
             'info_dict': {
                 'id': 'radio',
-                'ext': 'opus',
+                'ext': 'opus                                expected=True),
                 'title': 'radio',
             },
             'params': {

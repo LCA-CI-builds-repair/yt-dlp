@@ -1,5 +1,6 @@
-import contextlib
-import os
+import contextli    from ._extractors import *  # noqa: F403
+    _ALL_CLASSES = [  # noqa: F811
+        klassmport os
 
 from ..plugins import load_plugins
 

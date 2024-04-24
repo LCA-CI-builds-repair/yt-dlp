@@ -5,8 +5,13 @@ from ..networking.exceptions import HTTPError
 from ..utils import (
     ExtractorError,
     extract_attributes,
-    int_or_none,
-    remove_start,
+    int_or_none,                'artist': 'Josef Kokta',
+                'channel_id': 'radio-wave',
+                'chapter': 'Neklid #5',
+                'chapter_number': 5,
+            },
+        }]
+    }, {move_start,
     str_or_none,
     traverse_obj,
     unified_timestamp,

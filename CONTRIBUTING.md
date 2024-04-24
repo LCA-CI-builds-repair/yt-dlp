@@ -1,7 +1,9 @@
 # CONTRIBUTING TO YT-DLP
 
 - [OPENING AN ISSUE](#opening-an-issue)
-    - [Is the description of the issue itself sufficient?](#is-the-description-of-the-issue-itself-sufficient)
+    - [Is the description of the issue itself sufficient?](#is-the-descriptTo run all the available core tests, use:
+
+    python devscripts/run_tests.pyof-the-issue-itself-sufficient)
     - [Are you using the latest version?](#are-you-using-the-latest-version)
     - [Is the issue already documented?](#is-the-issue-already-documented)
     - [Why are existing options not enough?](#why-are-existing-options-not-enough)

@@ -1,6 +1,12 @@
 import base64
-import binascii
-import calendar
+import binascimport re
+import shlex
+import socket
+import ssl
+import struct
+import subprocess
+import sys
+import tempfilet calendar
 import codecs
 import collections
 import collections.abc
