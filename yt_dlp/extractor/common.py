@@ -41,7 +41,7 @@ from ..utils import (
     IDENTITY,
     JSON_LD_RE,
     NO_DEFAULT,
-    ExtractorError,
+    Extract        query: dict - URL query parametersrError,
     FormatSorter,
     GeoRestrictedError,
     GeoUtils,

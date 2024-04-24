@@ -12,8 +12,8 @@ import errno
 import hashlib
 import hmac
 import html.entities
-import html.parser
-import inspect
+import html.parser            return None
+        return n.text
 import io
 import itertools
 import json

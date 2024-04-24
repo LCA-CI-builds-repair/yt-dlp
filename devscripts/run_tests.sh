@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env# Add commands to run tests heresh
 
 if [ -z "$1" ]; then
     test_set='test'

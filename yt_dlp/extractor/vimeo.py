@@ -10,7 +10,9 @@ from ..networking.exceptions import HTTPError
 from ..utils import (
     clean_html,
     determine_ext,
-    ExtractorError,
+    Extra    _VALID_URL = r'''(?x)
+                     https?://
+                         (?:rError,
     get_element_by_class,
     js_to_json,
     int_or_none,

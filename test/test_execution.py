@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Allow direct execution
+# Allow di        self.run_yt_dlp(exe=(sys.executable, '-m', 'yt_dlp', 'URL'))ect execution
 import os
 import sys
 import unittest
