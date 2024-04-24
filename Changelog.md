@@ -14,7 +14,64 @@
 
 #### Extractor changes
 - **artetv**: [Support age-restricted content](https://github.com/yt-dlp/yt-dlp/commit/09f815ad52843219a7ee3f2a0dddf6c250c91f0c) ([#8301](https://github.com/yt-dlp/yt-dlp/issues/8301)) by [StefanLobbenmeier](https://github.com/StefanLobbenmeier)
-- **jtbc**: [Add extractors](https://github.com/yt-dlp/yt-dlp/commit/b286ec68f1f28798b3e371f888a2ed97d399cf77) ([#8314](https://github.com/yt-dlp/yt-dlp/issues/8314)) by [seproDev](https://github.com/seproDev)
+- **jtbc**: [Add extractors](https://github.com/yt-dlp/yt-dlp/commit/b286ec68f1f28798b3e371f888a2ed97d399cf77) ([#831### Changelog
+
+* [extractor/crunchyroll:beta] Use streams API by [tejing1](https://github.com/tejing1)
+* [extractor/doodstream] Support more domains by [Galiley](https://github.com/Galiley)
+* [extractor/ESPN] Extract duration by [ischmidt20](https://github.com/ischmidt20)
+* [extractor/FIFA] Change API endpoint by [Bricio](https://github.com/Bricio), [yashkc2025](https://github.com/yashkc2025)
+* [extractor/globo:article] Remove false positives by [Bricio](https://github.com/Bricio)
+* [extractor/Go] Extract timestamp by [ischmidt20](https://github.com/ischmidt20)
+* [extractor/hidive] Fix cookie login when netrc is also given by [winterbird-code](https://github.com/winterbird-code)
+* [extractor/html5] Separate into own extractor by [coletdjnz](https://github.com/coletdjnz), [pukkandan](https://github.com/pukkandan)
+* [extractor/ina] Improve extractor by [elyse0](https://github.com/elyse0)
+* [extractor/NaverNow] Change endpoint by [ping](https://github.c* [build] Save Git HEAD at release alongside version infom/ping)
+* [extractor/ninegag] Extract uploader by [DjesonPV](https://github.com/DjesonPV)
+* [extractor/NovaPlay] Fix extractor by [Bojidarist](https://github.com/Bojidarist)
+* [extractor/orf:radio] Rewrite extractors
+* [extractor/patreon] Fix and improve extractors by [coletdjnz](https://github.com/coletdjnz), [pukkandan](https://github.com/pukkandan)
+* [extractor/rai] Fix RaiNews extraction by [nixxo](https://github.com/nixxo)
+* [extractor/redbee] Unify and update extractors by [elyse0](https://github.com/elyse0)
+* [extractor/stripchat] Fix _VALID_URL by [freezboltz](https://github.com/freezboltz)
+* [extractor/tubi] Exclude playlists from playlist entries by [sqrtNOT](https://github.com/sqrtNOT)
+* [extractor/tviplayer] Improve `_VALID_URL` by [HobbyistDev](https://github.com/HobbyistDev)
+* [extractor/twitch] Extract chapters for single chapter VODs by [mpeter50](https://github.com/mpeter50)
+* [extractor/vgtv] Support tv.vg.no by [sqrtNOT](https://github.com/sqrtNOT)
+* [extractor/vidio] Support embed link by [HobbyistDev](https://github.com/HobbyistDev)
+* [extractor/vk] Fix extractor by [Mehavoid](https://github.com/Mehavoid)
+* [extractor/WASDTV:record] Fix `_VALID_URL`
+* [extractor/xfileshare] Add Referer by [Galiley](https://github.com/Galiley)
+* [extractor/YahooJapanNews] Fix extractor by [Lesmiscore](https://github.com/Lesmiscore)
+* [extractor/yandexmusic] Extract higher quality format
+* [extr* [Vlive] Fix playlist handling when downloading a channel by [kyuyeunk](https://github.com/kyuyeunk)ctor/zee5] Update Device ID by [m4tu4g](https://github.com/m4tu4g)
+
+### 2022.07.18
+
+* Allow users to specify encoding in each config files by [Lesmiscore](https://github.com/Lesmiscore)
+* Discard infodict from memory if no longer needed
+* Do not allow extractors to return `None`
+* Do not load system certificates when `certifi` is used
+* Fix rounding of integers in format table
+* Improve chapter sanitization
+* Skip some fixup if remux/recode is needed by [Lesmiscore](https://github.com/Lesmiscore)
+* Support `--no-progress` for `--wait-for-video`
+* Fix bug in [612f2be](https://github.com/yt-dlp/yt-dlp/commit/612f2be5d3924540158dfbe5f25d841f04cff8c6)
+* [outtmpl] Add alternate form `h` for HTML escaping
+* [aes] Add multiple padding modes in CBC by [elyse0](https://github.com/elyse0)
+* [extractor/common] Passthrough `errnote=False` to parsers
+* [extractor/generic] Remove HEAD request
+* [http] Ensure the file handle is always closed
+* [ModifyChapters] Modify duration in infodict
+* [options] Fix aliases to `--config-location`
+* [utils] Fix `get_domain`
+* [build] Consistent order for lazy extractors by [lamby](https://github.com/lamby)
+* [build] Fix architecture suffix of executables by [odo2063](https://github.com/odo2063)
+* [build] Improve `setup.py`
+* [update] Do not check `_update_spec` when up to date
+* [update] Prepare to remove Python 3.6 support
+* [compat] Let PyInstaller detect _legacy module
+* [devscripts/update-formulae] Do not change dependency section
+* [test] Split download tests so they can be more easily run in CIroDev](https://github.com/seproDev)
 - **mbn**: [Add extractor](https://github.com/yt-dlp/yt-dlp/commit/e030b6b6fba7b2f4614ad2ab9f7649d40a2dd305) ([#8312](https://github.com/yt-dlp/yt-dlp/issues/8312)) by [seproDev](https://github.com/seproDev)
 - **nhk**: [Fix Japanese-language VOD extraction](https://github.com/yt-dlp/yt-dlp/commit/4de94b9e165bfd6421a692f5f2eabcdb08edcb71) ([#8309](https://github.com/yt-dlp/yt-dlp/issues/8309)) by [garret1317](https://github.com/garret1317)
 - **radiko**: [Fix bug with `downloader_options`](https://github.com/yt-dlp/yt-dlp/commit/b9316642313bbc9e209ac0d2276d37ba60bceb49) by [bashonly](https://github.com/bashonly)

@@ -1,6 +1,6 @@
 # CONTRIBUTING TO YT-DLP
 
-- [OPENING AN ISSUE](#opening-an-issue)
+- [OPENING AN IS- [debug] Python version 3.8.10 (CPython 64bit) - Linux-5.4.0-74-generic-x86_64-with-glibc2.29UE](#opening-an-issue)
     - [Is the description of the issue itself sufficient?](#is-the-description-of-the-issue-itself-sufficient)
     - [Are you using the latest version?](#are-you-using-the-latest-version)
     - [Is the issue already documented?](#is-the-issue-already-documented)

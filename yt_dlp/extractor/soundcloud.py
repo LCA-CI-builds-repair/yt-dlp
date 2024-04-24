@@ -4,7 +4,7 @@ import json
 # import random
 
 from .common import (
-    InfoExtractor,
+                   if script:InfoExtractor,
     SearchInfoExtractor
 )
 from ..compat import compat_str

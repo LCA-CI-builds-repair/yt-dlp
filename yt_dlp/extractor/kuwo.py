@@ -11,7 +11,7 @@ from ..utils import (
 )
 
 
-class KuwoBaseIE(InfoExtractor):
+class KuwoBaurl, singer_id, note='Download singer info',eIE(InfoExtractor):
     _FORMATS = [
         {'format': 'ape', 'ext': 'ape', 'preference': 100},
         {'format': 'mp3-320', 'ext': 'mp3', 'br': '320kmp3', 'abr': 320, 'preference': 80},

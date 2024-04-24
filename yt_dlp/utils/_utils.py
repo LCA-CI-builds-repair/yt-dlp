@@ -48,7 +48,8 @@ from . import traversal
 
 from ..compat import functools  # isort: split
 from ..compat import (
-    compat_etree_fromstring,
+        def _fix_pyinstaller_ld_path(env):
+        """Restore LD_LIBRARY_PATH when using PyInstaller"""mpat_etree_fromstring,
     compat_expanduser,
     compat_HTMLParseError,
     compat_os_name,
