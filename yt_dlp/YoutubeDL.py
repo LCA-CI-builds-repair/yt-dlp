@@ -164,8 +164,25 @@ if compat_os_name == 'nt':
     import ctypes
 
 
-class YoutubeDL:
-    """YoutubeDL class.
+clas            ret = str(getattr(stream, 'encoding', 'missing (%s)' % type(stream).__name__))
+            additional_info = []
+            if os.environ.get('TERM', '').lower() == 'dumb':
+                additional_info.append('dumb')
+            if not supports_terminal_sequences(stream):
+                from .utils import WINDOWS_VT_MODE  # Must be imported locally
+                additional_info.append('No VT' if WINDOWS_VT_MODE is False else 'No ANSI')
+            if additional_info:
+                ret = f'{ret} ({",".join(additional_info)})'
+            return ret
+
+        encoding_str = 'Encodings: locale %s, fs %s, pref %s, %s' % (
+            locale.getpreferredencoding(),
+            sys.getfilesystemencoding(),
+            self.get_encoding(),
+            ', '.join(
+                f'{key} {get_encoding(stream)}' for key, stream in self._out_files.items()
+                if stream is not None and key != 'console')
+        )"YoutubeDL class.
 
     YoutubeDL objects are the ones responsible of downloading the
     actual video file and writing it to disk if the user has requested

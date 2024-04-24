@@ -2,8 +2,63 @@ import json
 import random
 import time
 
-from .common import InfoExtractor
-from ..networking.exceptions import HTTPError
+from .comm            'fixup': 'never',
+        },
+    }, {  # Clip; Series title doesn't appear on metadata JSON
+        'url': 'https:        if video_meta.get('portrait_image'):
+            thumbnails.append({
+                'id': 'portrait_image',
+                'url': '%s%d%s' % (image_path, 2000, video_meta['portrait_image'])  # 2000px seems to be the highest resolution that can be given
+            })
+        if video_meta.get('landscape_image'):
+            thumbnails.append({
+                'id': 'landscape_image',
+                'url': '%s%d%s' % (image_path, 2000, video_meta['landscape_image'])
+            })
+        try:
+            formats = self._extract_m3u8_formats(video_url, display_id, 'mp4', headers={'Referer': 'https://www.rctiplus.com/'})
+        except ExtractorError as e:
+            if isinstance(e.cause, HTTPError) and e.cause.status == 403:
+                self.raise_geo_restricted(countries=['ID'], metadata_available=True)
+            else:
+                raise e
+        for f in formats:/programs/316/cahaya-terindah/clip/3921/make-a-wish',
+        'md5': 'd179b2ff356f0e91a53bcc6a4d8504f0',
+        'info_dict': {
+            'id': 'v_c3921',
+            'title': 'Make A Wish',
+            'display_id': 'make-a-wish',
+            'description': 'Make A Wish',
+            'ext': 'mp4',
+            'duration': 288,
+            'timestamp': 1571652600,
+            'upload_date': '20191021',
+            'series': 'Cahaya Terindah',
+            'channel': 'RCTI',
+        },
+        'params': {
+            'fixup': 'never',
+        },
+    }, {  # Extra
+        'url': 'https://www.rctiplus.com/programs/616/inews-malam/extra/9438/diungkapkan-melalui-surat-terbuka-ceo-ruangguru-belva-devara-mundur-dari-staf-khusus-presiden',
+        'md5': 'c48106afdbce609749f5e0c007d9278a',
+        'info_dict': {
+            'id': 'v_ex9438',
+            'title': 'Diungkapkan Melalui Surat Terbuka CEO Ruangguru Belva Devara Mundur Dari Staf Khusus Presiden',
+            'display_id': 'md5:62b8d4e9ff096db527a1ad797e8a9933',
+            'description': 'Diungkapkan Melalui Surat Terbuka CEO Ruangguru Belva Devara Mundur Dari Staf Khusus Presiden',
+            'ext': 'mp4',
+            'duration': 93,
+            'timestamp': 1587561540,
+            'upload_date': '20200422',
+            'series': 'iNews Malam',
+            'channel': 'INews',
+        },
+    }, {  # Missed event/replay
+        'url': 'https://www.rctiplus.com/missed-event/2507/mou-signing-ceremony-27-juli-2021-1400-wib',
+        'md5': '649c5f27250faed1452ca8b91e06922d',
+        'info_dict': {
+            'id': 'v_pe2507',g.exceptions import HTTPError
 from ..utils import (
     dict_get,
     ExtractorError,

@@ -14,8 +14,11 @@ from ..utils import (
     float_or_none,
     int_or_none,
     parse_qs,
-    unsmuggle_url,
-    update_url_query,
+    unsmuggle_ur            config_url = config_url.replace('swf/', 'config/')
+            config_url = config_url.replace('onsite/', 'onsite/config/')
+            config = self._download_json(config_url, video_id, 'Downloading config')
+            release_url = config.get('releaseUrl', 'http://link.theplatform.com/s/%s?mbr=true' % path)
+            smil_url = f'{release_url}&formats=MPEG4&manifest=f4m' if 'releaseUrl' in config else f'http://link.theplatform.com/s/{path}?mbr=true'ate_url_query,
     xpath_with_ns,
     mimetype2ext,
     find_xpath_attr,

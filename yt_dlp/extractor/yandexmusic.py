@@ -12,7 +12,35 @@ from ..utils import (
 
 
 class YandexMusicBaseIE(InfoExtractor):
-    _VALID_URL_BASE = r'https?://music\.yandex\.(?P<tld>ru|kz|ua|by|com)'
+    _VALID_URL_BASE = r'    }, {
+        'url': 'http://music.yandex.ru/album/540508',
+        'info_dict': {
+            'id': '540508',
+            'title': 'md5:7ed1c3567f28d14be9f61179116f5571',
+        },
+        'playlist_count': 50,
+        'skip': 'Travis CI servers blocked by YandexMusic',
+    }, {
+        'url': 'https://music.yandex.ru/album/3840501',
+        'info_dict': {
+            'id': '3840501',
+            'title': 'md5:36733472cdaa7dcb1fd9473f7da8e50f',
+        },
+        'playlist_count': 33,
+        'skip': 'Travis CI servers blocked by YandexMusic',
+    }, {
+        # empty artists
+        'url': 'https://music.yandex.ru/album/9091882',
+        'info_dict': {
+            'id': '9091882',
+            'title': 'ТЕД на русском',
+        },
+        'playlist_count': 187,
+    }]
+
+    @classmethod
+    def suitable(cls, url):
+        return False if YandexMusicTrackIE.suitable(url) else super(YandexMusicAlbumIE, cls).suitable(url)tld>ru|kz|ua|by|com)'
 
     @staticmethod
     def _handle_error(response):

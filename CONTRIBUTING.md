@@ -1,6 +1,30 @@
-# CONTRIBUTING TO YT-DLP
+# CONTRIBUTING TO         - [Mandatory and optional metafields](#mandatory-and-optional-metafields)
+        - [Provide fallbacks](#provide-fallbacks)
+        - [Regular expressions](#regular-expressions)
+        - [Long lines policy](#long-lines-policy)
+        - [Quotes](#quotes)
+        - [Inline values](#inline-values)
+        - [Collapse fallbacks](#collapse-fallbacks)
+        - [Trailing parentheses](#trailing-parentheses)
+        - [Use convenience conversion and parsing functions](#use-convenience-conversion-and-parsing-functions)
+    - [My pull request is labeled pending-fixes](#my-pull-request-is-labeled-pending-fixes)
+- [EMBEDDING YT-DLP](README.md#embedding-yt-dlp)
 
-- [OPENING AN ISSUE](#opening-an-issue)
+# OPENING AN ISSUE
+
+Bugs and suggestions should be reported at: [yt-dlp/yt-dlp/issues](https://github.com/yt-dlp/yt-dlp/issues). Unless you were prompted to or there is another pertinent reason (e.g. GitHub fails to accept the bug report), please do not send bug reports via personal email. For discussions, join us in our [discord server](https://discord.gg/H5MNcFW63r).
+
+**Please include the full output of yt-dlp when run with `-vU`**, i.e. **add** `-vU` flag to **your command line**, copy the **whole** output and post it in the issue body wrapped in \`\`\` for better formatting. It should look similar to this:
+$ yt-dlp -vU <your command line>
+[debug] Command-line config: ['-v', 'demo.com']
+[debug] Encodings: locale UTF-8, fs utf-8, out utf-8, pref UTF-8
+[debug] yt-dlp version 2021.09.25 (zip)
+[debug] Python version 3.8.10 (CPython 64bit) - Linux-5.4.0-74-generic-x86_64-with-glibc2.29
+[debug] exe versions: ffmpeg 4.2.4, ffprobe 4.2.4
+[debug] Proxy map: {}
+Current Build Hash 25cc412d1d3c0725a1f2f5b7e4682f6fb40e6d15f7024e96f7afd572e9919535
+yt-dlp is up to date (2021.09.25)
+...ning-an-issue)
     - [Is the description of the issue itself sufficient?](#is-the-description-of-the-issue-itself-sufficient)
     - [Are you using the latest version?](#are-you-using-the-latest-version)
     - [Is the issue already documented?](#is-the-issue-already-documented)
