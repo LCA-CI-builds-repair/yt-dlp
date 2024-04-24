@@ -18,9 +18,29 @@ from .youtube import (  # Youtube is moved to the top to improve performance
     YoutubeTruncatedIDIE,
     YoutubeTruncatedURLIE,
     YoutubeYtBeIE,
-    YoutubeYtUserIE,
-    YoutubeWatchLaterIE,
-    YoutubeShortsAudioPivotIE,
+    YoutubeYtUsfrom .discovery import DiscoveryIE
+from .disney import DisneyIE
+from .dispeak import DigitallySpeakingIE
+from .dropbox import DropboxIE
+from .dropout import DropoutIE, DropoutSeasonIE
+from .duoplay import DuoplayIE
+from .dw import DWIE, DWArticleIE
+from .eagleplatform import EaglePlatformIE, ClipYouEmbedIE
+from .ebaumsworld import EbaumsWorldIE
+from .ebay import EbayIE
+from .egghead import EggheadCourseIE, EggheadLessonIE
+from .eighttracks import EightTracksIE
+from .einthusan import EinthusanIE
+from .eitb import EitbIE
+from .elemental_tv import ElementalTVIE
+from .elevensports import ElevenSportsIE
+from .ellentube import EllenTubeIE, EllenTubePlaylistIE, EllenTubeVideoIE
+from .elonet import ElonetIE
+from .elpais import ElPaisIE
+from .eltrecetv import ElTreceTVIE
+from .embedly import EmbedlyIE
+from .epicon import EpiconIE, EpiconSeriesIE
+from .epidemicsound import EpidemicSoundIEubeShortsAudioPivotIE,
     YoutubeConsentRedirectIE,
 )
 

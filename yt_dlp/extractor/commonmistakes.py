@@ -1,4 +1,32 @@
-from .common import InfoExtractor
+ffrom ..utils import Extr    IE_DESC = False
+    _VALID_URL = r'(?:\ufeff)?(?P<id>.*)$'
+
+    _TESTS = [{
+        'url': '\ufeffhttp://www.youtube.com/watch?v=BaW_jenozKc',
+        'only_matching': True,
+    }]ror
+
+class CommonMistakesIE(InfoExtractor):
+    IE_DESC = False  # Do not list
+    _VALID_URL = r'https?://(?:url|URL|yt-dlp)$'
+
+    _TESTS = [{
+        'url': 'url',
+        'only_matching': True,
+    }, {
+        'url': 'URL',
+        'only_matching': True,
+    }]
+
+    def _real_extract(self, url):
+        msg = (
+            f'You have requested yt-dlp to download the URL "{url}". '
+            'That does not make any sense. '
+            'Simply remove the parameter in your command or configuration.'
+        )
+        if not self.get_param('verbose'):
+            msg += ' Add -v to the command line to see the arguments and configuration yt-dlp has.'
+        raise ExtractorError(msg, expected=True)ractor
 from ..utils import ExtractorError
 
 

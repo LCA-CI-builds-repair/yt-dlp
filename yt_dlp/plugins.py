@@ -5,8 +5,24 @@ import importlib.machinery
 import importlib.util
 import inspect
 import itertools
-import pkgutil
-import sys
+i        if any(x.startswith('_') for x in module_name.split('.')):
+            continue
+        try:
+            if sys.version_info < (3, 10) and isinstance(finder, zipimport.zipimporter):
+                # Handle module loading for Python versions below 3.10 with zipimporter
+                # load_module() is deprecated in 3.10 and removed in 3.12
+                module = finder.load_module(module_name)
+            else:
+                # Load module using find_spec and exec_module for Python 3.10 and above
+                spec = finder.find_spec(module_name)
+                module = importlib.util.module_from_spec(spec)
+                sys.modules[module_name] = module
+                spec.loader.exec_module(module)
+        except Exception:
+            # Handle errors in importing modules and provide detailed traceback
+            write_string(f'Error while importing module {module_name!r}\n{traceback.format_exc(limit=-1)}')
+            continue
+        classes.update(load_module(module, module_name, suffix))ort sys
 import traceback
 import zipimport
 from pathlib import Path

@@ -84,8 +84,19 @@ class GenericIE(InfoExtractor):
             'url': 'http://ai-radio.org:8000/radio.opus',
             'info_dict': {
                 'id': 'radio',
-                'ext': 'opus',
-                'title': 'radio',
+                'ext                if re.match(r'^[^\s/]+\.[^\s/]+/', url):
+                    self.report_warning('The URL does not specify the protocol. Trying with http://')
+                    return self.url_result('http://' + url)
+                elif default_search != 'fixup_error':
+                    if default_search == 'auto_warning':
+                        if re.match(r'^(?:url|URL)$', url):
+                            raise ExtractorError(
+                                f'Invalid URL: {url}. Please call yt-dlp like this: yt-dlp -v "https://www.youtube.com/watch?v=BaW_jenozKc"',
+                                expected=True)
+                        else:
+                            self.report_warning(
+                                f'Falling back to YouTube search for {url}. Set --default-search "auto" to suppress this warning.')
+                    return self.url_result('ytsearch:' + url)              'title': 'radio',
             },
             'params': {
                 'skip_download': True,  # infinite live stream

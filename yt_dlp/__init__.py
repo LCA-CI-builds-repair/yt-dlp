@@ -35,8 +35,29 @@ from .update import Updater
 from .utils import (
     NO_DEFAULT,
     POSTPROCESS_WHEN,
-    DateRange,
-    DownloadCancelled,
+          ydl.cache.remove()
+
+        try:
+            updater = Updater(ydl, opts.update_self)
+            if opts.update_self and updater.update() and actual_use:
+                if updater.cmd:
+                    return updater.restart()
+                # This code is reachable only for zip variant in py < 3.10
+                # It makes sense to exit here, but the old behavior is to continue
+                ydl.report_warning('Restart yt-dlp to use the updated version')
+                # return 100, 'ERROR: The program must exit for the update to complete'
+        except Exception:
+            traceback.print_exc()
+            ydl._download_retcode = 100
+
+        if not actual_use:
+            if pre_process:
+                return ydl._download_retcode
+
+            ydl.warn_if_short_id(sys.argv[1:] if argv is None else argv)
+            parser.error(
+                'You must provide at least one URL.\n'
+                'Type yt-dlp --help to see a list of all options.')adCancelled,
     DownloadError,
     FormatSorter,
     GeoUtils,

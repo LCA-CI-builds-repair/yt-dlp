@@ -11,7 +11,29 @@
 [![Supported Sites](https://img.shields.io/badge/-Supported_Sites-brightgreen.svg?style=for-the-badge)](supportedsites.md "Supported Sites")
 [![License: Unlicense](https://img.shields.io/badge/-Unlicense-blue.svg?style=for-the-badge)](LICENSE "License")
 [![CI Status](https://img.shields.io/github/actions/workflow/status/yt-dlp/yt-dlp/core.yml?branch=master&label=Tests&style=for-the-badge)](https://github.com/yt-dlp/yt-dlp/actions "CI Status")
-[![Commits](https://img.shields.io/github/commit-activity/m/yt-dlp/yt-dlp?label=commits&style=for-the-badge)](https://github.com/yt-dlp/yt-dlp/commits "Commit History")
+[![Commits](https://$ yt-dlp -o "%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s" "https://www.youtube.com/playlist?list=PLwiyx1dc3P2JR9N8gQaQN_BCvlSlap7re"
+
+# Download YouTube playlist videos i$ yt-dlp
+
+# Download the best video-only format and the best audio-only format without merging them
+# For this case, an output template should be use## Modifying metadata examples
+video and bestaudio will have the same file name.
+$ yt-dlp -f "bv,ba" -o "%(title)s.f%(format_id)s.%(ext)s"
+
+# Download and merge the best format that has a video stream,
+# and all audio-only formats into one file
+$ yt-dlp -f "bv*+bestaudio" --audio-multistreams
+
+# Download and merge the best format that has a video stream,
+# and the best 2 audio-only formats into one file
+$ yt-dlp -f "bv*+ba+ba[2]" --audio-multistreamsctories according to their uploaded year
+$ yt-dlp -o "%(upload_date)s/%(title)s.%(ext)s" "https://www.youtube.com/playlist?list=PLwiyx1dc3P2JR9N8gQaQN_BCvlSlap7re"
+
+# Prefix playlist index with " - " separator, but only if it is available
+$ yt-dlp -o "%(playlist_index)%{} - %(title)s.%(ext)s" BaW_jenozKc "https://www.youtube.com/user/TheLinuxFoundation/playlists"
+
+# Download all playlists of YouTube channel/user keeping each playlist in separate directory:
+$ yt-dlp -o "%(uploader)s/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s" "https://www.youtube.com/user/TheLinuxFoundation/playlists"s.io/github/commit-activity/m/yt-dlp/yt-dlp?label=commits&style=for-the-badge)](https://github.com/yt-dlp/yt-dlp/commits "Commit History")
 [![Last Commit](https://img.shields.io/github/last-commit/yt-dlp/yt-dlp/master?label=&style=for-the-badge&display_timestamp=committer)](https://github.com/yt-dlp/yt-dlp/pulse/monthly "Last activity")
 
 </div>

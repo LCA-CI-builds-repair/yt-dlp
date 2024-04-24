@@ -1,6 +1,18 @@
-import contextlib
-import os
+import contextlifrom ._extractors import *  # noqa: F403
 
+_PLUGIN_CLASSES = {
+    name: klass
+    for name, klass in globals().items()
+    if name.endswith('IE') and name != 'GenericIE'
+}
+
+_ALL_CLASSES = list(_PLUGIN_CLASSES.values())
+_ALL_CLASSES.append(GenericIE)  # noqa: F405
+_ALL_CLASSES[:0] = _PLUGIN_CLASSES.values()
+
+globals().update(_PLUGIN_CLASSES)
+
+from .common import _PLUGIN_OVERRIDES  # noqa: F401
 from ..plugins import load_plugins
 
 # NB: Must be before other imports so that plugins can be correctly injected
