@@ -1,6 +1,53 @@
 import itertools
 
-from .common import InfoExtractor
+from .common im        audio_id = self._match_id(url)
+
+        we                  _VALID_URL = r'https?://(?:wave\.rozhlas|english\.radio)\.cz/[\w-]+-(?P<id>\d+)'
+    _TESTS = [{
+        'url': 'https://wave.rozhlas.cz/papej-masicko-porcujeme-a-bilancujeme-filmy-a-serialy-ktere-letos-zabily-8891337',
+        'md5': 'ba2fdbc1242fc16771c7695d271ec355',
+        'info_dict': {
+            'id': '8891337',
+            'title': 'md5:21f99739d04ab49d8c189ec711eef4ec',
+        },
+        'playlist_count': 1,
+        'playlist': [{
+            'md5': 'ba2fdbc1242fc16771c7695d271ec355',
+            'info_dict': {
+                'id': '10520988',
+                'ext': 'mp3',
+                'title': 'Papej masíčko! Porcujeme a bilancujeme filmy a seriály, které to letos zabily',
+                'description': 'md5:1c6d29fb9564e1f17fc1bb83ae7da0bc',
+                'duration': 1574,
+                'artist': 'Aleš Stuchlý',
+                'channel_id': 'radio-wave',
+            },
+        }]
+    }, {nt_or_none(audio.get('bitrate')),
+                            'acodec': ext,
+                            'vcodec': 'none',
+                        })
+                except ExtractorError as e:
+                    if isinstance(e.cause, HTTPError) and e.cause.status == 429:
+                        retry.error = e.cause
+                    else:
+                        self.report_warning(e.msg)elf._download_webpage(
+            'http://prehravac.rozhlas.cz/audio/%s' % audio_id, audio_id)
+
+        # Extract title from webpage
+        title = self._html_search_regex(
+            r'<h3>(.+?)</h3>\s*<p[^>]*>.*?</p>\s*<div[^>]+id=["\']player-track',
+            webpage, 'title', default=None) or remove_start(
+            self._og_search_title(webpage), 'Radio Wave - ')
+        
+        # Extract description from webpage
+        description = self._html_search_regex(
+            r'<p[^>]+title=(["\'])(?P<url>(?:(?!\1).)+)\1[^>]*>.*?</p>\s*<div[^>]+id=["\']player-track',
+            webpage, 'description', fatal=False, group='url')
+        
+        # Extract duration from webpage
+        duration = int_or_none(self._search_regex(
+            r'data-duration=["\'](\d+)', webpage, 'duration', default=None))ctor
 from ..networking.exceptions import HTTPError
 from ..utils import (
     ExtractorError,

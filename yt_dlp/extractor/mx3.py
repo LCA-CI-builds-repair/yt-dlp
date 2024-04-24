@@ -1,8 +1,9 @@
 import re
 
 from .common import InfoExtractor
-from ..networking import HEADRequest
-from ..utils import (
+from ..networking import HEADReques    _DOMAIN = 'mx3.ch'
+    _VALID_URL = _Mx3BaseIE._VALID_URL_TMPL % re.escape(_DOMAIN)
+    _TESTS = [{rom ..utils import (
     get_element_by_class,
     int_or_none,
     try_call,

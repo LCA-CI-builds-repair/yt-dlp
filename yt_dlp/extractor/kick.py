@@ -1,5 +1,64 @@
-from .common import InfoExtractor
-from ..networking import HEADRequest
+from .common import InfoExtract_VALID_URL = r'https?://(?:www\.            'id': str(traverse_obj(
+                response, ('livestream', ('slug', 'id')), get_all=False, default=channel)),
+            'formats': self._extract_m3u8_formats(
+                response['playback_url'], channel, 'mp4', live=True),
+            'title': traverse_obj(
+                response, ('livestream', ('session_title', 'slug')), get_all=False, default=''),
+            'description': traverse_obj(response, ('user', 'bio')),
+            'channel': channel,
+            'channel_id': str_or_none(traverse_obj(response, 'id', ('livestream', 'channel_id'))),
+            'uploader': traverse_obj(response, 'name', ('user', 'username')),
+            'uploader_id': str_or_none(traverse_obj(response, 'user_id', ('user', 'id'))),
+            'is_live': True,
+            'timestamp': unified_timestamp(traverse_obj(response, ('livestream', 'created_at'))),
+            'thumbnail': traverse_obj(
+                response, ('livestream', 'thumbnail', 'url'), expected_type=url_or_none),
+            'categories': traverse_obj(response, ('recent_categories', ..., 'name')),
+        }
+    }
+}
+
+class KickVODIE(KickBaseIE):
+    _VALID_URL = r'https?://(?:www\.)?kick\.com/video/(?P<id>[\da-f]{8}-(?:[\da-f]{4}-){3}[\da-f]{12})'
+    _TESTS = [{
+        'url': 'https://kick.com/video/54244b5e-050a-4df4-a013-b2433dafbe35',
+        'md5': '73691206a6a49db25c5aa1588e6538fc',
+        'info_dict': {
+            'id': '54244b5e-050a-4df4-a013-b2433dafbe35',
+            'ext': 'mp4',
+            'title': 'Making 710-carBoosting. Kinda No Pixel inspired.  !guilded  - !links',
+            'description': 'md5:a0d3546bf7955d0a8252ffe0fd6f518f',
+            'channel': 'kmack710',
+            'channel_id': '16278',
+            'uploader': 'Kmack710',
+            'uploader_id': '16412',
+            'upload_date': '20221206',
+            'timestamp': 1670318289,
+            'duration': 40104.0,
+            'thumbnail': r're:^https?://.*\.jpg',
+            'categories': ['Grand Theft Auto V'],
+        },
+        'params': {
+    }
+}]h|auth)(?:[/?#]|$))(?P<id>[\w-]+)'
+_TESTS = [{
+    'url': 'https://kick.com/yuppy',
+    'info_dict': {
+        'id': '6cde1-kickrp-joe-flemmingskick-info-heremust-knowmust-see21',
+        'ext': 'mp4',
+        'title': str,
+        'description': str,
+        'channel': 'yuppy',
+        'channel_id': '33538',
+        'uploader': 'Yuppy',
+        'uploader_id': '33793',
+        'upload_date': str,
+        'live_status': 'is_live',
+        'timestamp': int,
+        'thumbnail': r're:^https?://.*\.jpg',
+        'categories': list,
+    },
+}]ng import HEADRequest
 from ..utils import (
     UserNotLive,
     float_or_none,
