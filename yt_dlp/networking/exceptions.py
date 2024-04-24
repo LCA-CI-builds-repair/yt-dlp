@@ -6,10 +6,32 @@ import urllib.error
 from ..utils import YoutubeDLError, deprecation_warning
 
 if typing.TYPE_CHECKING:
-    from .common import RequestHandler, Response
+    from .common import RequestHandler    def filename(self, value):
+        return
 
+    def _handle_passthrough_warnings(self, name):
+        # File operations are passed through the response.
+        # Warn for some commonly used ones
+        passthrough_warnings = {
+            'read': 'response.read()',
+            # technically possibly due to passthrough, but we should discourage this
+            'get_header': 'response.get_header()',
+            'readable': 'response.readable()',
+            'closed': 'response.closed',
+            'tell': 'response.tell()',
+        }
+        if name in passthrough_warnings:
+            deprecation_warning(f'HTTPError.{name} is deprecated, use HTTPError.{passthrough_warnings[name]} instead')
 
-class RequestError(YoutubeDLError):
+    def __getattr__(self, name):
+        self._handle_passthrough_warnings(name)
+        return super().__getattr__(name)
+
+    def __str__(self):
+        return str(self._http_error)
+
+    def __repr__(self):
+        return repr(self._http_error)stError(YoutubeDLError):
     def __init__(
         self,
         msg: str | None = None,

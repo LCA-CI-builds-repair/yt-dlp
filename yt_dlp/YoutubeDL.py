@@ -80,8 +80,44 @@ from .utils import (
     ExistingVideoReached,
     ExtractorError,
     FormatSorter,
-    GeoRestrictedError,
-    ISO3166Utils,
+    GeoRestrictedErinside_group = False
+inside_merge = False
+inside_choice = False
+
+def is_encoding_type(type):
+    return type == getattr(tokenize, 'ENCODING', None)
+
+def is_name_or_number(type):
+    return type in [tokenize.NAME, tokenize.NUMBER]
+
+def handle_closing_parentheses():
+    if not inside_group:
+        tokens.restore_last_token()
+
+def handle_merge_separator():
+    if inside_merge and string_ in ['/', ',']:
+        tokens.restore_last_token()
+
+def handle_choice_separator():
+    if inside_choice and string_ == ',':
+        # Handle choice separator logic here
+
+selectors = []
+current_selector = None
+for type, string_, start, _, _ in tokens:
+    if is_encoding_type(type):
+        continue
+    elif is_name_or_number(type):
+        current_selector = FormatSelector(SINGLE, string_, [])
+    elif type == tokenize.OP:
+        if string_ == ')':
+            handle_closing_parentheses()
+            break
+        elif inside_merge:
+            handle_merge_separator()
+            break
+        elif inside_choice:
+            handle_choice_separator()ils,
     LazyList,
     MaxDownloadsReached,
     Namespace,

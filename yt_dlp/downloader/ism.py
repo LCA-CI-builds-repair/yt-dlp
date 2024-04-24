@@ -1,7 +1,16 @@
 import binascii
 import io
-import struct
-import time
+import struct    import time
+    
+    track_id = params['track_id']
+    fourcc = params['fourcc']
+    duration = params['duration']
+    timescale = params.get('timescale', 10000000)
+    language = params.get('language', 'und')
+    height = params.get('height', 0)
+    width = params.get('width', 0)
+    stream_type = params['stream_type']
+    creation_time = modification_time = int(time.time())me
 
 from .fragment import FragmentFD
 from ..networking.exceptions import HTTPError

@@ -1,7 +1,27 @@
 import datetime
 import functools
-import itertools
-import json
+import ite        'url': 'htt        # the md5 field
+        'url': 'http://www.nicovideo.jp/watch/nm14296458',
+        'info_dict': {
+            'id': 'nm14296458',
+            'ext': 'swf',
+            'title': '【鏡音リン】Dance on media【オリジナル】take2!',
+        },w.nicovideo.jp/watch/sm22312215',
+        'md5': 'd1a75c0823e2f629128c43e1212760f9',
+        'info_dict': {
+            'id': 'sm22312215',
+            'ext': 'mp4',
+            'title': 'Big Buck Bunny',
+            'thumbnail': r'https?://.*\.jpg',  # Updated regex for thumbnail URL
+            'uploader': 'takuya0301',
+            'uploader_id': '2698420',
+            'upload_date': '20131123',
+            'timestamp': int,  # Specify data type for timestamp
+            'description': '(c) copyright 2008, Blender Foundation / www.bigbuckbunny.org',
+            'duration': 33,
+            'view_count': int,  # Specify data type for view count
+            'comment_count': int,  # Specify data type for comment count
+        },on
 import re
 import time
 

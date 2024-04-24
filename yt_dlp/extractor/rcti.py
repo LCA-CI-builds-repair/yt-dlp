@@ -15,8 +15,30 @@ from ..utils import (
 
 class RCTIPlusBaseIE(InfoExtractor):
     def _real_initialize(self):
-        self._AUTH_KEY = self._download_json(
-            'https://api.rctiplus.com/api/v1/visitor?platform=web',  # platform can be web, mweb, android, ios
+        self._AUTH_KEY = self._download_j    _VALID_URL = r'https://www\.rctiplus\.com/((tv/(?P<tvname>\w+))|(?P<eventname>live-event|missed-event))'
+    _TESTS = [{
+        'url': 'https://www.rctiplus.com/tv/rcti',
+        'info_dict': {
+            'id': 'v_lt1',
+            'title': 'RCTI',
+            'ext': 'mp4',
+            'timestamp': 1546344000,
+            'upload_date': '20190101',
+        },
+        'params': {
+            'skip_download': True,
+        }
+    }, {
+        # Match for live event URL
+        'url': 'https://www.rctiplus.com/live-event',
+        'only_matching': True,
+    }, {
+        # Match for missed event URL
+        'url': 'https://www.rctiplus.com/missed-event',
+        'only_matching': True,
+    }]
+
+    @classmethod//api.rctiplus.com/api/v1/visitor?platform=web',  # platform can be web, mweb, android, ios
             None, 'Fetching authorization key')['data']['access_token']
 
     def _call_api(self, url, video_id, note=None):

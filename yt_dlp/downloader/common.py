@@ -1,6 +1,15 @@
 import contextlib
 import errno
-import functools
+import    """File Downloader class.
+
+    File downloader objects are the ones responsible of downloading the
+    actual video file and writing it to disk.
+
+    File downloaders accept a lot of parameters. In order not to saturate
+    the object constructor with arguments, it receives a dictionary of
+    options instead.
+
+    Available options:
 import os
 import random
 import re

@@ -9,7 +9,12 @@ from ..networking.exceptions import (
     HTTPError,
     TransportError,
 )
-from ..utils import (
+from ..utils i                        f'\r[download] File size is smaller than min-filesize: {data_len} bytes < {min_data_len} bytes. Aborting.')
+                    return False
+                if max_data_len is not None and data_len > max_data_len:
+                    self.to_screen(
+                        f'\r[download] File size is larger than max-filesize: {data_len} bytes > {max_data_len} bytes. Aborting.')
+                    return False(
     ContentTooShortError,
     RetryManager,
     ThrottledDownload,

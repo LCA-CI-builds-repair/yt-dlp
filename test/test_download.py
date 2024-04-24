@@ -5,10 +5,27 @@ import os
 import sys
 import unittest
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-
-import collections
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__            if tcs is None:
+                tcs = test_cases
+            for tc in tcs:
+                tc_filename = get_tc_filename(tc)
+                try_rm(tc_filename)
+                try_rm(tc_filename + '.part')
+                try_rm(os.path.splitext(tc_filename)[0] + '.info.json')
+        try_rm_tcs_files()
+        try:
+            try_num = 1
+            while True:
+                try:
+                    # We're not using .download here since that is just a shim
+                    # for outside error handling, and returns the exit code
+                    # instead of the result dict.
+                    res_dict = ydl.extract_info(
+                        test_case['url'],
+                        force_generic_extractor=params.get('force_generic_extractor', False))
+                except (DownloadError, ExtractorError) as err:
+                    # Check if the exception is not a network related one
+}collections
 import hashlib
 import json
 

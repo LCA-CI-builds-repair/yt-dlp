@@ -26,7 +26,30 @@ from ..utils import (
 class ORFTVthekIE(InfoExtractor):
     IE_NAME = 'orf:tvthek'
     IE_DESC = 'ORF TVthek'
-    _VALID_URL = r'(?P<url>https?://tvthek\.orf\.at/(?:(?:[^/]+/){2}){1,2}(?P<id>\d+))(/[^/]+/(?P<vid>\d+))?(?:$|[?#])'
+    _            if idx >= 1:
+                # Append index to titles for duplicates to make them unique
+                title += ' (' + str(idx + 1) + ')'
+            
+            # Extract video description
+            description = self._og_search_description(webpage)
+            
+            # Get the upload date of the video
+            upload_date = unified_strdate(self._html_search_meta(
+                'dc.date', webpage, 'upload date'))
+            
+            # Construct the entry for the video
+            entries.append({
+                'id': video_id,
+                'title': title,
+                'description': description,
+                'duration': duration,
+                'thumbnail': thumbnail,
+                'upload_date': upload_date,
+                'formats': formats,
+            })
+
+        # Return the playlist result
+        return self.playlist_result(entries)url>https?://tvthek\.orf\.at/(?:(?:[^/]+/){2}){1,2}(?P<id>\d+))(/[^/]+/(?P<vid>\d+))?(?:$|[?#])'
 
     _TESTS = [{
         'url': 'https://tvthek.orf.at/profile/ZIB-2/1211/ZIB-2/14121079',

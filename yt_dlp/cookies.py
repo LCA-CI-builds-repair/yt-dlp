@@ -49,7 +49,21 @@ SUPPORTED_BROWSERS = CHROMIUM_BASED_BROWSERS | {'firefox', 'safari'}
 
 class YDLLogger(_YDLLogger):
     def warning(self, message, only_once=False):  # compat
-        return super().warning(message, once=only_once)
+        return super().warning(m            e    """
+    See [1] for cookie file format.
+
+    1. https://curl.haxx.se/docs/http-cookies.html
+    """
+    _HTTPONLY_PREFIX = '#HttpOnly_'
+    _ENTRY_LEN = 7
+    _HEADER = '''# Netscape HTTP Cookie Filettribute:
+                morsel = None
+
+            elif value is not None:
+                morsel = self.get(key, http.cookies.Morsel())
+                real_value, coded_value = self.value_decode(value)
+                morsel.set(key, real_value, coded_value)
+                self[key] = morselce=only_once)
 
     class ProgressBar(MultilinePrinter):
         _DELAY, _timer = 0.1, 0

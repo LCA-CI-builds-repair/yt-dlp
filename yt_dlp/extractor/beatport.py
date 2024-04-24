@@ -1,7 +1,24 @@
 import re
 
-from .common import InfoExtractor
-from ..compat import compat_str
+from .common import InfoExtrimport re
+
+mobj = self._match_valid_url(url)
+track_id = mobj.group('id')
+display_id = mobj.group('display_id')
+
+webpage = self._download_webpage(url, display_id)
+
+playables_info = self._search_regex(
+    r'window\.Playables\s*=\s*({.+?});', webpage,
+    'playables info', flags=re.DOTALL)
+playables = self._parse_json(playables_info, track_id)
+
+track = next(t for t in playables['tracks'] if t['id'] == int(track_id))
+
+artists_names = ', '.join((a['name'] for a in track['artists']))
+title = f"{artists_names} - {track['name']}"
+if track['mix']:
+    title += f" ({track['mix']})"at import compat_str
 from ..utils import int_or_none
 
 
