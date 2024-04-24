@@ -48,7 +48,10 @@ from . import traversal
 
 from ..compat import functools  # isort: split
 from ..compat import (
-    compat_etree_fromstring,
+        def _fix_pyinstaller_ld_path(env):
+        """Restore LD_LIBRARY_PATH when using PyInstaller""# Placeholder for utility functions or helper methods in the yt_dlp/utils/_utils.py module
+# Add relevant code or comments related to common utility functions here
+        # Add the implementation logic to restore LD_LIBRARY_PATH herempat_etree_fromstring,
     compat_expanduser,
     compat_HTMLParseError,
     compat_os_name,

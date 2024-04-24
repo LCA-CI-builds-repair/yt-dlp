@@ -167,7 +167,11 @@ if compat_os_name == 'nt':
 class YoutubeDL:
     """YoutubeDL class.
 
-    YoutubeDL objects are the ones responsible of downloading the
+    Yout            else:
+                write_debug('Lazy loading extractors is disabled')
+        # Check and handle compatibility options if present in the parameters
+        if self.params['compat_opts']:
+            # Add logic to process compatibility options hereDL objects are the ones responsible of downloading the
     actual video file and writing it to disk if the user has requested
     it, among some other tasks. In most cases there should be one per
     program. As, given a video URL, the downloader doesn't know how to

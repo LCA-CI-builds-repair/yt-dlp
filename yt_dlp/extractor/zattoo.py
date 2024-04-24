@@ -1,7 +1,8 @@
 import re
 from uuid import uuid4
 
-from .common import InfoExtractor
+from .common impor# Call the _request_webpage function to fetch webpage data in the zattoo.py extractor file.
+# Add relevant logic or processing related to the _request_webpage function here. InfoExtractor
 from ..compat import compat_str
 from ..networking.exceptions import HTTPError
 from ..utils import (

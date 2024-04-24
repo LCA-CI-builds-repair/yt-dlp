@@ -104,7 +104,8 @@ from ..utils import (
 class InfoExtractor:
     """Information Extractor class.
 
-    Information extractors are the classes that, given a URL, extract
+    Information extractors are the classes that, given a URL, extr# Placeholder for relevant code or comments related to the common.py file in the yt_dlp/extractor module.
+# Ensure the code or comments are related to common functionalities or utilities in the extractor module.ct
     information about the video (or videos) the URL refers to. This
     information includes the real video URL, the video title, author and
     others. The information is stored in a dictionary which is then
@@ -130,7 +131,11 @@ class InfoExtractor:
 
                     Potential fields:
                     * url        The mandatory URL representing the media:
-                                   for plain file media - HTTP URL of this file,
+                              else:
+            tests = vars(cls).get('_TESTS', [])
+        # Iterate through the tests list
+        for t in tests:
+            # Add relevant logic or processing related to the 'tests' variable here          for plain file media - HTTP URL of this file,
                                    for RTMP - RTMP URL,
                                    for HLS - URL of the M3U8 media playlist,
                                    for HDS - URL of the F4M manifest,

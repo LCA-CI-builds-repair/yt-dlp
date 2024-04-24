@@ -1,6 +1,8 @@
 # CONTRIBUTING TO YT-DLP
 
-- [OPENING AN ISSUE](#opening-an-issue)
+- [OPENING A$ yt-dlp -vU <your command line>
+[debug] Command-line config: ['-v', 'demo.com']
+# Add a description or context explaining the example command for updating yt-dlp with verbose output and a specified URL.ISSUE](#opening-an-issue)
     - [Is the description of the issue itself sufficient?](#is-the-description-of-the-issue-itself-sufficient)
     - [Are you using the latest version?](#are-you-using-the-latest-version)
     - [Is the issue already documented?](#is-the-issue-already-documented)

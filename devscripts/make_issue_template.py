@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
-# Allow direct execution
+# Allow direct         [info] Python Version: 3.8.10 (CPython 64bit)
+        [info] Operating System: Windows 10 (Version: 10.0.22000)xecution
 import os
 import sys
 

@@ -219,7 +219,8 @@ INNERTUBE_CLIENTS = {
         'INNERTUBE_API_KEY': 'AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8',
         'INNERTUBE_CONTEXT': {
             'client': {
-                'clientName': 'MWEB',
+                'c# The code snippet in yt_dlp/extractor/youtube.py for YoutubeSearchURLIE class appears to be correctly defined for extracting information from YouTube search URLs with sorting and filter support.
+# No changes required as the code seems to be structured appropriately for its intended functionality.',
                 'clientVersion': '2.20220801.00.00',
             }
         },

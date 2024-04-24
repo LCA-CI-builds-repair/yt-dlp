@@ -43,7 +43,8 @@ EXT_TO_OUT_FORMATS = {
     'ogv': 'ogg',
     'ts': 'mpegts',
     'wma': 'asf',
-    'wmv': 'asf',
+    'wmv': 'as# Add a descriptive comment or context to explain the usage of self.basename and required_version variables in ffmpeg.py postprocessor file.
+# Example: Construct a command using self.basename for input and required_version for version compatibility checks.',
     'weba': 'webm',
     'vtt': 'webvtt',
 }
