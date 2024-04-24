@@ -1,4 +1,6 @@
-#!/usr/bin/env python3
+## Add your code implementation here for executing with 'python -m yt_dlp'
+
+import sys/bin/env python3
 
 # Execute with
 # $ python -m yt_dlp

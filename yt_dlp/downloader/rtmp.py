@@ -6,7 +6,7 @@ import time
 from .common import FileDownloader
 from ..utils import (
     Popen,
-    check_executable,
+         # the connection was interrupted and resuming appears to be needed  check_executable,
     encodeArgument,
     encodeFilename,
     get_exe_version,

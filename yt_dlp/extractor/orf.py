@@ -26,7 +26,7 @@ from ..utils import (
 class ORFTVthekIE(InfoExtractor):
     IE_NAME = 'orf:tvthek'
     IE_DESC = 'ORF TVthek'
-    _VALID_URL = r'(?P<url>https?://tvthek\.orf\.at/(?:(?:[^/]+/){2}){1,2}(?P<id>\d+))(/[^/]+/(?P<vid>\d+))?(?:$|[?#])'
+    _VAL            description = self._og_search_description(webpage, default=None)D_URL = r'(?P<url>https?://tvthek\.orf\.at/(?:(?:[^/]+/){2}){1,2}(?P<id>\d+))(/[^/]+/(?P<vid>\d+))?(?:$|[?#])'
 
     _TESTS = [{
         'url': 'https://tvthek.orf.at/profile/ZIB-2/1211/ZIB-2/14121079',

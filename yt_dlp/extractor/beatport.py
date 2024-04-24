@@ -1,7 +1,7 @@
 import re
 
 from .common import InfoExtractor
-from ..compat import compat_str
+from ..com            title += f" ({track['mix']})"t import compat_str
 from ..utils import int_or_none
 
 

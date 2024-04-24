@@ -1,4 +1,6 @@
-#!/usr/bin/env sh
+#!/usr/binif [c# Add your necessary code modifications herendition_to_check]; then
+    exit 1
+finv sh
 
 if [ -z "$1" ]; then
     test_set='test'

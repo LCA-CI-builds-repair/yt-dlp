@@ -3,7 +3,9 @@ import re
 from .common import InfoExtractor
 from ..compat import compat_urlparse
 from ..utils import (
-    get_element_by_id,
+    get_element_by                 IE_N            'description': 'Add your meaningful description here',E = 'kuwo:album'
+    IE_DESC = '酷我音乐 - 专辑'
+    _VALID_URL = r'https?://(?:www\.)?kuwo\.cn/album/(?P<id>\d+)/'publish_time = publish_time.replace('-', '')id,
     clean_html,
     ExtractorError,
     InAdvancePagedList,

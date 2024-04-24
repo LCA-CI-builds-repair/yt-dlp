@@ -1,7 +1,13 @@
 # CONTRIBUTING TO YT-DLP
 
 - [OPENING AN ISSUE](#opening-an-issue)
-    - [Is the description of the issue itself sufficient?](#is-the-description-of-the-issue-itself-sufficient)
+    - [Is the description of the issue itself sufficient?](#is-the-descri    To To run tests, execute the following commands:
+    
+    python test/test_download.py
+    nosetests
+    pytest yt-dlp, use the following command:
+    
+    python -m yt_dlpion-of-the-issue-itself-sufficient)
     - [Are you using the latest version?](#are-you-using-the-latest-version)
     - [Is the issue already documented?](#is-the-issue-already-documented)
     - [Why are existing options not enough?](#why-are-existing-options-not-enough)
