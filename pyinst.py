@@ -1,6 +1,26 @@
 #!/usr/bin/env python3
 
-# Allow direct execution
+# A    opts = [
+        f'--name={name}',
+        '--icon=devscripts/logo.ico',
+        '--upx-exclude=vcruntime140.dll',
+        '--noconfirm',
+        '--additional-hooks-dir=yt_dlp/__pyinstaller',
+        *opts,
+        'yt_dlp/__main__.py',
+    ]
+
+    print(f'Building yt-dlp v{version} for {OS_NAME} {platform.machine()} with options {opts}')
+    print('Remember to update the version using "devscripts/update-version.py"')
+    
+    if not os.path.isfile('yt_dlp/extractor/lazy_extractors.py'):
+        print('WARNING: Building without lazy_extractors. Run "devscripts/make_lazy_extractors.py" to build lazy extractors', file=sys.stderr)
+    
+    print(f'Destination: {final_file}\n')
+    print(f'Running PyInstaller with {opts}')
+    
+    run_pyinstaller(opts)
+    set_version_info(final_file, version)n
 import os
 import sys
 

@@ -12,7 +12,30 @@ from zipimport import zipimporter
 from .compat import functools  # isort: split
 from .compat import compat_realpath, compat_shlex_quote
 from .networking import Request
-from .networking.exceptions import HTTPError, network_exceptions
+from .ne    def update(self):
+        """Update yt-dlp executable to the latest version"""
+        if not self.check_update():
+            return
+        err = is_non_updateable()
+        if err:
+            return self._report_error(err, True)
+        
+        self.ydl.to_screen(f'Updating to {self._label(self.target_channel, self.new_version)} ...')
+        if (_VERSION_RE.fullmatch(self.target_tag[5:])
+                and version_tuple(self.target_tag[5:]) < (2023, 3, 2)):
+            self.ydl.report_warning('You are downgrading to a version without the --update-to option')
+            self._block_restart('Cannot automatically restart to a version without the --update-to option')
+
+    def _report_error(self, error_msg, fatal=False):
+        """Report an error message to the user"""
+        if fatal:
+            self.ydl.report_error(error_msg)
+        else:
+            self.ydl.report_warning(error_msg)
+
+    def _block_restart(self, block_msg):
+        """Block the restart process with a specific message"""
+        self.ydl.to_screen(block_msg)import HTTPError, network_exceptions
 from .utils import (
     Popen,
     cached_method,

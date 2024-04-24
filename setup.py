@@ -7,9 +7,32 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import subprocess
-import warnings
+importfrom setuptools import setup, find_packages
+from yt_dlp import build_lazy_extractors
 
-try:
+setup(
+    name='your_package_name',
+    version='1.0.0',
+    packages=find_packages(),
+    python_requires='>=3.7',
+    classifiers=[
+        'Development Status :: 5 - Production/Stable',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: MIT License',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: Implementation',
+        'Programming Language :: Python :: Implementation :: CPython',
+        'Programming Language :: Python :: Implementation :: PyPy',
+        'License :: Public Domain',
+        'Operating System :: OS Independent',
+    ],
+    cmdclass={'build_lazy_extractors': build_lazy_extractors},
+    **params
+):
     from setuptools import Command, find_packages, setup
     setuptools_available = True
 except ImportError:

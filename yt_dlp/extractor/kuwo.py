@@ -6,8 +6,48 @@ from ..utils import (
     get_element_by_id,
     clean_html,
     ExtractorError,
-    InAdvancePagedList,
-    remove_start,
+class KuwoIE(InfoExtractor):
+    IE_NAME = 'kuwo'
+    IE_DESC = '酷我音乐'
+    _VALID_URL = r'https?://www\.kuwo\.cn/play_detail/(?P<id>\d+)'
+    _TEST = {
+        'url': 'http://www.kuwo.cn/play_detail/888888',
+        'md5': '1c5bea1cd6d8e2c9ecb1c5ae2cfb8f29',
+        'info_dict': {
+            'id': '888888',
+            'ext': 'mp3',
+            'title': 'Song Title',
+        },
+    }
+
+    def _real_extract(self, url):
+        song_id = self._match_id(url)
+        webpage = self._download_webpage(url, song_id, note='Downloading song info', errnote='Unable to get song info')
+
+        # Extract relevant information from the webpage
+        song_url = re.findall(r'<p[^>]+class="listen"><a[^>]+href="(http://www\.kuwo\.cn/yinyue/\d+/)"', webpage)
+        entries = [
+            self.url_result(song_url, ie='Kuwo')
+        ]
+        return self.playlist_result(entries, playlist_id=song_id, playlist_title='Playlist Title')
+
+class KuwoChartIE(InfoExtractor):
+    IE_NAME = 'kuwo:chart'
+    IE_DESC = '酷我音乐 - 排行榜'
+    _VALID_URL = r'https?://yinyue\.kuwo\.cn/billboard_(?P<id>[^.]+).htm'
+    _TEST = {
+        'url': 'http://yinyue.kuwo.cn/billboard_香港中文龙虎榜.htm',
+        'info_dict': {
+            'id': '香港中文龙虎榜',
+        },
+        'playlist_mincount': 7,
+    }
+
+    def _real_extract(self, url):
+        chart_id = self._match_id(url)
+        webpage = self._download_webpage(
+            url, chart_id, note='Download chart info',
+            errnote='Unable to get chart info')   remove_start,
 )
 
 

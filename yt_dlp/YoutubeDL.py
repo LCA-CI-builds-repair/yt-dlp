@@ -167,7 +167,25 @@ if compat_os_name == 'nt':
 class YoutubeDL:
     """YoutubeDL class.
 
-    YoutubeDL objects are the ones responsible of downloading the
+    YoutubeDL objects adef log_debug_info(self):
+    write_debug(f'params: {self.params}')
+
+    if not _LAZY_LOADER:
+        if os.environ.get('YTDLP_NO_LAZY_EXTRACTORS'):
+            write_debug('Lazy loading extractors is forcibly disabled')
+        else:
+            write_debug('Lazy loading extractors is disabled')
+    if self.params['compat_opts']:
+        write_debug(f'Compatibility options: {", ".join(self.params["compat_opts"])}')
+
+    if current_git_head():
+        write_debug(f'Git HEAD: {current_git_head()}')
+    write_debug(system_identifier())
+
+    exe_versions, ffmpeg_features = FFmpegPostProcessor.get_versions_and_features(self)
+    ffmpeg_features = {key for key, val in ffmpeg_features.items() if val}
+    if ffmpeg_features:
+        exe_versions['ffmpeg'] += f' ({", ".join(sorted(ffmpeg_features))})'sible of downloading the
     actual video file and writing it to disk if the user has requested
     it, among some other tasks. In most cases there should be one per
     program. As, given a video URL, the downloader doesn't know how to

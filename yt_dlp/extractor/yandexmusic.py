@@ -12,10 +12,20 @@ from ..utils import (
 
 
 class YandexMusicBaseIE(InfoExtractor):
-    _VALID_URL_BASE = r'https?://music\.yandex\.(?P<tld>ru|kz|ua|by|com)'
-
-    @staticmethod
-    def _handle_error(response):
+    _VALID_URL_BASE = r'        'playlist_count': 5,
+    }, {
+        'url': 'https://music.yandex.ru/users/ya.playlist/playlists/1036',
+        'only_matching': True,
+    }, {
+        # playlist exceeding the limit of 150 tracks (see
+        # https://github.com/ytdl-org/youtube-dl/issues/6666)
+        'url': 'https://music.yandex.ru/users/mesiaz/playlists/1364',
+        'info_dict': {
+            'id': '1364',
+            'title': 'md5:b3b400f997d3f878a13ae0699653f7db',
+        },
+        'playlist_mincount': 437,
+    }]handle_error(response):
         if isinstance(response, dict):
             error = response.get('error')
             if error:

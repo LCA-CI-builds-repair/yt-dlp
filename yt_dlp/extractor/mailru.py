@@ -1,9 +1,41 @@
 import itertools
 import json
-import re
-import urllib.parse
-
-from .common import InfoExtractor
+import r        {
+            'url': 'http://my.mail.ru/corp/hitech/video/news_hi-tech_mail_ru/1263.html',
+            'md5': '00a91a58c3402204dcced523777b475f',
+            'info_dict': {
+                'id': '46843144_1263',
+                'ext': 'mp4',
+                'title': 'Samsung Galaxy S5 Hammer Smash Fail Battery Explosion',
+                'timestamp': 1397039888,
+                'upload_date': '20140409',
+                'uploader': 'hitech',
+                'uploader_id': 'hitech@corp.mail.ru',
+                'duration': 245,
+            },
+        },
+        {
+            'url': 'http://my.mail.ru/mail/720pizle/video/_myvideo/502.html',
+            'md5': '3b26d2491c6949d031a32b96bd97c096',
+            'info_dict': {
+                'id': '56664382_502',
+                'ext': 'mp4',
+                'title': ':8336',
+                'timestamp': 1449094163,
+                'upload_date': '20151202',
+                'uploader': '720pizle@mail.ru',
+                'uploader_id': '720pizle@mail.ru',
+                'duration': 6001,
+            },
+        },
+        {
+            'url': 'http://m.my.mail.ru/mail/3sktvtr/video/_myvideo/138.html',
+            'only_matching': True,
+        },
+        {
+            'url': 'https://my.mail.ru/video/embed/7949340477499637815',
+            'only_matching': True,
+        },Extractor
 from ..compat import compat_urllib_parse_unquote
 from ..utils import (
     int_or_none,
