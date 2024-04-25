@@ -876,22 +876,28 @@ class InfoExtractor:
         video_id -- Video/playlist/item identifier (string)
 
         Keyword arguments:
-        note -- note printed before downloading (string)
-        errnote -- note printed in case of an error (string)
-        fatal -- flag denoting whether error should be considered fatal,
-            i.e. whether it should cause ExtractionError to be raised,
-            otherwise a warning will be reported and extraction continued
-        encoding -- encoding for a page content decoding, guessed automatically
-            when not explicitly specified
-        data -- POST data (bytes)
-        headers -- HTTP headers (dict)
-        query -- URL query (dict)
-        expected_status -- allows to accept failed HTTP requests (non 2xx
-            status code) by explicitly specifying a set of accepted status
-            codes. Can be any of the following entities:
-                - an integer type specifying an exact failed status code to
-                  accept
-                - a list or a tuple of integer types specifying a list of
+import re
+
+class Mx3BaseIE:
+    _VALID_URL_TMPL = 'https?://(?:www\.)?%s' 
+
+class Mx3IE(Mx3BaseIE):
+    _DOMAIN = 'mx3.ch'
+    _VALID_URL = Mx3BaseIE._VALID_URL_TMPL % re.escape(_DOMAIN)
+    _TESTS = [{
+        'url': 'https://mx3.ch/t/1Cru',
+        'md5': '7ba09e9826b4447d4e1ce9d69e0e295f',
+        'info_dict': {
+            'id': '1Cru',
+            'ext': 'wav',
+            'artist': 'Godina',
+            'album_artist': 'Tortue Tortue',
+            'composer': 'Olivier Godinat',
+            'genre': 'Rock',
+            'thumbnail': 'https://mx3.ch/pictures/mx3/file/0101/4643/square_xlarge/1-s-envoler-1.jpg?1630272813',
+            'title': "S'envoler",
+        }
+    }]
                   failed status codes to accept
                 - a callable accepting an actual failed status code and
                   returning True if it should be accepted

@@ -78,8 +78,14 @@ class Mx3BaseIE(InfoExtractor):
 
 
 class Mx3IE(Mx3BaseIE):
+import re
+
+class Mx3BaseIE:
+    _VALID_URL_TMPL = 'https?://(?:www\.)?%s' 
+
+class Mx3IE(Mx3BaseIE):
     _DOMAIN = 'mx3.ch'
-    _VALID_URL = _Mx3BaseIE._VALID_URL_TMPL % re.escape(_DOMAIN)
+    _VALID_URL = Mx3BaseIE._VALID_URL_TMPL % re.escape(_DOMAIN)
     _TESTS = [{
         'url': 'https://mx3.ch/t/1Cru',
         'md5': '7ba09e9826b4447d4e1ce9d69e0e295f',
@@ -92,6 +98,8 @@ class Mx3IE(Mx3BaseIE):
             'genre': 'Rock',
             'thumbnail': 'https://mx3.ch/pictures/mx3/file/0101/4643/square_xlarge/1-s-envoler-1.jpg?1630272813',
             'title': "S'envoler",
+        }
+}]
             'release_year': 2021,
             'tags': [],
         }
@@ -151,19 +159,28 @@ class Mx3NeoIE(Mx3BaseIE):
 
 
 class Mx3VolksmusikIE(Mx3BaseIE):
-    _DOMAIN = 'volksmusik.mx3.ch'
-    _VALID_URL = _Mx3BaseIE._VALID_URL_TMPL % re.escape(_DOMAIN)
+import re
+
+class Mx3BaseIE:
+    _VALID_URL_TMPL = 'https?://(?:www\.)?%s' 
+
+class Mx3IE(Mx3BaseIE):
+    _DOMAIN = 'mx3.ch'
+    _VALID_URL = Mx3BaseIE._VALID_URL_TMPL % re.escape(_DOMAIN)
     _TESTS = [{
-        'url': 'https://volksmusik.mx3.ch/t/Zx',
-        'md5': 'dd967a7b0c1ef898f3e072cf9c2eae3c',
+        'url': 'https://mx3.ch/t/1Cru',
+        'md5': '7ba09e9826b4447d4e1ce9d69e0e295f',
         'info_dict': {
-            'id': 'Zx',
-            'ext': 'mp3',
-            'artist': 'Ländlerkapelle GrischArt',
-            'album_artist': 'Ländlerkapelle GrischArt',
-            'composer': 'Urs Glauser',
-            'genre': 'Instrumental, Graubünden',
-            'title': 'Chämilouf',
+            'id': '1Cru',
+            'ext': 'wav',
+            'artist': 'Godina',
+            'album_artist': 'Tortue Tortue',
+            'composer': 'Olivier Godinat',
+            'genre': 'Rock',
+            'thumbnail': 'https://mx3.ch/pictures/mx3/file/0101/4643/square_xlarge/1-s-envoler-1.jpg?1630272813',
+            'title': "S'envoler",
+        }
+    }]
             'thumbnail': 'https://volksmusik.mx3.ch/pictures/vxm/file/0000/3815/square_xlarge/grischart1.jpg?1450530120',
             'release_year': 2012,
             'tags': [],
