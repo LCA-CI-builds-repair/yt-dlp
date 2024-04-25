@@ -876,6 +876,9 @@ class InfoExtractor:
         video_id -- Video/playlist/item identifier (string)
 
         Keyword arguments:
+# Add the import statement for _Mx3BaseIE at the beginning of the file
+from .mx3 import _Mx3BaseIE
+
         note -- note printed before downloading (string)
         errnote -- note printed in case of an error (string)
         fatal -- flag denoting whether error should be considered fatal,

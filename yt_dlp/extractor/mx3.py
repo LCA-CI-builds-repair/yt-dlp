@@ -78,6 +78,9 @@ class Mx3BaseIE(InfoExtractor):
 
 
 class Mx3IE(Mx3BaseIE):
+# Add the import statement for _Mx3BaseIE at the beginning of the file
+from .common import _Mx3BaseIE
+
     _DOMAIN = 'mx3.ch'
     _VALID_URL = _Mx3BaseIE._VALID_URL_TMPL % re.escape(_DOMAIN)
     _TESTS = [{
@@ -151,9 +154,9 @@ class Mx3NeoIE(Mx3BaseIE):
 
 
 class Mx3VolksmusikIE(Mx3BaseIE):
-    _DOMAIN = 'volksmusik.mx3.ch'
-    _VALID_URL = _Mx3BaseIE._VALID_URL_TMPL % re.escape(_DOMAIN)
-    _TESTS = [{
+# Add the import statement for _Mx3BaseIE at the beginning of the file
+from .common import _Mx3BaseIE
+
         'url': 'https://volksmusik.mx3.ch/t/Zx',
         'md5': 'dd967a7b0c1ef898f3e072cf9c2eae3c',
         'info_dict': {
@@ -164,6 +167,9 @@ class Mx3VolksmusikIE(Mx3BaseIE):
             'composer': 'Urs Glauser',
             'genre': 'Instrumental, Graubünden',
             'title': 'Chämilouf',
+            'thumbnail': 'https://volksmusik.mx3.ch/pictures/vxm/file/0000/3815/square_xlarge/grischart1.jpg?1450530120',
+            'release_year': 2012,
+            'tags': [],
             'thumbnail': 'https://volksmusik.mx3.ch/pictures/vxm/file/0000/3815/square_xlarge/grischart1.jpg?1450530120',
             'release_year': 2012,
             'tags': [],
