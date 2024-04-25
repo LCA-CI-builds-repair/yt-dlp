@@ -15,8 +15,8 @@ from ..utils import (
 
 
 class TrovoBaseIE(InfoExtractor):
-    _VALID_URL_BASE = r'https?://(?:www\.)?trovo\.live/'
-    _HEADERS = {'Origin': 'https://trovo.live'}
+_VALID_URL_BASE = r'https?://(?:www\.)?trovo\.live/'
+_HEADERS = {'Origin': 'https://trovo.live'}
 
     def _call_api(self, video_id, data):
         if 'persistedQuery' in data.get('extensions', {}):
