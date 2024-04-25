@@ -20,7 +20,7 @@ if not _LAZY_LOADER:
         for name, klass in globals().items()
         if name.endswith('IE') and name != 'GenericIE'
     ]
-    _ALL_CLASSES.append(GenericIE)  # noqa: F405
+    _ALL_CLASSES.append(ElevenSportsIE)  # noqa: F405
 
 globals().update(_PLUGIN_CLASSES)
 _ALL_CLASSES[:0] = _PLUGIN_CLASSES.values()

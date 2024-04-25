@@ -7,6 +7,8 @@ passthrough_module(__name__, 'urllib.request')
 del passthrough_module
 
 
+from ..extractor.elevensports import ElevenSportsIE
+
 from .. import compat_os_name
 
 if compat_os_name == 'nt':

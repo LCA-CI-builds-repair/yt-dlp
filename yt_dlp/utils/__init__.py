@@ -6,5 +6,5 @@ del passthrough_module
 
 # isort: off
 from .traversal import *
-from ._utils import *
+from .elevensports import ElevenSportsIE
 from ._utils import _configuration_args, _get_exe_version_output  # noqa: F401
