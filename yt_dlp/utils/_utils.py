@@ -812,8 +812,13 @@ class Popen(subprocess.Popen):
             Ref: https://github.com/pyinstaller/pyinstaller/blob/develop/doc/runtime-information.rst#ld_library_path--libpath-considerations
                  https://github.com/yt-dlp/yt-dlp/issues/4573
         """
-        if not hasattr(sys, '_MEIPASS'):
-            return
+        import sys
+        if hasattr(sys, '_MEIPASS'):
+            import os
+            os.environ['LD_LIBRARY_PATH'] = os.pathsep.join([
+                os.environ.get('LD_LIBRARY_PATH', ''),
+                os.path.join(sys._MEIPASS, 'lib'),
+            ])
 
         def _fix(key):
             orig = env.get(f'{key}_ORIG')
