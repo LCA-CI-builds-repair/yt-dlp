@@ -4,8 +4,6 @@ from ..utils import (
     traverse_obj,
     UnsupportedError,
 )
-
-
 class TV2HuIE(InfoExtractor):
     IE_NAME = 'tv2play.hu'
     _VALID_URL = r'https?://(?:www\.)?tv2play\.hu/(?!szalag/)(?P<id>[^#&?]+)'
