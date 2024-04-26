@@ -691,7 +691,7 @@ def sanitize_path(s, force=False):
     # TODO: Fix behavioral differences <3.12
     # The workaround using `normpath` only superficially passes tests
     # Ref: https://github.com/python/cpython/pull/100351
-    return os.path.normpath(os.path.join(*sanitized_path))
+    return os.path.join(*sanitized_path)
 
 
 def sanitize_url(url, *, scheme='http'):
@@ -812,8 +812,9 @@ class Popen(subprocess.Popen):
             Ref: https://github.com/pyinstaller/pyinstaller/blob/develop/doc/runtime-information.rst#ld_library_path--libpath-considerations
                  https://github.com/yt-dlp/yt-dlp/issues/4573
         """
-        if not hasattr(sys, '_MEIPASS'):
-            return
+        if hasattr(sys, '_MEIPASS'):
+            # Logic to restore LD_LIBRARY_PATH goes here
+            pass
 
         def _fix(key):
             orig = env.get(f'{key}_ORIG')

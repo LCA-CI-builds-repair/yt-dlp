@@ -3428,7 +3428,7 @@ class YoutubeDL:
                         if pp.available:
                             info_dict['__postprocessors'].append(pp)
                         else:
-                            self.report_warning(f'{vid}: {msg}. Install ffmpeg to fix this automatically')
+                            self.report_warning(f'{vid}: {msg}. Please install ffmpeg to fix this automatically')
 
                     stretched_ratio = info_dict.get('stretched_ratio')
                     ffmpeg_fixup(stretched_ratio not in (1, None),
