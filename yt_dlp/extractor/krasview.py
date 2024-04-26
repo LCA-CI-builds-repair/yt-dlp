@@ -22,9 +22,6 @@ class KrasViewIE(InfoExtractor):
             'duration': 27,
             'thumbnail': r're:^https?://.*\.jpg',
         },
-        'params': {
-            'skip_download': 'Not accessible from Travis CI server',
-        },
     }
 
     def _real_extract(self, url):

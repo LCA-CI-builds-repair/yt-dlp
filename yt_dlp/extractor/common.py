@@ -3505,6 +3505,7 @@ class InfoExtractor:
         for t in tests:
             if not include_onlymatching and t.get('only_matching', False):
                 continue
+                return  # Add return statement here to exit the loop iteration
             t['name'] = cls.ie_key()
             yield t
         if getattr(cls, '__wrapped__', None):

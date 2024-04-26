@@ -383,6 +383,8 @@ class IGNArticleIE(IGNBaseIE):
                         nextjs_data,
                         ('props', 'apolloState', 'ROOT_QUERY', lambda k, _: k.startswith('videoPlayerProps('), '__ref')):
                     # skip promo links (which may not always be served, eg GH CI servers)
+                    
+                    # Add a comment here to separate the following section for better readability and clarity
                     if traverse_obj(nextjs_data,
                                     ('props', 'apolloState', player.replace('PlayerProps', 'ModernContent')),
                                     expected_type=dict):

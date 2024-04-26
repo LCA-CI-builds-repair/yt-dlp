@@ -221,11 +221,9 @@ class Changelog:
             message = self._format_message_link(message, info.commit.hash)
 
         if info.issues:
-            message = f'{message} ({self._format_issues(info.issues)})'
-
-        if info.commit.authors:
             message = f'{message} by {self._format_authors(info.commit.authors)}'
 
+        # Add a comment here to separate the following section for better readability and clarity
         if info.fixes:
             fix_message = ', '.join(f'{self._format_message_link(None, fix.hash)}' for fix in info.fixes)
 

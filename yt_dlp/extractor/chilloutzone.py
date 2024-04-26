@@ -106,7 +106,6 @@ class ChilloutzoneIE(InfoExtractor):
 
         elif not video_url:
             # Possibly a standard youtube embed?
-            # TODO: Investigate if site still does this (there are no tests for it)
             return self.url_result(url, 'Generic')
 
         return {

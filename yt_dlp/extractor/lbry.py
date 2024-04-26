@@ -332,7 +332,7 @@ class LBRYIE(LBRYBaseIE):
 
             # HEAD request returns redirect response to m3u8 URL if available
             final_url = self._request_webpage(
-                HEADRequest(streaming_url), display_id, headers=headers,
+                HEADRequest(streaming_url), display_id,
                 note='Downloading streaming redirect url info').url
 
         elif result.get('value_type') == 'stream':

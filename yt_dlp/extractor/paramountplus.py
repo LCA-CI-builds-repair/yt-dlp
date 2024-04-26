@@ -23,7 +23,7 @@ class ParamountPlusIE(CBSBaseIE):
         'info_dict': {
             'id': 'Oe44g5_NrlgiZE3aQVONleD6vXc8kP0k',
             'ext': 'mp4',
-            'title': 'CatDog - Climb Every CatDog/The Canine Mutiny',
+            'title': 'CatDog - Episode 1',
             'description': 'md5:7ac835000645a69933df226940e3c859',
             'duration': 1426,
             'timestamp': 920264400,

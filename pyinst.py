@@ -28,8 +28,7 @@ def main():
     print(f'Building yt-dlp v{version} for {OS_NAME} {platform.machine()} with options {opts}')
     print('Remember to update the version using  "devscripts/update-version.py"')
     if not os.path.isfile('yt_dlp/extractor/lazy_extractors.py'):
-        print('WARNING: Building without lazy_extractors. Run  '
-              '"devscripts/make_lazy_extractors.py"  to build lazy extractors', file=sys.stderr)
+        print('WARNING: Building without lazy_extractors. Run "python devscripts/make_lazy_extractors.py" to build lazy extractors', file=sys.stderr)
     print(f'Destination: {final_file}\n')
 
     opts = [

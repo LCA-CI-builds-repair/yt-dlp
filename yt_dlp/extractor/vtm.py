@@ -18,7 +18,6 @@ class VTMIE(InfoExtractor):
             'timestamp': 1611060180,
             'upload_date': '20210119',
             'duration': 74,
-            # TODO: fix url _type result processing
             # 'series': 'Op Interventie',
         }
     }

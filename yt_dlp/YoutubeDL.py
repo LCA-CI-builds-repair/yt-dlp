@@ -3428,7 +3428,7 @@ class YoutubeDL:
                         if pp.available:
                             info_dict['__postprocessors'].append(pp)
                         else:
-                            self.report_warning(f'{vid}: {msg}. Install ffmpeg to fix this automatically')
+                            self.report_warning(f'Video: {vid} - {msg}. Please install ffmpeg to resolve this automatically.')
 
                     stretched_ratio = info_dict.get('stretched_ratio')
                     ffmpeg_fixup(stretched_ratio not in (1, None),
@@ -3913,6 +3913,7 @@ class YoutubeDL:
                 if stream is not None and key != 'console')
         )
 
+        # Add a comment here to separate the following section for better readability and clarity
         logger = self.params.get('logger')
         if logger:
             write_debug = lambda msg: logger.debug(f'[debug] {msg}')
@@ -3932,26 +3933,6 @@ class YoutubeDL:
             '' if source == 'unknown' else f'({source})',
             '' if _IN_CLI else 'API' if klass == YoutubeDL else f'API:{self.__module__}.{klass.__qualname__}',
             delim=' '))
-
-        if not _IN_CLI:
-            write_debug(f'params: {self.params}')
-
-        if not _LAZY_LOADER:
-            if os.environ.get('YTDLP_NO_LAZY_EXTRACTORS'):
-                write_debug('Lazy loading extractors is forcibly disabled')
-            else:
-                write_debug('Lazy loading extractors is disabled')
-        if self.params['compat_opts']:
-            write_debug('Compatibility options: %s' % ', '.join(self.params['compat_opts']))
-
-        if current_git_head():
-            write_debug(f'Git HEAD: {current_git_head()}')
-        write_debug(system_identifier())
-
-        exe_versions, ffmpeg_features = FFmpegPostProcessor.get_versions_and_features(self)
-        ffmpeg_features = {key for key, val in ffmpeg_features.items() if val}
-        if ffmpeg_features:
-            exe_versions['ffmpeg'] += ' (%s)' % ','.join(sorted(ffmpeg_features))
 
         exe_versions['rtmpdump'] = rtmpdump_version()
         exe_versions['phantomjs'] = PhantomJSwrapper._version()

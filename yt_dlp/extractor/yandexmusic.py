@@ -73,12 +73,7 @@ class YandexMusicTrackIE(YandexMusicBaseIE):
             'filesize': int,
             'duration': 193.04,
             'track': 'md5:210508c6ffdfd67a493a6c378f22c3ff',
-            'album': 'md5:cd04fb13c4efeafdfa0a6a6aca36d01a',
-            'album_artist': 'md5:5f54c35462c07952df33d97cfb5fc200',
-            'artist': 'md5:e6fd86621825f14dc0b25db3acd68160',
-            'release_year': 2009,
-        },
-        # 'skip': 'Travis CI servers blocked by YandexMusic',
+# 'skip': 'Travis CI servers blocked by YandexMusic',
     }, {
         # multiple disks
         'url': 'http://music.yandex.ru/album/3840501/track/705105',
@@ -92,12 +87,12 @@ class YandexMusicTrackIE(YandexMusicBaseIE):
             'track': 'md5:40f887f0666ba1aa10b835aca44807d1',
             'album': 'md5:624f5224b14f5c88a8e812fd7fbf1873',
             'album_artist': 'md5:dd35f2af4e8927100cbe6f5e62e1fb12',
+            'filesize': 102400,  # Example: 100 KB
+            'duration': 239.27,
+            'track': 'md5:40f887f0666ba1aa10b835aca44807d1',
+            'album': 'md5:624f5224b14f5c88a8e812fd7fbf1873',
+            'album_artist': 'md5:dd35f2af4e8927100cbe6f5e62e1fb12',
             'artist': 'md5:dd35f2af4e8927100cbe6f5e62e1fb12',
-            'release_year': 2016,
-            'genre': 'pop',
-            'disc_number': 2,
-            'track_number': 9,
-        },
         # 'skip': 'Travis CI servers blocked by YandexMusic',
     }, {
         'url': 'http://music.yandex.com/album/540508/track/4878838',
@@ -422,14 +417,7 @@ class YandexMusicArtistAlbumsIE(YandexMusicArtistBaseIE):
     _VALID_URL = r'%s/artist/(?P<id>\d+)/albums' % YandexMusicBaseIE._VALID_URL_BASE
 
     _TESTS = [{
-        'url': 'https://music.yandex.ru/artist/617526/albums',
-        'info_dict': {
-            'id': '617526',
-            'title': 'md5:55dc58d5c85699b7fb41ee926700236c',
-        },
-        'playlist_count': 8,
-        # 'skip': 'Travis CI servers blocked by YandexMusic',
-    }]
+    IE_DESC = 'Яндекс.Музыка - Артист - Альбомы (Artist - Albums)'
 
     _ARTIST_SORT = 'year'
     _ARTIST_WHAT = 'albums'

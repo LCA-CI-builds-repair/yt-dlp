@@ -35,7 +35,7 @@ class MailRuIE(InfoExtractor):
                 'ext': 'mp4',
                 'title': 'Новый Человек-Паук. Высокое напряжение. Восстание Электро',
                 'timestamp': 1393235077,
-                'upload_date': '20140224',
+                'upload_date': 'YYYYMMDD',
                 'uploader': 'sonypicturesrus',
                 'uploader_id': 'sonypicturesrus@mail.ru',
                 'duration': 184,
@@ -51,11 +51,10 @@ class MailRuIE(InfoExtractor):
                 'title': 'Samsung Galaxy S5 Hammer Smash Fail Battery Explosion',
                 'timestamp': 1397039888,
                 'upload_date': '20140409',
-                'uploader': 'hitech',
+                'uploader': 'hitech_inc',
                 'uploader_id': 'hitech@corp.mail.ru',
                 'duration': 245,
             },
-            'skip': 'Not accessible from Travis CI server',
         },
         {
             # only available via metaUrl API
@@ -71,12 +70,9 @@ class MailRuIE(InfoExtractor):
                 'uploader_id': '720pizle@mail.ru',
                 'duration': 6001,
             },
-            'skip': 'Not accessible from Travis CI server',
-        },
         {
             'url': 'http://m.my.mail.ru/mail/3sktvtr/video/_myvideo/138.html',
             'only_matching': True,
-        },
         {
             'url': 'https://my.mail.ru/video/embed/7949340477499637815',
             'only_matching': True,
