@@ -807,12 +807,14 @@ class Popen(subprocess.Popen):
         _startupinfo = None
 
     @staticmethod
+    import sys
+
     def _fix_pyinstaller_ld_path(env):
         """Restore LD_LIBRARY_PATH when using PyInstaller
             Ref: https://github.com/pyinstaller/pyinstaller/blob/develop/doc/runtime-information.rst#ld_library_path--libpath-considerations
                  https://github.com/yt-dlp/yt-dlp/issues/4573
         """
-        if not hasattr(sys, '_MEIPASS'):
+        if hasattr(sys, '_MEIPASS'):
             return
 
         def _fix(key):

@@ -77,12 +77,12 @@ lock 2023.11.16 win_x86_exe .+ Windows-(?:Vista|2008Server)
 ''' % TEST_LOCKFILE_COMMENT
 
 TEST_LOCKFILE_V2_TMPL = r'''%s
-lockV2 yt-dlp/yt-dlp 2022.08.18.36 .+ Python 3\.6
-lockV2 yt-dlp/yt-dlp 2023.11.16 (?!win_x86_exe).+ Python 3\.7
-lockV2 yt-dlp/yt-dlp 2023.11.16 win_x86_exe .+ Windows-(?:Vista|2008Server)
-lockV2 yt-dlp/yt-dlp-nightly-builds 2023.11.15.232826 (?!win_x86_exe).+ Python 3\.7
-lockV2 yt-dlp/yt-dlp-nightly-builds 2023.11.15.232826 win_x86_exe .+ Windows-(?:Vista|2008Server)
-lockV2 yt-dlp/yt-dlp-master-builds 2023.11.15.232812 (?!win_x86_exe).+ Python 3\.7
+lockV2 yt-dlp/yt-dlp 2022\.08\.18\.36 .+ Python 3\.6
+lockV2 yt-dlp/yt-dlp 2023\.11\.16 (?!win_x86_exe).+ Python 3\.7
+lockV2 yt-dlp/yt-dlp 2023\.11\.16 win_x86_exe .+ Windows-(?:Vista|2008Server)
+lockV2 yt-dlp/yt-dlp-nightly-builds 2023\.11\.15\.232826 (?!win_x86_exe).+ Python 3\.7
+lockV2 yt-dlp/yt-dlp-nightly-builds 2023\.11\.15\.232826 win_x86_exe .+ Windows-(?:Vista|2008Server)
+lockV2 yt-dlp/yt-dlp-master-builds 2023\.11\.15\.232812 (?!win_x86_exe).+ Python 3\.7
 lockV2 yt-dlp/yt-dlp-master-builds 2023.11.15.232812 win_x86_exe .+ Windows-(?:Vista|2008Server)
 '''
 
