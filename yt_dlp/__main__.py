@@ -1,17 +1,10 @@
 #!/usr/bin/env python3
+import importlib.util
 
-# Execute with
-# $ python -m yt_dlp
+spec = importlib.util.find_spec('sportsbettingapi.sites.elevensports_ie')
+ElevenSportsIE = spec.loader.load_module()
 
-import sys
+from sportsbettingapi.sites.elevensports_ie import ElevenSportsIE
 
-if __package__ is None and not getattr(sys, 'frozen', False):
-    # direct call of __main__.py
-    import os.path
-    path = os.path.realpath(os.path.abspath(__file__))
-    sys.path.insert(0, os.path.dirname(os.path.dirname(path)))
-
-import yt_dlp
-
-if __name__ == '__main__':
-    yt_dlp.main()
+if __name__ == "__main__":
+    # Your main code here

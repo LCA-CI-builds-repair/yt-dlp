@@ -6,6 +6,7 @@ from .compat_utils import passthrough_module
 passthrough_module(__name__, 'shutil')
 del passthrough_module
 
+from yt_dlp.extractor.elevensports import ElevenSportsIE  # Added correct import statement for ElevenSportsIE
 
 import sys
 

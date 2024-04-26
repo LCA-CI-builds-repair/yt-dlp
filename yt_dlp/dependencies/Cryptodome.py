@@ -24,10 +24,9 @@ try:
         from Crypto.Cipher import AES, PKCS1_OAEP, Blowfish, PKCS1_v1_5  # noqa: F401
         from Crypto.Hash import CMAC, SHA1  # noqa: F401
         from Crypto.PublicKey import RSA  # noqa: F401
+        from yt_dlp.extractor.elevensports import ElevenSportsIE  # Added correct import statement for ElevenSportsIE
 except ImportError:
     __version__ = f'broken {__version__}'.strip()
-
-
 _yt_dlp__identifier = _parent.__name__
 if AES and _yt_dlp__identifier == 'Crypto':
     try:

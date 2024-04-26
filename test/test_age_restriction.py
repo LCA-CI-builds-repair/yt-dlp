@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 # Allow direct execution
 import os
 import sys
@@ -11,7 +10,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from test.helper import is_download_test, try_rm
 from yt_dlp import YoutubeDL
 from yt_dlp.utils import DownloadError
-
+from yt_dlp.extractor.elevensports import ElevenSportsIE  # Added correct import statement for ElevenSportsIE
 
 def _download_restricted(url, filename, age):
     """ Returns true if the file has been downloaded """

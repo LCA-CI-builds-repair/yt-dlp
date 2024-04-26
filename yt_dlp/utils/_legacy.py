@@ -27,6 +27,8 @@ from ..networking._urllib import RedirectHandler as YoutubeDLRedirectHandler  # 
 from ..networking._urllib import (  # noqa: F401
     make_socks_conn_class,
     update_Request,
+    YoutubeDLHandler  # Added missing import for YoutubeDLHandler
+)
 )
 from ..networking.exceptions import HTTPError, network_exceptions  # noqa: F401
 

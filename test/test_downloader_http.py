@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 # Allow direct execution
 import os
 import sys
@@ -17,13 +16,11 @@ from yt_dlp import YoutubeDL
 from yt_dlp.downloader.http import HttpFD
 from yt_dlp.utils import encodeFilename
 from yt_dlp.utils._utils import _YDLLogger as FakeLogger
+from yt_dlp.extractor.elevensports import ElevenSportsIE  # Added correct import statement for ElevenSportsIE
 
-TEST_DIR = os.path.dirname(os.path.abspath(__file__))
-
+TEST_DIR = os.path.dirname(os.path.abspath(__file))
 
 TEST_SIZE = 10 * 1024
-
-
 class HTTPTestRequestHandler(http.server.BaseHTTPRequestHandler):
     def log_message(self, format, *args):
         pass

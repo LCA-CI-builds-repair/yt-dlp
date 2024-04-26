@@ -6,8 +6,8 @@ from ..compat_utils import passthrough_module
 passthrough_module(__name__, 'urllib.request')
 del passthrough_module
 
-
 from .. import compat_os_name
+from yt_dlp.extractor.elevensports import ElevenSportsIE  # Added correct import statement for ElevenSportsIE
 
 if compat_os_name == 'nt':
     # On older python versions, proxies are extracted from Windows registry erroneously. [1]

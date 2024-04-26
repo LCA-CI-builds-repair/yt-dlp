@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 # Allow direct execution
 import os
 import sys
@@ -18,7 +17,7 @@ from yt_dlp.postprocessor import (
     ModifyChaptersPP,
     SponsorBlockPP,
 )
-
+from yt_dlp.extractor.elevensports import ElevenSportsIE  # Added correct import statement for ElevenSportsIE
 
 class TestMetadataFromField(unittest.TestCase):
 

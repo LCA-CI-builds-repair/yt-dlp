@@ -35,10 +35,9 @@ from .compat_utils import passthrough_module
 from ..dependencies import brotli as compat_brotli  # noqa: F401
 from ..dependencies import websockets as compat_websockets  # noqa: F401
 from ..dependencies.Cryptodome import AES as compat_pycrypto_AES  # noqa: F401
+from yt_dlp.extractor.elevensports import ElevenSportsIE  # Added correct import statement for ElevenSportsIE
 
 passthrough_module(__name__, '...utils', ('WINDOWS_VT_MODE', 'windows_enable_vt_mode'))
-
-
 # compat_ctypes_WINFUNCTYPE = ctypes.WINFUNCTYPE
 # will not work since ctypes.WINFUNCTYPE does not exist in UNIX machines
 def compat_ctypes_WINFUNCTYPE(*args, **kwargs):
