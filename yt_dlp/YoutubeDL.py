@@ -2210,7 +2210,7 @@ class YoutubeDL:
                         if not inside_group:
                             # ')' will be handled by the parentheses group
                             tokens.restore_last_token()
-                        break
+                            break
                     elif inside_merge and string_ in ['/', ',']:
                         tokens.restore_last_token()
                         break
