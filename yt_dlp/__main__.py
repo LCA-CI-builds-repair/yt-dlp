@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 # Execute with
 # $ python -m yt_dlp
 
