@@ -1,23 +1,12 @@
 import itertools
 import json
-import random
-import string
 
 from .common import InfoExtractor
-from ..utils import (
-    ExtractorError,
-    format_field,
-    int_or_none,
-    str_or_none,
-    traverse_obj,
-    try_get,
-)
+from ..utils import ExtractorError, format_field, int_or_none, str_or_none, traverse_obj, try_get
 
 
 class TrovoBaseIE(InfoExtractor):
-    _VALID_URL_BASE = r'https?://(?:www\.)?trovo\.live/'
-    _HEADERS = {'Origin': 'https://trovo.live'}
-
+from ..utils import format_field, int_or_none, str_or_none
     def _call_api(self, video_id, data):
         if 'persistedQuery' in data.get('extensions', {}):
             url = 'https://gql.trovo.live'
