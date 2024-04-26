@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 # Allow direct execution
 import os
 import sys
@@ -19,8 +18,6 @@ from yt_dlp.compat import (
     compat_urllib_parse_urlencode,
 )
 from yt_dlp.compat.urllib.request import getproxies
-
-
 class TestCompat(unittest.TestCase):
     def test_compat_passthrough(self):
         with self.assertWarns(DeprecationWarning):

@@ -23,8 +23,6 @@ class CommonMistakesIE(InfoExtractor):
         if not self.get_param('verbose'):
             msg += ' Add -v to the command line to see what arguments and configuration yt-dlp has'
         raise ExtractorError(msg, expected=True)
-
-
 class UnicodeBOMIE(InfoExtractor):
     IE_DESC = False
     _VALID_URL = r'(?P<bom>\ufeff)(?P<id>.*)$'

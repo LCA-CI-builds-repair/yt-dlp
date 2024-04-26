@@ -692,8 +692,7 @@ def sanitize_path(s, force=False):
     # The workaround using `normpath` only superficially passes tests
     # Ref: https://github.com/python/cpython/pull/100351
     return os.path.normpath(os.path.join(*sanitized_path))
-
-
+def sanitize_url(url, *, scheme='http'):
 def sanitize_url(url, *, scheme='http'):
     # Prepend protocol-less URLs with `http:` scheme in order to mitigate
     # the number of unwanted failures due to missing protocol
@@ -706,8 +705,6 @@ def sanitize_url(url, *, scheme='http'):
         # https://github.com/ytdl-org/youtube-dl/issues/15649
         (r'^httpss://', r'https://'),
         # https://bx1.be/lives/direct-tv/
-        (r'^rmtp([es]?)://', r'rtmp\1://'),
-    )
     for mistake, fixup in COMMON_TYPOS:
         if re.match(mistake, url):
             return re.sub(mistake, fixup, url)
@@ -3733,6 +3730,9 @@ class ISO639Utils:
     }
 
     @classmethod
+    }
+
+    @classmethod
     def short2long(cls, code):
         """Convert language code from ISO 639-1 to ISO 639-2/T"""
         return cls._lang_map.get(code[:2])
@@ -3742,9 +3742,6 @@ class ISO639Utils:
         """Convert language code from ISO 639-2/T to ISO 639-1"""
         for short_name, long_name in cls._lang_map.items():
             if long_name == code:
-                return short_name
-
-
 class ISO3166Utils:
     # From http://data.okfn.org/data/core/country-list
     _country_map = {

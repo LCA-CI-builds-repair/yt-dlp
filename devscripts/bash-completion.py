@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 # Allow direct execution
 import os
 import sys
@@ -11,8 +10,6 @@ import yt_dlp
 
 BASH_COMPLETION_FILE = "completions/bash/yt-dlp"
 BASH_COMPLETION_TEMPLATE = "devscripts/bash-completion.in"
-
-
 def build_completion(opt_parser):
     opts_flag = []
     for group in opt_parser.option_groups:

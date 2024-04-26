@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 # Allow direct execution
 import os
 import sys
@@ -11,8 +10,6 @@ import yt_dlp
 
 ZSH_COMPLETION_FILE = "completions/zsh/_yt-dlp"
 ZSH_COMPLETION_TEMPLATE = "devscripts/zsh-completion.in"
-
-
 def build_completion(opt_parser):
     opts = [opt for group in opt_parser.option_groups
             for opt in group.option_list]
