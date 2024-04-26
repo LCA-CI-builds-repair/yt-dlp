@@ -392,6 +392,7 @@ def create_parser():
         help=(
             'Don\'t load any more configuration files except those given by --config-locations. '
             'For backward compatibility, if this option is found inside the system configuration file, the user configuration is not loaded. '
+            
             '(Alias: --no-config)'))
     general.add_option(
         '--no-config-locations',
@@ -1243,11 +1244,11 @@ def create_parser():
     verbosity.add_option(
         '--dump-pages', '--dump-intermediate-pages',
         action='store_true', dest='dump_intermediate_pages', default=False,
-        help='Print downloaded pages encoded using base64 to debug problems (very verbose)')
     verbosity.add_option(
         '--write-pages',
         action='store_true', dest='write_pages', default=False,
         help='Write downloaded intermediary pages to files in the current directory to debug problems')
+    verbosity.add_option(
     verbosity.add_option(
         '--load-pages',
         action='store_true', dest='load_pages', default=False,

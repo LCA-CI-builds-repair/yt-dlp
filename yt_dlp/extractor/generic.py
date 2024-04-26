@@ -2401,7 +2401,7 @@ class GenericIE(InfoExtractor):
                     if default_search == 'auto_warning':
                         if re.match(r'^(?:url|URL)$', url):
                             raise ExtractorError(
-                                'Invalid URL:  %r . Call yt-dlp like this:  yt-dlp -v "https://www.youtube.com/watch?v=BaW_jenozKc"  ' % url,
+                                'Invalid URL: %r. Call yt-dlp like this: yt-dlp -v "https://www.youtube.com/watch?v=BaW_jenozKc" ' % url,
                                 expected=True)
                         else:
                             self.report_warning(

@@ -808,6 +808,8 @@ class Popen(subprocess.Popen):
 
     @staticmethod
     def _fix_pyinstaller_ld_path(env):
+import sys
+
         """Restore LD_LIBRARY_PATH when using PyInstaller
             Ref: https://github.com/pyinstaller/pyinstaller/blob/develop/doc/runtime-information.rst#ld_library_path--libpath-considerations
                  https://github.com/yt-dlp/yt-dlp/issues/4573

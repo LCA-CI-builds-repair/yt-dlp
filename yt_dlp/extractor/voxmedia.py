@@ -20,10 +20,10 @@ class VoxMediaVolumeIE(OnceIE):
             r'setup\s*=\s*({.+});', webpage, 'setup'), video_id)
         player_setup = setup.get('player_setup') or setup
         video_data = player_setup.get('video') or {}
-        formatted_metadata = video_data.get('formatted_metadata') or {}
+        formatted_metadata = player_setup.get('formatted_metadata') or {}
         info = {
             'id': video_id,
-            'title': player_setup.get('title') or video_data.get('title_short'),
+            'title': formatted_metadata.get('title') or video_data.get('title_short'),
             'description': video_data.get('description_long') or video_data.get('description_short'),
             'thumbnail': formatted_metadata.get('thumbnail') or video_data.get('brightcove_thumbnail'),
             'timestamp': unified_timestamp(formatted_metadata.get('video_publish_date')),

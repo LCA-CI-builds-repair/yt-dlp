@@ -1,5 +1,4 @@
 #!/usr/bin/env sh
-
 if [ -z "$1" ]; then
     test_set='test'
 elif [ "$1" = 'core' ]; then
@@ -7,7 +6,7 @@ elif [ "$1" = 'core' ]; then
 elif [ "$1" = 'download' ]; then
     test_set="-m download"
 else
-    echo 'Invalid test type "'"$1"'". Use "core" | "download"'
+    echo 'Invalid test type "'"$1"'". Use "core" or "download"'
     exit 1
 fi
 
