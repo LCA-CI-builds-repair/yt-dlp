@@ -80,7 +80,7 @@ class CNNIE(TurnerBaseIE):
     }
 
     def _extract_timestamp(self, video_data):
-        # TODO: fix timestamp extraction
+        # TODO: Fix timestamp extraction
         return None
 
     def _real_extract(self, url):

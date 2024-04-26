@@ -2221,7 +2221,9 @@ class LazyList(collections.abc.Sequence):
 
     def __str__(self):
         return repr(self.exhaust())
-
+    
+    def getslice(self):
+        return list(self)
 
 class PagedList:
 

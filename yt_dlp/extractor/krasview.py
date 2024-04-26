@@ -23,7 +23,6 @@ class KrasViewIE(InfoExtractor):
             'thumbnail': r're:^https?://.*\.jpg',
         },
         'params': {
-            'skip_download': 'Not accessible from Travis CI server',
         },
     }
 

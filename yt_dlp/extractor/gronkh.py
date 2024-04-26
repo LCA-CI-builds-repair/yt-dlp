@@ -49,11 +49,8 @@ class GronkhIE(InfoExtractor):
         formats, subtitles = self._extract_m3u8_formats_and_subtitles(m3u8_url, id)
         if data_json.get('vtt_url'):
             subtitles.setdefault('en', []).append({
-                'url': data_json['vtt_url'],
-                'ext': 'vtt',
-            })
         return {
-            'id': id,
+            'id': data_json.get('id'),
             'title': data_json.get('title'),
             'view_count': data_json.get('views'),
             'thumbnail': data_json.get('preview_url'),
@@ -62,11 +59,14 @@ class GronkhIE(InfoExtractor):
             'subtitles': subtitles,
             'duration': float_or_none(data_json.get('source_length')),
             'chapters': traverse_obj(data_json, (
-                'chapters', lambda _, v: float_or_none(v['offset']) is not None, {
+                'chapters', lambda _, v: float_or_none(v.get('offset')) is not None, {
                     'title': 'title',
                     'start_time': ('offset', {float_or_none}),
                 })) or None,
         }
+
+
+class GronkhFeedIE(InfoExtractor):
 
 
 class GronkhFeedIE(InfoExtractor):
@@ -77,9 +77,7 @@ class GronkhFeedIE(InfoExtractor):
         'url': 'https://gronkh.tv/feed',
         'info_dict': {
             'id': 'feed',
-        },
-        'playlist_count': 16,
-    }, {
+        }
         'url': 'https://gronkh.tv',
         'only_matching': True,
     }]

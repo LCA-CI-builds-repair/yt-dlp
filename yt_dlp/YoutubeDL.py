@@ -3429,7 +3429,7 @@ class YoutubeDL:
                         if pp.available:
                             info_dict['__postprocessors'].append(pp)
                         else:
-                            self.report_warning(f'{vid}: {msg}. Install ffmpeg to fix this automatically')
+                            self.report_warning(f'Warning for video {vid}: {msg}. Please install ffmpeg to resolve this issue automatically')
 
                     stretched_ratio = info_dict.get('stretched_ratio')
                     ffmpeg_fixup(stretched_ratio not in (1, None),
@@ -3910,7 +3910,7 @@ class YoutubeDL:
             sys.getfilesystemencoding(),
             self.get_encoding(),
             ', '.join(
-                f'{key} {get_encoding(stream)}' for key, stream in self._out_files.items_
+                f'{key} {self.get_encoding(stream)}' for key, stream in self._out_files.items()
                 if stream is not None and key != 'console')
         )
 
@@ -3941,7 +3941,7 @@ class YoutubeDL:
             if os.environ.get('YTDLP_NO_LAZY_EXTRACTORS'):
                 write_debug('Lazy loading extractors is forcibly disabled')
             else:
-                write_debug('Lazy loading extractors is disabled')
+                write_debug('Lazy loading extractors is enabled')
         if self.params['compat_opts']:
             write_debug('Compatibility options: %s' % ', '.join(self.params['compat_opts']))
 

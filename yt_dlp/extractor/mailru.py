@@ -53,9 +53,8 @@ class MailRuIE(InfoExtractor):
                 'upload_date': '20140409',
                 'uploader': 'hitech',
                 'uploader_id': 'hitech@corp.mail.ru',
-                'duration': 245,
-            },
-            'skip': 'Not accessible from Travis CI server',
+                'duration': 245
+            }
         },
         {
             # only available via metaUrl API

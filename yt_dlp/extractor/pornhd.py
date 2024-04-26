@@ -65,7 +65,7 @@ class PornHdIE(InfoExtractor):
 
         if not sources and not info:
             message = self._html_search_regex(
-                r'(?s)<(div|p)[^>]+class="no-video"[^>]*>(?P<value>.+?)</\1',
+                r'(?s)<(div|p)[^>]+class="no-video"[^>]*>(?P<value>.+?)</\1>',
                 webpage, 'error message', group='value')
             raise ExtractorError('%s said: %s' % (self.IE_NAME, message), expected=True)
 

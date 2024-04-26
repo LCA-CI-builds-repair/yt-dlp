@@ -320,7 +320,7 @@ class YandexMusicPlaylistIE(YandexMusicPlaylistBaseIE):
             'description': 'md5:3b9f27b0efbe53f2ee1e844d07155cc9',
         },
         'playlist_count': 5,
-        # 'skip': 'Travis CI servers blocked by YandexMusic',
+        'skip': 'Travis CI servers blocked by YandexMusic',
     }, {
         'url': 'https://music.yandex.ru/users/ya.playlist/playlists/1036',
         'only_matching': True,
@@ -428,7 +428,7 @@ class YandexMusicArtistAlbumsIE(YandexMusicArtistBaseIE):
             'title': 'md5:55dc58d5c85699b7fb41ee926700236c',
         },
         'playlist_count': 8,
-        # 'skip': 'Travis CI servers blocked by YandexMusic',
+        'skip': 'Travis CI servers blocked by YandexMusic',
     }]
 
     _ARTIST_SORT = 'year'
