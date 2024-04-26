@@ -176,8 +176,9 @@ def main():
             'Operating System :: OS Independent',
         ],
         cmdclass={'build_lazy_extractors': build_lazy_extractors},
-        **params
-    )
+function_name(
+    **params
+)
 
 
 main()
