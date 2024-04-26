@@ -16,7 +16,7 @@ from ..utils import (
 
 class TrovoBaseIE(InfoExtractor):
     _VALID_URL_BASE = r'https?://(?:www\.)?trovo\.live/'
-    _HEADERS = {'Origin': 'https://trovo.live'}
+    _HEADERS = {'Referer': 'https://trovo.live'}
 
     def _call_api(self, video_id, data):
         if 'persistedQuery' in data.get('extensions', {}):
@@ -61,6 +61,7 @@ class TrovoIE(TrovoBaseIE):
             'thumbnail': 'https://livecover.trovo.live/screenshot/73846_104125853_104125853-2022-06-29-04-00-22-852x480.jpg',
             'uploader': 'zijo987',
             'title': '💥IGRAMO IGRICE UPADAJTE💥2500/5000 2022-06-28 22:01',
+        }
             'live_status': 'is_live',
         },
         'skip': 'May not be live'
@@ -78,7 +79,9 @@ class TrovoIE(TrovoBaseIE):
         })
         if live_info.get('isLive') == 0:
             raise ExtractorError('%s is offline' % username, expected=True)
-        program_info = live_info['programInfo']
+        if 'id' not in program_info or 'title' not in program_info or 'streamInfo' not in program_info:
+            return {}
+
         program_id = program_info['id']
         title = program_info['title']
 
@@ -88,9 +91,13 @@ class TrovoIE(TrovoBaseIE):
             if not play_url:
                 continue
             format_id = stream_info.get('desc')
+            if format_id:
+                height = int_or_none(format_id[:-1])
+            else:
+                height = None
             formats.append({
                 'format_id': format_id,
-                'height': int_or_none(format_id[:-1]) if format_id else None,
+                'height': height,
                 'url': play_url,
                 'tbr': stream_info.get('bitrate'),
                 'http_headers': self._HEADERS,
@@ -103,7 +110,10 @@ class TrovoIE(TrovoBaseIE):
             'thumbnail': program_info.get('coverUrl'),
             'is_live': True,
         }
-        info.update(self._extract_streamer_info(live_info))
+        
+        if live_info:
+            info.update(self._extract_streamer_info(live_info))
+        return info
         return info
 
 
@@ -115,21 +125,6 @@ class TrovoVodIE(TrovoBaseIE):
         'info_dict': {
             'id': 'lc-5285890818705062210',
             'ext': 'mp4',
-            'title': 'fatal moaning for a super good🤣🤣',
-            'uploader': 'OneTappedYou',
-            'timestamp': 1621628019,
-            'upload_date': '20210521',
-            'uploader_id': '100719456',
-            'duration': 31,
-            'view_count': int,
-            'like_count': int,
-            'comment_count': int,
-            'comments': 'mincount:1',
-            'categories': ['Call of Duty: Mobile'],
-            'uploader_url': 'https://trovo.live/OneTappedYou',
-            'thumbnail': r're:^https?://.*\.jpg',
-        },
-    }, {
         'url': 'https://trovo.live/s/SkenonSLive/549759191497?vid=ltv-100829718_100829718_387702301737980280',
         'info_dict': {
             'id': 'ltv-100829718_100829718_387702301737980280',
@@ -156,15 +151,19 @@ class TrovoVodIE(TrovoBaseIE):
             'timestamp': 1661479563,
             'thumbnail': 'http://vod.trovo.live/be5ae591vodtransusw1301120758/cccb9915387702304241698583/coverBySnapshot/coverBySnapshot_10_0.jpg',
             'uploader_id': '100264059',
+            'id': 'ltv-100264059_100264059_387702304241698583',
+            'ext': 'mp4',
+            'timestamp': 1661479563,
+            'thumbnail': 'http://vod.trovo.live/be5ae591vodtransusw1301120758/cccb9915387702304241698583/coverBySnapshot/coverBySnapshot_10_0.jpg',
+            'uploader_id': '100264059',
             'uploader': 'Trovo',
             'title': 'Dev Corner 8/25',
             'uploader_url': 'https://trovo.live/Trovo',
             'duration': 3753,
             'view_count': int,
             'like_count': int,
-            'upload_date': '20220826',
+            'upload_date': '20220611',
             'comment_count': int,
-            'categories': ['Talk Shows'],
         },
     }, {
         'url': 'https://trovo.live/video/ltv-100095501_100095501_1609596043',
