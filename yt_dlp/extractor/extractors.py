@@ -14,13 +14,15 @@ if not os.environ.get('YTDLP_NO_LAZY_EXTRACTORS'):
         _LAZY_LOADER = True
 
 if not _LAZY_LOADER:
-    from ._extractors import *  # noqa: F403
-    _ALL_CLASSES = [  # noqa: F811
-        klass
-        for name, klass in globals().items()
-        if name.endswith('IE') and name != 'GenericIE'
-    ]
-    _ALL_CLASSES.append(GenericIE)  # noqa: F405
+from .common import _PLUGIN_CLASSES  # Add import for _PLUGIN_CLASSES
+
+from ._extractors import *  # noqa: F403
+_ALL_CLASSES = [  # noqa: F811
+    klass
+    for name, klass in globals().items()
+    if name.endswith('IE') and name != 'GenericIE'
+]
+_ALL_CLASSES.append(GenericIE)  # noqa: F405
 
 globals().update(_PLUGIN_CLASSES)
 _ALL_CLASSES[:0] = _PLUGIN_CLASSES.values()

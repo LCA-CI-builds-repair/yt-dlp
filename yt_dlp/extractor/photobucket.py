@@ -21,10 +21,11 @@ class PhotobucketIE(InfoExtractor):
 
     def _real_extract(self, url):
         mobj = self._match_valid_url(url)
-        video_id = mobj.group('id')
-        video_extension = mobj.group('ext')
+        if mobj:
+            video_id = mobj.group('id')
+            video_extension = mobj.group('ext')
 
-        webpage = self._download_webpage(url, video_id)
+            webpage = self._download_webpage(url, video_id)
 
         # Extract URL, uploader, and title from webpage
         self.report_extraction(video_id)

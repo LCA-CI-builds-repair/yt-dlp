@@ -169,11 +169,11 @@ class SovietsClosetPlaylistIE(SovietsClosetBaseIE):
                 'title': 'Total War: Warhammer - Greenskins',
             },
             'playlist_mincount': 33,
+        }
         },
     ]
 
     def _real_extract(self, url):
-        playlist_id = self._match_id(url)
         if playlist_id.endswith('/'):
             playlist_id = playlist_id[:-1]
 
