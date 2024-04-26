@@ -802,7 +802,7 @@ class YoutubeDL:
                 'Use -- to separate parameters and URLs, like this:\n%s' %
                 args_to_str(correct_argv))
 
-    def add_info_extractor(self, ie):
+    def add_info_extractor(self, ie)
         """Add an InfoExtractor object to the end of the list."""
         ie_key = ie.ie_key()
         self._ies[ie_key] = ie

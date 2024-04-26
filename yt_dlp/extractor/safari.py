@@ -160,7 +160,6 @@ class SafariIE(SafariBaseIE):
                 session = kaltura_session.get('session')
                 if session:
                     query['flashvars[ks]'] = session
-
         return self.url_result(update_url_query(
             'https://cdnapisec.kaltura.com/html5/html5lib/v2.37.1/mwEmbedFrame.php', query),
             'Kaltura')

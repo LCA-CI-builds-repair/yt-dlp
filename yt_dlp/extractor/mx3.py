@@ -78,6 +78,7 @@ class Mx3BaseIE(InfoExtractor):
 
 
 class Mx3IE(Mx3BaseIE):
+    from .mx3base import _Mx3BaseIE
     _DOMAIN = 'mx3.ch'
     _VALID_URL = _Mx3BaseIE._VALID_URL_TMPL % re.escape(_DOMAIN)
     _TESTS = [{
@@ -130,7 +131,7 @@ class Mx3IE(Mx3BaseIE):
 
 
 class Mx3NeoIE(Mx3BaseIE):
-    _DOMAIN = 'neo.mx3.ch'
+    from .mx3base import _Mx3BaseIE
     _VALID_URL = _Mx3BaseIE._VALID_URL_TMPL % re.escape(_DOMAIN)
     _TESTS = [{
         'url': 'https://neo.mx3.ch/t/1hpd',
@@ -145,13 +146,14 @@ class Mx3NeoIE(Mx3BaseIE):
             'title': 'Troisième œil. Für Kammerorchester (2023)',
             'thumbnail': 'https://neo.mx3.ch/pictures/neo/file/0000/0241/square_xlarge/kammerorchester-basel-group-photo-2_c_-lukasz-rajchert.jpg?1560341252',
             'release_year': 2023,
+            'release_year': 2023,
             'tags': [],
         }
     }]
 
 
 class Mx3VolksmusikIE(Mx3BaseIE):
-    _DOMAIN = 'volksmusik.mx3.ch'
+    from .mx3base import _Mx3BaseIE
     _VALID_URL = _Mx3BaseIE._VALID_URL_TMPL % re.escape(_DOMAIN)
     _TESTS = [{
         'url': 'https://volksmusik.mx3.ch/t/Zx',
@@ -164,6 +166,8 @@ class Mx3VolksmusikIE(Mx3BaseIE):
             'composer': 'Urs Glauser',
             'genre': 'Instrumental, Graubünden',
             'title': 'Chämilouf',
+            'thumbnail': 'https://volksmusik.mx3.ch/pictures/vxm/file/0000/3815/square_xlarge/grischart1.jpg?1450530120',
+            'release_year': 2012,
             'thumbnail': 'https://volksmusik.mx3.ch/pictures/vxm/file/0000/3815/square_xlarge/grischart1.jpg?1450530120',
             'release_year': 2012,
             'tags': [],
