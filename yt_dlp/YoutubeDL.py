@@ -2211,7 +2211,7 @@ class YoutubeDL:
                             # ')' will be handled by the parentheses group
                             tokens.restore_last_token()
                         break
-                    elif inside_merge and string_ in ['/', ',']:
+                    elif inside_merge and current_token in ['/', ',']:
                         tokens.restore_last_token()
                         break
                     elif inside_choice and string_ == ',':

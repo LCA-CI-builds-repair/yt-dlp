@@ -508,7 +508,7 @@ class ORFFM4StoryIE(InfoExtractor):
             title = remove_end(self._og_search_title(webpage), ' - fm4.ORF.at')
             if idx >= 1:
                 # Titles are duplicates, make them unique
-                title += ' (' + str(idx + 1) + ')'
+                title += f" ({idx + 1})"
             description = self._og_search_description(webpage)
             upload_date = unified_strdate(self._html_search_meta(
                 'dc.date', webpage, 'upload date'))

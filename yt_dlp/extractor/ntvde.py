@@ -38,7 +38,7 @@ class NTVDeIE(InfoExtractor):
             video_id, transform_source=js_to_json)
         timestamp = int_or_none(info.get('publishedDateAsUnixTimeStamp'))
         vdata = self._parse_json(self._search_regex(
-            r'(?s)\$\(\s*"\#player"\s*\)\s*\.data\(\s*"player",\s*(\{.*?\})\);',
+            r'(?s)\$\(\s*"#player"\s*\)\s*\.data\(\s*"player",\s*(\{.*?\}\));',
             webpage, 'player data'), video_id,
             transform_source=lambda s: js_to_json(re.sub(r'advertising:\s*{[^}]+},', '', s)))
         duration = parse_duration(vdata.get('duration'))
@@ -55,7 +55,7 @@ class NTVDeIE(InfoExtractor):
                 'url': compat_urlparse.urljoin('http://video.n-tv.de', vdata['videoMp4']),
                 'tbr': 400,  # estimation
             })
-        if vdata.get('videoM3u8'):
+        if 'videoM3u8' in vdata:
             m3u8_url = compat_urlparse.urljoin('http://video.n-tv.de', vdata['videoM3u8'])
             formats.extend(self._extract_m3u8_formats(
                 m3u8_url, video_id, ext='mp4', entry_protocol='m3u8_native',

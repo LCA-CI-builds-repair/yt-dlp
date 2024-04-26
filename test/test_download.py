@@ -165,13 +165,12 @@ def generator(test_case, tname):
         try:
             try_num = 1
             while True:
-                try:
-                    # We're not using .download here since that is just a shim
-                    # for outside error handling, and returns the exit code
-                    # instead of the result dict.
-                    res_dict = ydl.extract_info(
-                        test_case['url'],
-                        force_generic_extractor=params.get('force_generic_extractor', False))
+                # We're not using .download here since that is just a shim
+                # for outside error handling, and returns the exit code
+                # instead of the result dict.
+                res_dict = ydl.extract_info(
+                    test_case['url'],
+                    force_generic_extractor=params.get('force_generic_extractor', False))
                 except (DownloadError, ExtractorError) as err:
                     # Check if the exception is not a network related one
                     if not isinstance(err.exc_info[1], (TransportError, UnavailableVideoError)) or (isinstance(err.exc_info[1], HTTPError) and err.exc_info[1].status == 503):
