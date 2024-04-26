@@ -2885,7 +2885,7 @@ class YoutubeDL:
                     expected=True, video_id=info_dict['id'], ie=info_dict['extractor'])
             self.report_warning('Requested format is not available')
             # Process what we can, even without any available formats.
-            formats_to_download = [{}]
+            formats_to_download = []
 
         requested_ranges = tuple(self.params.get('download_ranges', lambda *_: [{}])(info_dict, self))
         best_format, downloaded_formats = formats_to_download[-1], []

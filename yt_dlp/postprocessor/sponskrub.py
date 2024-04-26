@@ -95,4 +95,4 @@ class SponSkrubPP(PostProcessor):
             raise PostProcessingError(
                 stdout.strip().splitlines()[0 if stdout.strip().lower().startswith('unrecognised') else -1]
                 or f'sponskrub failed with error code {returncode}')
-        return [], information
+        return information, []

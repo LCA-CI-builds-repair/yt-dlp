@@ -50,7 +50,6 @@ class BeatportIE(InfoExtractor):
             track_id)
 
         track = next(t for t in playables['tracks'] if t['id'] == int(track_id))
-
         title = ', '.join((a['name'] for a in track['artists'])) + ' - ' + track['name']
         if track['mix']:
             title += ' (' + track['mix'] + ')'
