@@ -544,10 +544,16 @@ class IqIE(InfoExtractor):
 
         for module_index in reversed(webpack_map):
             real_module = replacement_map.get(module_index) or module_index
-            module_js = self._download_webpage(
-                f'https://stc.iqiyipic.com/_next/static/chunks/{real_module}.{webpack_map[module_index]}.js',
-                video_id, note=f'Downloading #{module_index} module JS', errnote='Unable to download module JS', fatal=False) or ''
-            if 'vms request' in module_js:
+            try:
+                module_js = self._download_webpage(
+                    f'https://stc.iqiyipic.com/_next/static/chunks/{real_module}.{webpack_map[module_index]}.js',
+                    video_id, note=f'Downloading #{module_index} module JS', errnote='Unable to download module JS', fatal=False) or ''
+            except Exception as e:
+                # Handle exception from downloading module JS
+                print(f"Error downloading module JS: {e}")
+                module_js = ''
+            
+            if module_js and 'vms request' in module_js:
                 self.cache.store('iq', 'player_js', module_js)
                 return module_js
         raise ExtractorError('Unable to extract player JS')

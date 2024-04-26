@@ -170,6 +170,7 @@ class SovietsClosetPlaylistIE(SovietsClosetBaseIE):
             },
             'playlist_mincount': 33,
         },
+        },
     ]
 
     def _real_extract(self, url):

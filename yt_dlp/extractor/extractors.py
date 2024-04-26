@@ -17,11 +17,10 @@ if not _LAZY_LOADER:
     from ._extractors import *  # noqa: F403
     _ALL_CLASSES = [  # noqa: F811
         klass
-        for name, klass in globals().items()
-        if name.endswith('IE') and name != 'GenericIE'
+        for klass in extractors.__dict__.values()
+        if inspect.isclass(klass) and issubclass(klass, Extractor) and klass is not GenericIE
     ]
     _ALL_CLASSES.append(GenericIE)  # noqa: F405
-
 globals().update(_PLUGIN_CLASSES)
 _ALL_CLASSES[:0] = _PLUGIN_CLASSES.values()
 

@@ -148,10 +148,14 @@ def load_plugins(name, suffix):
                 spec = finder.find_spec(module_name)
                 module = importlib.util.module_from_spec(spec)
                 sys.modules[module_name] = module
-                spec.loader.exec_module(module)
-        except Exception:
-            write_string(f'Error while importing module {module_name!r}\n{traceback.format_exc(limit=-1)}')
-            continue
+                try:
+                    spec.loader.exec_module(module)
+                except ImportError as e:
+                    write_string(f'Error while importing module {module_name!r}\nImportError: {e}')
+                    continue
+                except Exception as e:
+                    write_string(f'Error while importing module {module_name!r}\n{traceback.format_exc(limit=-1)}')
+                    continue
         classes.update(load_module(module, module_name, suffix))
 
     # Compat: old plugin system using __init__.py

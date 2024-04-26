@@ -302,10 +302,12 @@ class ModifyChaptersPP(FFmpegPostProcessor):
                     'category_names': orderedSet(x[3] for x in cats),
                 })
                 c['title'] = self._downloader.evaluate_outtmpl(self._sponsorblock_chapter_title, c.copy())
-                # Merge identically named sponsors.
-                if (new_chapters and 'categories' in new_chapters[-1]
-                        and new_chapters[-1]['title'] == c['title']):
-                    new_chapters[-1]['end_time'] = c['end_time']
+                
+                if new_chapters:
+                    # Merge identically named sponsors.
+                    if ('categories' in new_chapters[-1]
+                            and new_chapters[-1]['title'] == c['title']):
+                        new_chapters[-1]['end_time'] = c['end_time']
                     continue
             new_chapters.append(c)
         return new_chapters

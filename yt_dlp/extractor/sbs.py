@@ -121,8 +121,8 @@ class SBSIE(InfoExtractor):
             video_id, fatal=not media) or {})
 
         # For named episodes, use the catalogue's title to set episode, rather than generic 'Episode N'.
-        if traverse_obj(media, ('partOfSeries', {dict})):
-            media['epName'] = traverse_obj(media, ('title', {str}))
+        if traverse_obj(media, ('partOfSeries', dict)):
+            media['epName'] = traverse_obj(media, ('title', str))
 
         return {
             'id': video_id,
