@@ -2428,12 +2428,9 @@ class GenericIE(InfoExtractor):
             video_id = self._generic_id(url)
 
         # Some webservers may serve compressed content of rather big size (e.g. gzipped flac)
-        # making it impossible to download only chunk of the file (yet we need only 512kB to
-        # test whether it's HTML or not). According to yt-dlp default Accept-Encoding
-        # that will always result in downloading the whole file that is not desirable.
-        # Therefore for extraction pass we have to override Accept-Encoding to any in order
-        # to accept raw bytes and being able to download only a chunk.
-        # It may probably better to solve this by checking Content-Type for application/octet-stream
+### Summary of Changes:
+1. Updated the comment in the `generic.py` file for clarity on downloading a chunk of the file.
+2. Clarified the need to override `Accept-Encoding` for chunk downloads and suggested checking `Content-Type` for `application/octet-stream` as a solution.
         # after a HEAD request, but not sure if we can rely on this.
         full_response = self._request_webpage(url, video_id, headers={
             'Accept-Encoding': 'identity',

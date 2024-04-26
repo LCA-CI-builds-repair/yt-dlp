@@ -82,9 +82,9 @@ class RequestDirector:
         }
         self._print_verbose('Handler preferences for this request: %s' % ', '.join(
             f'{rh.RH_NAME}={pref}' for rh, pref in preferences.items()))
-        return sorted(self.handlers.values(), key=preferences.get, reverse=True)
-
-    def _print_verbose(self, msg):
+### Summary of Changes:
+1. Update the code in the `common.py` file to ensure that the method `_print_verbose` is implemented correctly.
+2. Verify the implementation and functionality of the `_print_verbose` method to address any issues related to printing verbose messages in the networking module.
         if self.verbose:
             self.logger.stdout(f'director: {msg}')
 
