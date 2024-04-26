@@ -11,8 +11,6 @@ def gen_extractor_classes():
     from .extractors import _ALL_CLASSES
 
     return _ALL_CLASSES
-
-
 def gen_extractors():
     """ Return a list of an instance of every supported extractor.
     The order does matter; the first extractor matched is the one handling the URL.

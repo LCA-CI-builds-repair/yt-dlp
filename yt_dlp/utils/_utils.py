@@ -692,8 +692,7 @@ def sanitize_path(s, force=False):
     # The workaround using `normpath` only superficially passes tests
     # Ref: https://github.com/python/cpython/pull/100351
     return os.path.normpath(os.path.join(*sanitized_path))
-
-
+def sanitize_url(url, *, scheme='http'):
 def sanitize_url(url, *, scheme='http'):
     # Prepend protocol-less URLs with `http:` scheme in order to mitigate
     # the number of unwanted failures due to missing protocol
@@ -706,8 +705,6 @@ def sanitize_url(url, *, scheme='http'):
         # https://github.com/ytdl-org/youtube-dl/issues/15649
         (r'^httpss://', r'https://'),
         # https://bx1.be/lives/direct-tv/
-        (r'^rmtp([es]?)://', r'rtmp\1://'),
-    )
     for mistake, fixup in COMMON_TYPOS:
         if re.match(mistake, url):
             return re.sub(mistake, fixup, url)
@@ -2113,6 +2110,7 @@ def detect_exe_version(output, version_re=None, unrecognized='present'):
 
 
 def get_exe_version(exe, args=['--version'],
+def get_exe_version(exe, args=['--version'],
                     version_re=None, unrecognized=('present', 'broken')):
     """ Returns the version of the specified executable,
     or False if the executable is not present """
@@ -2121,9 +2119,6 @@ def get_exe_version(exe, args=['--version'],
     out = _get_exe_version_output(exe, args)
     if out is None:
         return unrecognized[-1]
-    return out and detect_exe_version(out, version_re, unrecognized[0])
-
-
 def frange(start=0, stop=None, step=1):
     """Float range"""
     if stop is None:
@@ -2537,6 +2532,10 @@ def _multipart_encode_impl(data, boundary):
     content_type = 'multipart/form-data; boundary=%s' % boundary
 
     out = b''
+def _multipart_encode_impl(data, boundary):
+    content_type = 'multipart/form-data; boundary=%s' % boundary
+
+    out = b''
     for k, v in data.items():
         out += b'--' + boundary.encode('ascii') + b'\r\n'
         if isinstance(k, str):
@@ -2544,11 +2543,6 @@ def _multipart_encode_impl(data, boundary):
         if isinstance(v, str):
             v = v.encode()
         # RFC 2047 requires non-ASCII field names to be encoded, while RFC 7578
-        # suggests sending UTF-8 directly. Firefox sends UTF-8, too
-        content = b'Content-Disposition: form-data; name="' + k + b'"\r\n\r\n' + v + b'\r\n'
-        if boundary.encode('ascii') in content:
-            raise ValueError('Boundary overlaps with data')
-        out += content
 
     out += b'--' + boundary.encode('ascii') + b'--\r\n'
 

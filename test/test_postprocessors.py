@@ -59,8 +59,6 @@ class TestConvertThumbnail(unittest.TestCase):
 
         for _, out in tests:
             os.remove(file.format(out))
-
-
 class TestExec(unittest.TestCase):
     def test_parse_cmd(self):
         pp = ExecPP(YoutubeDL(), '')
