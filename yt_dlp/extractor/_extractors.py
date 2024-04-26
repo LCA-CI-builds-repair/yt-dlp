@@ -544,6 +544,7 @@ from .elemental_tv import ElementalTVIE
 from .elevensports import ElevenSportsIE
 from .ellentube import (
     EllenTubeIE,
+)
     EllenTubeVideoIE,
     EllenTubePlaylistIE,
 )
