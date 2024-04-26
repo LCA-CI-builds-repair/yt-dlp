@@ -44,6 +44,7 @@ class TrovoBaseIE(InfoExtractor):
 
 
 class TrovoIE(TrovoBaseIE):
+class TrovoBaseIE(InfoExtractor):
     _VALID_URL = TrovoBaseIE._VALID_URL_BASE + r'(?:s/)?(?!(?:clip|video)/)(?P<id>(?!s/)[^/?&#]+(?![^#]+[?&]vid=))'
     _TESTS = [{
         'url': 'https://trovo.live/Exsl',

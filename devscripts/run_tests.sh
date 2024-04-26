@@ -1,5 +1,4 @@
 #!/usr/bin/env sh
-
 if [ -z "$1" ]; then
     test_set='test'
 elif [ "$1" = 'core' ]; then
