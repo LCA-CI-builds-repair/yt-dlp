@@ -17,6 +17,7 @@ class compat_HTMLParseError(ValueError):
 
 class _TreeBuilder(etree.TreeBuilder):
     def doctype(self, name, pubid, system):
+        pass  # Placeholder action, add appropriate code for the doctype method
         pass
 
 

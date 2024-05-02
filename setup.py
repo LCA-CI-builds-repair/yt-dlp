@@ -178,6 +178,3 @@ def main():
         cmdclass={'build_lazy_extractors': build_lazy_extractors},
         **params
     )
-
-
-main()
