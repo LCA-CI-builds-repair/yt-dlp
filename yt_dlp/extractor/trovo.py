@@ -15,7 +15,7 @@ from ..utils import (
 
 
 class TrovoBaseIE(InfoExtractor):
-    _VALID_URL_BASE = r'https?://(?:www\.)?trovo\.live/'
+    _VALID_URL_BASE = r'https?://(?:www\.)?trovo\.(?:live|com)/'
     _HEADERS = {'Origin': 'https://trovo.live'}
 
     def _call_api(self, video_id, data):
@@ -44,7 +44,7 @@ class TrovoBaseIE(InfoExtractor):
 
 
 class TrovoIE(TrovoBaseIE):
-    _VALID_URL = TrovoBaseIE._VALID_URL_BASE + r'(?:s/)?(?!(?:clip|video)/)(?P<id>(?!s/)[^/?&#]+(?![^#]+[?&]vid=))'
+    _VALID_URL = TrovoBaseIE._VALID_URL_BASE + r'(?:s/)?(?!(?:clip|video)/)(?P<id>[^/?&#]+)'
     _TESTS = [{
         'url': 'https://trovo.live/Exsl',
         'only_matching': True,
@@ -78,7 +78,10 @@ class TrovoIE(TrovoBaseIE):
         })
         if live_info.get('isLive') == 0:
             raise ExtractorError('%s is offline' % username, expected=True)
-        program_info = live_info['programInfo']
+        try:
+            program_info = live_info['programInfo']
+        except KeyError:
+            program_info = None
         program_id = program_info['id']
         title = program_info['title']
 
@@ -114,8 +117,8 @@ class TrovoVodIE(TrovoBaseIE):
         'params': {'getcomments': True},
         'info_dict': {
             'id': 'lc-5285890818705062210',
-            'ext': 'mp4',
-            'title': 'fatal moaning for a super good🤣🤣',
+            'timestamp': 1621628019,
+            'upload_date': '2021-05-21',
             'uploader': 'OneTappedYou',
             'timestamp': 1621628019,
             'upload_date': '20210521',
@@ -155,8 +158,8 @@ class TrovoVodIE(TrovoBaseIE):
             'ext': 'mp4',
             'timestamp': 1661479563,
             'thumbnail': 'http://vod.trovo.live/be5ae591vodtransusw1301120758/cccb9915387702304241698583/coverBySnapshot/coverBySnapshot_10_0.jpg',
-            'uploader_id': '100264059',
-            'uploader': 'Trovo',
+            'uploader_url': 'https://trovo.live/uploader_username',
+            'duration': 3753,
             'title': 'Dev Corner 8/25',
             'uploader_url': 'https://trovo.live/Trovo',
             'duration': 3753,
