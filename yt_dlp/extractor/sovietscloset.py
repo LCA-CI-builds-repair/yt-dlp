@@ -199,9 +199,9 @@ class SovietsClosetPlaylistIE(SovietsClosetBaseIE):
             playlist_title += f' - {category.get("name") or category_slug}'
         entries = [{
             **self.url_result(f'https://sovietscloset.com/video/{stream["id"]}', ie=SovietsClosetIE.ie_key()),
-            **self.video_meta(
-                video_id=stream['id'], game_name=game['name'], category_name=category.get('name'),
-                episode_number=i + 1, stream_date=stream.get('date')),
+        **self.video_meta(
+            video_id=stream['id'], game_name=game['name'], category_name=category.get('name'),
+            episode_number=i + 1, stream_date=stream.get('date')),
         } for i, stream in enumerate(category['streams'])]
 
         return self.playlist_result(entries, playlist_id, playlist_title)
