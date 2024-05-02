@@ -14,6 +14,10 @@ from ..utils import (
 )
 
 
+import random
+import string
+from yt_dlp.utils import ExtractorError
+
 class TrovoBaseIE(InfoExtractor):
     _VALID_URL_BASE = r'https?://(?:www\.)?trovo\.live/'
     _HEADERS = {'Origin': 'https://trovo.live'}
