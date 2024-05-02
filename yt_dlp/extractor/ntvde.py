@@ -51,23 +51,23 @@ class NTVDeIE(InfoExtractor):
             })
         if vdata.get('videoMp4'):
             formats.append({
-                'format_id': 'mobile',
-                'url': compat_urlparse.urljoin('http://video.n-tv.de', vdata['videoMp4']),
-                'tbr': 400,  # estimation
-            })
-        if vdata.get('videoM3u8'):
-            m3u8_url = compat_urlparse.urljoin('http://video.n-tv.de', vdata['videoM3u8'])
-            formats.extend(self._extract_m3u8_formats(
-                m3u8_url, video_id, ext='mp4', entry_protocol='m3u8_native',
-                quality=1, m3u8_id='hls', fatal=False))
+'format_id': 'mobile',
+'url': compat_urlparse.urljoin('http://video.n-tv.de', vdata['videoMp4']),
+'tbr': 400,  # estimation
+})
+if vdata.get('videoM3u8'):
+    m3u8_url = compat_urlparse.urljoin('http://video.n-tv.de', vdata['videoM3u8'])
+    formats.extend(self._extract_m3u8_formats(
+        m3u8_url, video_id, ext='mp4', entry_protocol='m3u8_native',
+        quality=1, m3u8_id='hls', fatal=False))
 
-        return {
-            'id': video_id,
-            'title': info['headline'],
-            'description': info.get('intro'),
-            'alt_title': info.get('kicker'),
-            'timestamp': timestamp,
-            'thumbnail': vdata.get('html5VideoPoster'),
-            'duration': duration,
-            'formats': formats,
-        }
+return {
+    'id': video_id,
+    'title': info['headline'],
+    'description': info.get('intro'),
+    'alt_title': info.get('kicker'),
+    'timestamp': timestamp,
+    'thumbnail': vdata.get('html5VideoPoster'),
+    'duration': duration,
+    'formats': formats,
+}

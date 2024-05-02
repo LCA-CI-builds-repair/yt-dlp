@@ -2198,73 +2198,73 @@ class YoutubeDL:
 
         def _parse_format_selection(tokens, inside_merge=False, inside_choice=False, inside_group=False):
             selectors = []
-            current_selector = None
-            for type, string_, start, _, _ in tokens:
-                # ENCODING is only defined in python 3.x
-                if type == getattr(tokenize, 'ENCODING', None):
-                    continue
-                elif type in [tokenize.NAME, tokenize.NUMBER]:
-                    current_selector = FormatSelector(SINGLE, string_, [])
-                elif type == tokenize.OP:
+current_selector = None
+for type, string_, start, _, _ in tokens:
+    # ENCODING is only defined in python 3.x
+    if type == getattr(tokenize, 'ENCODING', None):
+        continue
+    elif type in [tokenize.NAME, tokenize.NUMBER]:
+        current_selector = FormatSelector(SINGLE, string_, [])
+    elif type == tokenize.OP:
                     if string_ == ')':
-                        if not inside_group:
-                            # ')' will be handled by the parentheses group
-                            tokens.restore_last_token()
-                        break
-                    elif inside_merge and string_ in ['/', ',']:
-                        tokens.restore_last_token()
-                        break
-                    elif inside_choice and string_ == ',':
-                        tokens.restore_last_token()
-                        break
-                    elif string_ == ',':
-                        if not current_selector:
-                            raise syntax_error('"," must follow a format selector', start)
-                        selectors.append(current_selector)
-                        current_selector = None
-                    elif string_ == '/':
-                        if not current_selector:
-                            raise syntax_error('"/" must follow a format selector', start)
-                        first_choice = current_selector
-                        second_choice = _parse_format_selection(tokens, inside_choice=True)
-                        current_selector = FormatSelector(PICKFIRST, (first_choice, second_choice), [])
-                    elif string_ == '[':
-                        if not current_selector:
-                            current_selector = FormatSelector(SINGLE, 'best', [])
-                        format_filter = _parse_filter(tokens)
-                        current_selector.filters.append(format_filter)
-                    elif string_ == '(':
-                        if current_selector:
-                            raise syntax_error('Unexpected "("', start)
-                        group = _parse_format_selection(tokens, inside_group=True)
-                        current_selector = FormatSelector(GROUP, group, [])
-                    elif string_ == '+':
-                        if not current_selector:
-                            raise syntax_error('Unexpected "+"', start)
-                        selector_1 = current_selector
-                        selector_2 = _parse_format_selection(tokens, inside_merge=True)
-                        if not selector_2:
-                            raise syntax_error('Expected a selector', start)
-                        current_selector = FormatSelector(MERGE, (selector_1, selector_2), [])
-                    else:
-                        raise syntax_error(f'Operator not recognized: "{string_}"', start)
-                elif type == tokenize.ENDMARKER:
-                    break
-            if current_selector:
-                selectors.append(current_selector)
-            return selectors
+if not inside_group:
+    # ')' will be handled by the parentheses group
+    tokens.restore_last_token()
+    break
+elif inside_merge and string_ in ['/', ',']:
+    tokens.restore_last_token()
+    break
+elif inside_choice and string_ == ',':
+    tokens.restore_last_token()
+    break
+elif string_ == ',':
+    if not current_selector:
+        raise syntax_error('"," must follow a format selector', start)
+    selectors.append(current_selector)
+    current_selector = None
+elif string_ == '/':
+    if not current_selector:
+        raise syntax_error('"/" must follow a format selector', start)
+    first_choice = current_selector
+    second_choice = _parse_format_selection(tokens, inside_choice=True)
+    current_selector = FormatSelector(PICKFIRST, (first_choice, second_choice), [])
+elif string_ == '[':
+    if not current_selector:
+        current_selector = FormatSelector(SINGLE, 'best', [])
+    format_filter = _parse_filter(tokens)
+    current_selector.filters.append(format_filter)
+elif string_ == '(':
+    if current_selector:
+        raise syntax_error('Unexpected "("', start)
+    group = _parse_format_selection(tokens, inside_group=True)
+    current_selector = FormatSelector(GROUP, group, [])
+elif string_ == '+':
+    if not current_selector:
+        raise syntax_error('Unexpected "+"', start)
+    selector_1 = current_selector
+    selector_2 = _parse_format_selection(tokens, inside_merge=True)
+    if not selector_2:
+        raise syntax_error('Expected a selector', start)
+    current_selector = FormatSelector(MERGE, (selector_1, selector_2), [])
+else:
+    raise syntax_error(f'Operator not recognized: "{string_}"', start)
+elif type == tokenize.ENDMARKER:
+    break
+if current_selector:
+    selectors.append(current_selector)
+return selectors
 
-        def _merge(formats_pair):
-            format_1, format_2 = formats_pair
+def _merge(formats_pair):
+    format_1, format_2 = formats_pair
 
             formats_info = []
-            formats_info.extend(format_1.get('requested_formats', (format_1,)))
-            formats_info.extend(format_2.get('requested_formats', (format_2,)))
+formats_info.extend(format_1.get('requested_formats', (format_1,)))
+formats_info.extend(format_2.get('requested_formats', (format_2,)))
 
-            if not allow_multiple_streams['video'] or not allow_multiple_streams['audio']:
-                get_no_more = {'video': False, 'audio': False}
-                for (i, fmt_info) in enumerate(formats_info):
-                    if fmt_info.get('acodec') == fmt_info.get('vcodec') == 'none':
+if not allow_multiple_streams['video'] or not allow_multiple_streams['audio']:
+    get_no_more = {'video': False, 'audio': False}
+    for (i, fmt_info) in enumerate(formats_info):
+        if fmt_info.get('acodec') == fmt_info.get('vcodec') == 'none':
                         formats_info.pop(i)
                         continue
                     for aud_vid in ['audio', 'video']:
@@ -2323,30 +2323,29 @@ class YoutubeDL:
                     'acodec': the_only_audio.get('acodec'),
                     'abr': the_only_audio.get('abr'),
                     'asr': the_only_audio.get('asr'),
-                    'audio_channels': the_only_audio.get('audio_channels')
-                })
+'audio_channels': the_only_audio.get('audio_channels')
+})
 
-            return new_dict
+return new_dict
 
-        def _check_formats(formats):
-            if self.params.get('check_formats') == 'selected':
-                yield from self._check_formats(formats)
-                return
-            elif (self.params.get('check_formats') is not None
-                    or self.params.get('allow_unplayable_formats')):
-                yield from formats
-                return
+def _check_formats(formats):
+    if self.params.get('check_formats') == 'selected':
+        yield from self._check_formats(formats)
+        return
+    elif (self.params.get('check_formats') is not None
+            or self.params.get('allow_unplayable_formats')):
+        yield from formats
+        return
 
-            for f in formats:
+    for f in formats:
                 if f.get('has_drm'):
                     yield from self._check_formats([f])
-                else:
-                    yield f
+else:
+    yield f
 
-        def _build_selector_function(selector):
-            if isinstance(selector, list):  # ,
-                fs = [_build_selector_function(s) for s in selector]
-
+def _build_selector_function(selector):
+    if isinstance(selector, list):  # ,
+        fs = [_build_selector_function(s) for s in selector]
                 def selector_function(ctx):
                     for f in fs:
                         yield from f(ctx)
@@ -2467,25 +2466,25 @@ class YoutubeDL:
 
             def __next__(self):
                 if self.counter >= len(self.tokens):
-                    raise StopIteration()
-                value = self.tokens[self.counter]
-                self.counter += 1
-                return value
+if self.counter >= len(self.tokens):
+    raise StopIteration()
+value = self.tokens[self.counter]
+self.counter += 1
+return value
 
-            next = __next__
-
+next = __next__
             def restore_last_token(self):
-                self.counter -= 1
+def restore_last_token(self):
+    self.counter -= 1
 
-        parsed_selector = _parse_format_selection(iter(TokenIterator(tokens)))
-        return _build_selector_function(parsed_selector)
+parsed_selector = _parse_format_selection(iter(TokenIterator(tokens)))
+return _build_selector_function(parsed_selector)
 
-    def _calc_headers(self, info_dict, load_cookies=False):
-        res = HTTPHeaderDict(self.params['http_headers'], info_dict.get('http_headers'))
-        clean_headers(res)
+def _calc_headers(self, info_dict, load_cookies=False):
+    res = HTTPHeaderDict(self.params['http_headers'], info_dict.get('http_headers'))
+    clean_headers(res)
 
-        if load_cookies:  # For --load-info-json
-            self._load_cookies(res.get('Cookie'), autoscope=info_dict['url'])  # compat
+    if load_cookies:  # For --load-info-json
             self._load_cookies(info_dict.get('cookies'), autoscope=False)
         # The `Cookie` header is removed to prevent leaks and unscoped cookies.
         # See: https://github.com/yt-dlp/yt-dlp/security/advisories/GHSA-v8mc-9377-rwjj
@@ -2511,14 +2510,14 @@ class YoutubeDL:
 
         if 'X-Forwarded-For' not in res:
             x_forwarded_for_ip = info_dict.get('__x_forwarded_for_ip')
-            if x_forwarded_for_ip:
-                res['X-Forwarded-For'] = x_forwarded_for_ip
+x_forwarded_for_ip = info_dict.get('__x_forwarded_for_ip')
+if x_forwarded_for_ip:
+    res['X-Forwarded-For'] = x_forwarded_for_ip
 
-        return res
+return res
 
-    def _calc_cookies(self, url):
-        self.deprecation_warning('"YoutubeDL._calc_cookies" is deprecated and may be removed in a future version')
-        return self.cookiejar.get_cookie_header(url)
+def _calc_cookies(self, url):
+    self.deprecation_warning('"YoutubeDL._calc_cookies" is deprecated and may be removed in a future version')
 
     def _sort_thumbnails(self, thumbnails):
         thumbnails.sort(key=lambda t: (

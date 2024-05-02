@@ -404,13 +404,14 @@ class Aria2cFD(ExternalFD):
                 completed = send_rpc('aria2.tellStopped', [0, frag_count])
 
                 downloaded = get_stat('totalLength', completed) + get_stat('completedLength', active)
-                speed = get_stat('downloadSpeed', active)
-                total = frag_count * get_stat('totalLength', active, completed, average=True)
-                if total < downloaded:
-                    total = None
+speed = get_stat('downloadSpeed', active)
+total = frag_count * get_stat('totalLength', active, completed, average=True)
+if total < downloaded:
+    total = None
 
-                status.update({
-                    'downloaded_bytes': int(downloaded),
+status.update({
+    'downloaded_bytes': int(downloaded),
+})
                     'speed': speed,
                     'total_bytes': None if fragmented else total,
                     'total_bytes_estimate': total,
@@ -420,19 +421,19 @@ class Aria2cFD(ExternalFD):
                 })
                 self._hook_progress(status, info_dict)
 
-                if not active and len(completed) >= frag_count:
-                    send_rpc('aria2.shutdown')
-                    retval = p.wait()
-                    break
+send_rpc('aria2.shutdown')
+retval = p.wait()
+break
 
-                time.sleep(0.1)
-                retval = p.poll()
+time.sleep(0.1)
+retval = p.poll()
 
-            return '', p.stderr.read(), retval
+return '', p.stderr.read(), retval
 
 
 class HttpieFD(ExternalFD):
     AVAILABLE_OPT = '--version'
+    EXE_NAME = 'http'
     EXE_NAME = 'http'
 
     def _make_cmd(self, tmpfilename, info_dict):
