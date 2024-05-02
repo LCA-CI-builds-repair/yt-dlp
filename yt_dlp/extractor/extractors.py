@@ -23,6 +23,5 @@ if not _LAZY_LOADER:
     _ALL_CLASSES.append(GenericIE)  # noqa: F405
 
 globals().update(_PLUGIN_CLASSES)
-_ALL_CLASSES[:0] = _PLUGIN_CLASSES.values()
-
+_ALL_CLASSES[:0] = list(_PLUGIN_CLASSES.values())
 from .common import _PLUGIN_OVERRIDES  # noqa: F401

@@ -179,7 +179,7 @@ class SovietsClosetPlaylistIE(SovietsClosetBaseIE):
 
         webpage = self._download_webpage(url, playlist_id)
 
-        static_assets_base = self._search_regex(r'(/_nuxt/static/\d+)', webpage, 'staticAssetsBase')
+        static_assets_base = self._search_regex(r'(/_nuxt/static/\\d+)', webpage, 'staticAssetsBase')
         static_assets_base = f'https://sovietscloset.com{static_assets_base}'
 
         sovietscloset = self.parse_nuxt_jsonp(f'{static_assets_base}/payload.js', playlist_id, 'global')['games']
