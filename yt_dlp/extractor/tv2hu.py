@@ -1,10 +1,9 @@
 # encoding: utf-8
-from .common import InfoExtractor
+from ..extractor.common import InfoExtractor
 from ..utils import (
     traverse_obj,
     UnsupportedError,
 )
-
 
 class TV2HuIE(InfoExtractor):
     IE_NAME = 'tv2play.hu'
