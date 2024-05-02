@@ -310,7 +310,6 @@ class BrightcoveLegacyIE(InfoExtractor):
                             lambda m: m.group(1) + '/>', object_str)
         # Fix up some stupid XML, see https://github.com/ytdl-org/youtube-dl/issues/1608
         object_str = object_str.replace('<--', '<!--')
-        # remove namespace to simplify extraction
         object_str = re.sub(r'(<object[^>]*)(xmlns=".*?")', r'\1', object_str)
         object_str = fix_xml_ampersands(object_str)
 
