@@ -105,8 +105,6 @@ class TrovoIE(TrovoBaseIE):
         }
         info.update(self._extract_streamer_info(live_info))
         return info
-
-
 class TrovoVodIE(TrovoBaseIE):
     _VALID_URL = TrovoBaseIE._VALID_URL_BASE + r'(?:clip|video|s)/(?:[^/]+/\d+[^#]*[?&]vid=)?(?P<id>(?<!/s/)[^/?&#]+)'
     _TESTS = [{
@@ -139,6 +137,8 @@ class TrovoVodIE(TrovoBaseIE):
             'uploader_id': '100829718',
             'uploader': 'SkenonSLive',
             'title': 'Trovo u secanju, uz par modova i muzike :)',
+            'uploader': 'SkenonSLive',
+            'title': 'Trovo u secanju, uz par modova i muzike :)',
             'uploader_url': 'https://trovo.live/SkenonSLive',
             'duration': 10830,
             'view_count': int,
@@ -152,8 +152,7 @@ class TrovoVodIE(TrovoBaseIE):
         'url': 'https://trovo.live/s/Trovo/549756886599?vid=ltv-100264059_100264059_387702304241698583',
         'info_dict': {
             'id': 'ltv-100264059_100264059_387702304241698583',
-            'ext': 'mp4',
-            'timestamp': 1661479563,
+        }
             'thumbnail': 'http://vod.trovo.live/be5ae591vodtransusw1301120758/cccb9915387702304241698583/coverBySnapshot/coverBySnapshot_10_0.jpg',
             'uploader_id': '100264059',
             'uploader': 'Trovo',
@@ -169,13 +168,13 @@ class TrovoVodIE(TrovoBaseIE):
     }, {
         'url': 'https://trovo.live/video/ltv-100095501_100095501_1609596043',
         'only_matching': True,
+        'only_matching': True,
     }, {
         'url': 'https://trovo.live/s/SkenonSLive/549759191497?foo=bar&vid=ltv-100829718_100829718_387702301737980280',
         'only_matching': True,
     }]
-
+    
     def _real_extract(self, url):
-        vid = self._match_id(url)
 
         # NOTE: It is also possible to extract this info from the Nuxt data on the website,
         # however that seems unreliable - sometimes it randomly doesn't return the data,
@@ -187,34 +186,10 @@ class TrovoVodIE(TrovoBaseIE):
                     'vids': [vid],
                 },
             },
-            'extensions': {},
-        })
-
-        vod_detail_info = traverse_obj(resp, ('VodDetailInfos', vid), expected_type=dict)
-        if not vod_detail_info:
-            raise ExtractorError('This video not found or not available anymore', expected=True)
-        vod_info = vod_detail_info.get('vodInfo')
-        title = vod_info.get('title')
-
-        if try_get(vod_info, lambda x: x['playbackRights']['playbackRights'] != 'Normal'):
-            playback_rights_setting = vod_info['playbackRights']['playbackRightsSetting']
-            if playback_rights_setting == 'SubscriberOnly':
-                raise ExtractorError('This video is only available for subscribers', expected=True)
-            else:
-                raise ExtractorError(f'This video is not available ({playback_rights_setting})', expected=True)
-
-        language = vod_info.get('languageName')
-        formats = []
-        for play_info in (vod_info.get('playInfos') or []):
-            play_url = play_info.get('playUrl')
-            if not play_url:
-                continue
-            format_id = play_info.get('desc')
-            formats.append({
                 'ext': 'mp4',
                 'filesize': int_or_none(play_info.get('fileSize')),
                 'format_id': format_id,
-                'height': int_or_none(format_id[:-1]) if format_id else None,
+            })
                 'language': language,
                 'protocol': 'm3u8_native',
                 'tbr': int_or_none(play_info.get('bitrate')),

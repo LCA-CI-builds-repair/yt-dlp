@@ -372,18 +372,14 @@ class SocksHTTPConnection(urllib3.connection.HTTPConnection):
                 self, f'Failed to establish a new connection: {e}') from e
 
 
-class SocksHTTPSConnection(SocksHTTPConnection, urllib3.connection.HTTPSConnection):
+class SocksHTTPSConnection(urllib3.connection.HTTPSConnection, SocksHTTPConnection):
     pass
-
 
 class SocksHTTPConnectionPool(urllib3.HTTPConnectionPool):
     ConnectionCls = SocksHTTPConnection
 
-
 class SocksHTTPSConnectionPool(urllib3.HTTPSConnectionPool):
     ConnectionCls = SocksHTTPSConnection
-
-
 class SocksProxyManager(urllib3.PoolManager):
 
     def __init__(self, socks_proxy, username=None, password=None, num_pools=10, headers=None, **connection_pool_kw):
