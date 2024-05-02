@@ -968,6 +968,8 @@ class InfoExtractor:
         return filename
 
     def __decode_webpage(self, webpage_bytes, encoding, headers):
+        # Add your implementation here
+        pass
         if not encoding:
             encoding = self._guess_encoding_from_content(headers.get('Content-Type', ''), webpage_bytes)
         try:

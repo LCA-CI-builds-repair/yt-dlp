@@ -2687,8 +2687,6 @@ def js_to_json(code, vars={}, *, strict=False):
     INTEGER_TABLE = (
         (fr'(?s)^(0[xX][0-9a-fA-F]+){SKIP_RE}:?$', 16),
         (fr'(?s)^(0+[0-7]+){SKIP_RE}:?$', 8),
-    )
-
     def process_escape(match):
         JSON_PASSTHROUGH_ESCAPES = R'"\bfnrtu'
         escape = match.group(1) or match.group(2)
@@ -2698,9 +2696,11 @@ def js_to_json(code, vars={}, *, strict=False):
                 else '' if escape == '\n'
                 else escape)
 
-    def template_substitute(match):
-        evaluated = js_to_json(match.group(1), vars, strict=strict)
-        if evaluated[0] == '"':
+def template_substitute(match):
+    evaluated = js_to_json(match.group(1), vars, strict=strict)
+    if evaluated[0] == '"':
+        # Add your implementation here
+        pass
             return json.loads(evaluated)
         return evaluated
 
@@ -2717,7 +2717,6 @@ def js_to_json(code, vars={}, *, strict=False):
             v = re.sub(r'(?s)\${([^}]+)}', template_substitute, v[1:-1]) if v[0] == '`' else v[1:-1]
             escaped = re.sub(r'(?s)(")|\\(.)', process_escape, v)
             return f'"{escaped}"'
-
         for regex, base in INTEGER_TABLE:
             im = re.match(regex, v)
             if im:
