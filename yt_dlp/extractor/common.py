@@ -970,7 +970,7 @@ class InfoExtractor:
                 filename = fR'\\?\{absfilepath}'
         return filename
 
-    def __decode_webpage(self, webpage_bytes, encoding, headers):
+    def __decode_webpage(self):
         if not encoding:
             encoding = self._guess_encoding_from_content(headers.get('Content-Type', ''), webpage_bytes)
         try:
