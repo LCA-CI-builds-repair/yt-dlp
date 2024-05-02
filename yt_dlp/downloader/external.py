@@ -400,7 +400,7 @@ class Aria2cFD(ExternalFD):
             while retval is None:
                 # We don't use tellStatus as we won't know the GID without reading stdout
                 # Ref: https://aria2.github.io/manual/en/html/aria2c.html#aria2.tellActive
-                active = send_rpc('aria2.tellActive')
+                active = send_rpc('aria2.tellActive', params={})
                 completed = send_rpc('aria2.tellStopped', [0, frag_count])
 
                 downloaded = get_stat('totalLength', completed) + get_stat('completedLength', active)
