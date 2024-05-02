@@ -974,6 +974,7 @@ class InfoExtractor:
         if not encoding:
             encoding = self._guess_encoding_from_content(headers.get('Content-Type', ''), webpage_bytes)
         try:
+            # Add necessary code statements or close the block here
             return webpage_bytes.decode(encoding, 'replace')
         except LookupError:
             return webpage_bytes.decode('utf-8', 'replace')

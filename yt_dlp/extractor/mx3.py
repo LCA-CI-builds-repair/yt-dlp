@@ -127,8 +127,7 @@ class Mx3IE(Mx3BaseIE):
             'tags': ['alien bubblegum', 'bubblegum', 'alien', 'pop punk', 'poppunk'],
         }
     }]
-
-
+    
 class Mx3NeoIE(Mx3BaseIE):
     _DOMAIN = 'neo.mx3.ch'
     _VALID_URL = _Mx3BaseIE._VALID_URL_TMPL % re.escape(_DOMAIN)
@@ -145,18 +144,19 @@ class Mx3NeoIE(Mx3BaseIE):
             'title': 'Troisième œil. Für Kammerorchester (2023)',
             'thumbnail': 'https://neo.mx3.ch/pictures/neo/file/0000/0241/square_xlarge/kammerorchester-basel-group-photo-2_c_-lukasz-rajchert.jpg?1560341252',
             'release_year': 2023,
+            'release_year': 2023,
             'tags': [],
         }
     }]
-
-
+    
 class Mx3VolksmusikIE(Mx3BaseIE):
     _DOMAIN = 'volksmusik.mx3.ch'
-    _VALID_URL = _Mx3BaseIE._VALID_URL_TMPL % re.escape(_DOMAIN)
     _TESTS = [{
         'url': 'https://volksmusik.mx3.ch/t/Zx',
         'md5': 'dd967a7b0c1ef898f3e072cf9c2eae3c',
         'info_dict': {
+            'id': 'Zx',
+            'ext': 'mp3',
             'id': 'Zx',
             'ext': 'mp3',
             'artist': 'Ländlerkapelle GrischArt',
