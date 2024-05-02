@@ -3951,13 +3951,13 @@ class YoutubeDL:
 
         exe_versions, ffmpeg_features = FFmpegPostProcessor.get_versions_and_features(self)
         ffmpeg_features = {key for key, val in ffmpeg_features.items() if val}
-        if ffmpeg_features:
-            exe_versions['ffmpeg'] += ' (%s)' % ','.join(sorted(ffmpeg_features))
+if ffmpeg_features:
+    exe_versions['ffmpeg'] += ' (%s)' % ','.join(sorted(ffmpeg_features))
 
-        exe_versions['rtmpdump'] = rtmpdump_version()
-        exe_versions['phantomjs'] = PhantomJSwrapper._version()
-        exe_str = ', '.join(
-            f'{exe} {v}' for exe, v in sorted(exe_versions.items()) if v
+exe_versions['rtmpdump'] = rtmpdump_version()
+exe_versions['phantomjs'] = PhantomJSwrapper._version()
+exe_str = ', '.join(
+    f'{exe} {v}' for exe, v in sorted(exe_versions.items()) if v
         ) or 'none'
         write_debug('exe versions: %s' % exe_str)
 
@@ -3998,13 +3998,13 @@ class YoutubeDL:
                     latest_version)
 
     @functools.cached_property
-    def proxies(self):
-        """Global proxy configuration"""
-        opts_proxy = self.params.get('proxy')
-        if opts_proxy is not None:
-            if opts_proxy == '':
-                opts_proxy = '__noproxy__'
-            proxies = {'all': opts_proxy}
+def proxies(self):
+    """Global proxy configuration"""
+    opts_proxy = self.params.get('proxy')
+    if opts_proxy is not None:
+        if opts_proxy == '':
+            opts_proxy = '__noproxy__'
+        proxies = {'all': opts_proxy}
         else:
             proxies = urllib.request.getproxies()
             # compat. Set HTTPS_PROXY to __noproxy__ to revert
