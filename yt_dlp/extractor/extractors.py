@@ -14,6 +14,7 @@ if not os.environ.get('YTDLP_NO_LAZY_EXTRACTORS'):
         _LAZY_LOADER = True
 
 if not _LAZY_LOADER:
+    from .elevensports import ElevenSportsIE  # noqa: F403
     from ._extractors import *  # noqa: F403
     _ALL_CLASSES = [  # noqa: F811
         klass
