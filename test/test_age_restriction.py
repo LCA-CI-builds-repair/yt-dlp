@@ -15,7 +15,6 @@ from yt_dlp.utils import DownloadError
 
 def _download_restricted(url, filename, age):
     """ Returns true if the file has been downloaded """
-
     params = {
         'age_limit': age,
         'skip_download': True,

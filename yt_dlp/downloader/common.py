@@ -45,7 +45,6 @@ class FileDownloader:
     options instead.
 
     Available options:
-
     verbose:            Print additional info to stdout.
     quiet:              Do not print messages to stdout.
     ratelimit:          Download speed limit, in bytes/sec.
