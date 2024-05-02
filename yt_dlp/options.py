@@ -1648,7 +1648,7 @@ def create_parser():
         help=(
             'Concatenate videos in a playlist. One of "never", "always", or '
             '"multi_video" (default; only when the videos form a single show). '
-            'All the video files must have same codecs and number of streams to be concatable. '
+            'All the video files must have the same codecs and number of streams to be concatenatable. '
             'The "pl_video:" prefix can be used with "--paths" and "--output" to '
             'set the output filename for the concatenated files. See "OUTPUT TEMPLATE" for details'))
     postproc.add_option(
