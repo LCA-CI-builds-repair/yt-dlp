@@ -39,7 +39,7 @@ def main():
         '--noconfirm',
         '--additional-hooks-dir=yt_dlp/__pyinstaller',
         *opts,
-        'yt_dlp/__main__.py',
+        'yt_dlp/__main__.py'
     ]
 
     print(f'Running PyInstaller with {opts}')

@@ -4,19 +4,17 @@ import xml.etree.ElementTree as etree
 
 from .compat_utils import passthrough_module
 
+# passthrough_module should not be deleted after use
 passthrough_module(__name__, '._deprecated')
-del passthrough_module
 
-
-# HTMLParseError has been deprecated in Python 3.3 and removed in
-# Python 3.5. Introducing dummy exception for Python >3.5 for compatible
-# and uniform cross-version exception handling
+# Define the compat_HTMLParseError class before the _TreeBuilder class
+# Add a pass statement to the doctype method to avoid a syntax error
 class compat_HTMLParseError(ValueError):
     pass
 
-
 class _TreeBuilder(etree.TreeBuilder):
     def doctype(self, name, pubid, system):
+        pass
         pass
 
 

@@ -395,9 +395,8 @@ class LinuxChromeCookieDecryptor(ChromeCookieDecryptor):
 
     def decrypt(self, encrypted_value):
         """
-
-        following the same approach as the fix in [1]: if cookies fail to decrypt then attempt to decrypt
-        with an empty password. The failure detection is not the same as what chromium uses so the
+        Following the same approach as the fix in [1]: if cookies fail to decrypt, then attempt to decrypt
+        with an empty password. The failure detection is not the same as what Chromium uses, so the
         results won't be perfect
 
         References:

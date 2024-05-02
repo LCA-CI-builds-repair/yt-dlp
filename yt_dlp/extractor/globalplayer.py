@@ -15,10 +15,8 @@ class GlobalPlayerBaseIE(InfoExtractor):
     def _get_page_props(self, url, video_id):
         webpage = self._download_webpage(url, video_id)
         return self._search_nextjs_data(webpage, video_id)['props']['pageProps']
-
     def _request_ext(self, url, video_id):
-        return urlhandle_detect_ext(self._request_webpage(  # Server rejects HEAD requests
-            url, video_id, note='Determining source extension'))
+        return urlhandle_detect_ext(self._request_webpage(url, video_id, note='Determining source extension'))
 
     def _extract_audio(self, episode, series):
         return {
