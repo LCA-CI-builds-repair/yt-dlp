@@ -1,19 +1,12 @@
-# flake8: noqa: F405
-from shutil import *  # noqa: F403
-
 from .compat_utils import passthrough_module
 
 passthrough_module(__name__, 'shutil')
 del passthrough_module
 
-
 import sys
 
 if sys.platform.startswith('freebsd'):
-    import errno
-    import os
-    import shutil
-
+    # Remove unnecessary imports of errno, os, and shutil
     # Workaround for PermissionError when using restricted ACL mode on FreeBSD
     def copy2(src, dst, *args, **kwargs):
         if os.path.isdir(dst):
