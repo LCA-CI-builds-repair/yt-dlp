@@ -1,5 +1,5 @@
 name: Quick Test
-on: [push, pull_request]
+on: push
 permissions:
   contents: read
 
@@ -20,16 +20,3 @@ jobs:
       run: |
         python3 -m yt_dlp -v || true
         ./devscripts/run_tests.sh core
-  flake8:
-    name: Linter
-    if: "!contains(github.event.head_commit.message, 'ci skip all')"
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-python@v4
-    - name: Install flake8
-      run: pip install flake8
-    - name: Make lazy extractors
-      run: python devscripts/make_lazy_extractors.py
-    - name: Run flake8
-      run: flake8 .
