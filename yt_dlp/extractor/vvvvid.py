@@ -29,7 +29,7 @@ class VVVVIDIE(InfoExtractor):
             'like_count': int,
             'repost_count': int,
             'thumbnail': 'https://static.vvvvid.it/img/zoomin/28CA2409-E663-34F0-2B02E72356556EA3_500k.jpg',
-        },
+        }, 
         'params': {
             'skip_download': True,
         },
@@ -158,8 +158,10 @@ class VVVVIDIE(InfoExtractor):
         show_id, season_id, video_id = self._match_valid_url(url).groups()
 
         response = self._download_info(
-            show_id, 'season/%s' % season_id,
+            show_id, f'season/{season_id}',
             video_id, query={'video_id': video_id})
+        if not response:
+            return self.raise_no_formats('Unable to download video info', expected=True)
 
         vid = int(video_id)
         video_data = list(filter(
