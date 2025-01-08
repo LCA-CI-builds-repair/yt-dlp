@@ -26,6 +26,8 @@ from ..utils.networking import HTTPHeaderDict
 
 class HttpFD(FileDownloader):
     def real_download(self, filename, info_dict):
+        if not info_dict.get('url'):
+            raise ValueError("A valid URL must be provided for downloading.")
         url = info_dict['url']
         request_data = info_dict.get('request_data', None)
 

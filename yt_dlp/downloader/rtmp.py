@@ -20,6 +20,8 @@ def rtmpdump_version():
 
 class RtmpFD(FileDownloader):
     def real_download(self, filename, info_dict):
+        if not info_dict.get('url'):
+            raise ValueError("A valid RTMP URL must be provided for downloading.")
         def run_rtmpdump(args):
             start = time.time()
             resume_percent = None
