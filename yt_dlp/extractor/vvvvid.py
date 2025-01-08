@@ -155,6 +155,11 @@ class VVVVIDIE(InfoExtractor):
         }
 
     def _real_extract(self, url):
+        if not url:
+            raise ExtractorError(
+                'No URL provided to extractor. Please specify a valid URL.',
+                expected=True
+            )
         show_id, season_id, video_id = self._match_valid_url(url).groups()
 
         response = self._download_info(
