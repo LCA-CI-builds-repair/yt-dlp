@@ -252,6 +252,14 @@ class VVVVIDIE(InfoExtractor):
                     embed_code += '?' + ds(kenc_message)
                 formats.extend(self._extract_m3u8_formats(
                     embed_code, video_id, 'mp4', m3u8_id='hls', fatal=False))
+            else:
+                self.report_warning(
+                    f"Unhandled video type '{video_type}' or missing embed info for video ID {video_id}.")
+
+        if not formats:
+            raise ExtractorError(
+                f"No formats found for video ID {video_id}. This may indicate an issue with the extractor or the video URL.",
+                expected=True)
             elif video_type == 'video/rcs':
                 formats.extend(self._extract_akamai_formats(embed_code, video_id))
             elif video_type == 'video/youtube':
