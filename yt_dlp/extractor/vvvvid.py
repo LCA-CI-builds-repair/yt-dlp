@@ -130,7 +130,10 @@ class VVVVIDIE(InfoExtractor):
         self._headers = self._get_headers()
         self._conn_id = self._download_json(
             'https://www.vvvvid.it/user/login',
-            None, headers=self._headers)['data']['conn_id']
+            None, headers=self._headers)
+        if not self._conn_id or 'data' not in self._conn_id or 'conn_id' not in self._conn_id['data']:
+            raise ExtractorError('Unable to retrieve conn_id from VVVVID')
+        self._conn_id = self._conn_id['data']['conn_id']
 
     def _download_info(self, show_id, path, video_id, fatal=True, query=None):
         q = {
