@@ -128,9 +128,18 @@ class VVVVIDIE(InfoExtractor):
 
     def _real_initialize(self, *args, **kwargs):
         self._headers = self._get_headers()
-        self._conn_id = self._download_json(
+        login_response = self._download_json(
             'https://www.vvvvid.it/user/login',
-            None, headers=self._headers)['data']['conn_id']
+            None, headers=self._headers, note='Logging in to obtain conn_id')
+
+        # Check if the response is valid and contains 'data' with 'conn_id'
+        if not login_response or 'data' not in login_response or 'conn_id' not in login_response['data']:
+            raise ExtractorError(
+                'Failed to obtain conn_id. The login endpoint may have changed',
+                expected=True
+            )
+
+        self._conn_id = login_response['data']['conn_id']
 
     def _download_info(self, show_id, path, video_id, fatal=True, query=None):
         q = {
