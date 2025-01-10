@@ -114,13 +114,13 @@ class VVVVIDIE(InfoExtractor):
     }]
     _conn_id = None
     _default_user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.50 Safari/537.37'
-    _blocked_user_agents_regex = r'^Mozilla/5\.0 \(Windows NT 10\.0; Win64; x64\) AppleWebKit/537\.36 \(KHTML, like Gecko\) Chrome/[\d.]+ Safari/537\.36$'
+    _blocked_user_agents_regex = r'Chrome/(?:9[5-9]|1\d{2})\.'
     _headers = {}
 
     def _get_headers(self):
         geo_verification_headers = self.geo_verification_headers()
         http_headers = self.get_param('http_headers', {})
-        headers = {**http_headers, **geo_verification_headers}
+        headers = {**geo_verification_headers, **http_headers}  # Let http_headers override geo headers
         user_agent = headers.get('User-Agent', None)
         if not user_agent or re.match(self._blocked_user_agents_regex, user_agent):
             headers['User-Agent'] = self._default_user_agent
