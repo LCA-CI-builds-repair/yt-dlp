@@ -303,6 +303,13 @@ class VVVVIDShowIE(VVVVIDIE):  # XXX: Do not subclass from concrete IE
         'url': 'https://www.vvvvid.it/show/156',
         'only_matching': True,
     }]
+    _COMMANDS_TEMPLATE = ['-i', '--ignore-no-formats-error', '--ignore-config', '--flat-playlist']
+
+    @classmethod
+    def suitable(cls, url):
+        return super().suitable(url) or (
+            super(VVVVIDIE, cls).suitable(url) and not YoutubeIE.suitable(url) and not url.endswith('/eng'))
+
 
     def _real_extract(self, url):
         base_url, show_id, show_title = self._match_valid_url(url).groups()
