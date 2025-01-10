@@ -1,6 +1,7 @@
 import re
 
 from .common import InfoExtractor
+from .common import InfoExtractor
 from .youtube import YoutubeIE
 from ..utils import (
     ExtractorError,
@@ -128,10 +129,18 @@ class VVVVIDIE(InfoExtractor):
 
     def _real_initialize(self, *args, **kwargs):
         self._headers = self._get_headers()
-        self._conn_id = self._download_json(
-            'https://www.vvvvid.it/user/login',
-            None, headers=self._headers)['data']['conn_id']
+        self._initialize_connection()
 
+    def _download_info(self, show_id, path, video_id, fatal=True, query=None):
+        retries = 0
+        while retries < self._MAX_RETRIES:
+            try:
+                return super()._download_info(show_id, path, video_id, fatal, query)
+            except ExtractorError as e:
+                retries += 1
+                if retries == self._MAX_RETRIES:
+                    raise e
+                self._initialize_connection()
     def _download_info(self, show_id, path, video_id, fatal=True, query=None):
         q = {
             'conn_id': self._conn_id,
