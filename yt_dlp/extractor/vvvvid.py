@@ -143,6 +143,10 @@ class VVVVIDIE(InfoExtractor):
             video_id, headers=self._headers, query=q, fatal=fatal)
         if not (response or fatal):
             return
+        if self._conn_id is None:
+            # Connection ID was not successfully fetched
+            self.report_warning("Skipping video due to missing connection ID")
+            return
         if response.get('result') == 'error':
             raise ExtractorError('%s said: %s' % (
                 self.IE_NAME, response['message']), expected=True)
