@@ -1,6 +1,8 @@
 import re
 
 from .common import InfoExtractor
+
+from .common import InfoExtractor
 from ..networking import HEADRequest
 from ..utils import (
     get_element_by_class,
