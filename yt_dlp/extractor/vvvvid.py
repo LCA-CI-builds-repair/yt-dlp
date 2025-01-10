@@ -128,14 +128,25 @@ class VVVVIDIE(InfoExtractor):
 
     def _real_initialize(self, *args, **kwargs):
         self._headers = self._get_headers()
-        self._conn_id = self._download_json(
+        login_response = self._download_json(
             'https://www.vvvvid.it/user/login',
-            None, headers=self._headers)['data']['conn_id']
+            None, headers=self._headers, fatal=False)
+        if not login_response or 'data' not in login_response or not login_response['data'].get('conn_id'):
+            raise ExtractorError(
+                'Unable to retrieve connection credentials (conn_id). The login API may have changed or is unavailable.',
+                expected=True
+            )
+        self._conn_id = login_response['data']['conn_id']
 
     def _download_info(self, show_id, path, video_id, fatal=True, query=None):
         q = {
             'conn_id': self._conn_id,
         }
+        if not self._conn_id:
+            raise ExtractorError(
+                'Connection ID (conn_id) is not set. Ensure _real_initialize was successful.',
+                expected=True
+            )
         if query:
             q.update(query)
         response = self._download_json(
