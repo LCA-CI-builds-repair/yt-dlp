@@ -1,5 +1,6 @@
 import re
 
+from functools import partial
 from .common import InfoExtractor
 from .youtube import YoutubeIE
 from ..utils import (
@@ -27,6 +28,7 @@ class VVVVIDIE(InfoExtractor):
             'episode_id': '4747',
             'view_count': int,
             'like_count': int,
+            'dislike_count': int,
             'repost_count': int,
             'thumbnail': 'https://static.vvvvid.it/img/zoomin/28CA2409-E663-34F0-2B02E72356556EA3_500k.jpg',
         },
@@ -137,6 +139,9 @@ class VVVVIDIE(InfoExtractor):
             'conn_id': self._conn_id,
         }
         if query:
+            for key, val in query.items():
+                if val is None:
+                    del q[key]
             q.update(query)
         response = self._download_json(
             'https://www.vvvvid.it/vvvvid/ondemand/%s/%s' % (show_id, path),
@@ -153,13 +158,17 @@ class VVVVIDIE(InfoExtractor):
             'thumbnail': video_data.get('thumbnail'),
             'episode_id': str_or_none(video_data.get('id')),
         }
+    
+    def _get_dislike_count(self, video_data):
+        return int_or_none(video_data.get('video_dislikes'))
 
     def _real_extract(self, url):
         show_id, season_id, video_id = self._match_valid_url(url).groups()
 
+        get_dislike_count = partial(self._get_dislike_count)
         response = self._download_info(
             show_id, 'season/%s' % season_id,
-            video_id, query={'video_id': video_id})
+            video_id, query={'video_id': video_id}, fatal=True)
 
         vid = int(video_id)
         video_data = list(filter(
@@ -284,6 +293,7 @@ class VVVVIDIE(InfoExtractor):
             'episode': title,
             'view_count': int_or_none(video_data.get('views')),
             'like_count': int_or_none(video_data.get('video_likes')),
+            'dislike_count': get_dislike_count(video_data),
             'repost_count': int_or_none(video_data.get('video_shares')),
         })
         return info
