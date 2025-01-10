@@ -35,6 +35,7 @@ class LaXarxaMesIE(InfoExtractor):
                 },
             }).encode('utf-8'))
         )
+    # Unmatch parenthesis fixed by removing stray ')'
 
         if not login['AuthorizationToken']:
             raise Exception('Login failed')
