@@ -90,8 +90,8 @@ class VVVVIDIE(InfoExtractor):
         'info_dict': {
             'id': '527551',
             'ext': 'mp4',
-            'title': 'Golden Wind',
-            'duration': 1430,
+            'title': 'Golden Wind - Episodio 1',
+            'duration': 1391,
             'series': 'Le bizzarre avventure di Jojo - Vento Aureo',
             'season_id': '938',
             'episode': 'Golden Wind',
@@ -100,9 +100,7 @@ class VVVVIDIE(InfoExtractor):
             'view_count': int,
             'like_count': int,
             'repost_count': int,
-            'thumbnail': 'https://static.vvvvid.it/img/thumbs/Dynit/Jojo/Jojo_S05Ep01-t.jpg',
-            'season': 'Season 5',
-            'season_number': 5,
+            'thumbnail': 'https://static.vvvvid.it/img/thumbs/Dynit/Jojo_GoldenWind/Jojo_S05Ep01-1.jpg',
         },
         'params': {
             'skip_download': True,
@@ -325,6 +323,8 @@ class VVVVIDShowIE(VVVVIDIE):  # XXX: Do not subclass from concrete IE
                     continue
                 season_id = str_or_none(episode.get('season_id'))
                 video_id = str_or_none(episode.get('video_id'))
+                if not video_id:
+                    video_id = str_or_none(episode.get('id'))
                 if not (season_id and video_id):
                     continue
                 info = self._extract_common_video_info(episode)
