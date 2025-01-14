@@ -52,19 +52,18 @@ class RtmpFD(FileDownloader):
                         time_now = time.time()
                         eta = self.calc_eta(start, time_now, 100 - resume_percent, percent - resume_percent)
                         speed = self.calc_speed(start, time_now, downloaded_data_len - resume_downloaded_data_len)
-                        data_len = None
-                        if percent > 0:
-                            data_len = int(downloaded_data_len * 100 / percent)
-                        self._hook_progress({
+                        progress_dict = {
                             'status': 'downloading',
                             'downloaded_bytes': downloaded_data_len,
-                            'total_bytes_estimate': data_len,
                             'tmpfilename': tmpfilename,
                             'filename': filename,
                             'eta': eta,
                             'elapsed': time_now - start,
                             'speed': speed,
-                        }, info_dict)
+                        }
+                        if percent > 0:
+                            progress_dict['total_bytes_estimate'] = int(downloaded_data_len * 100 / percent)
+                        self._hook_progress(progress_dict, info_dict)
                         cursor_in_new_line = False
                     else:
                         # no percent for live streams
@@ -73,14 +72,15 @@ class RtmpFD(FileDownloader):
                             downloaded_data_len = int(float(mobj.group(1)) * 1024)
                             time_now = time.time()
                             speed = self.calc_speed(start, time_now, downloaded_data_len)
-                            self._hook_progress({
+                            progress_dict = {
                                 'downloaded_bytes': downloaded_data_len,
                                 'tmpfilename': tmpfilename,
                                 'filename': filename,
                                 'status': 'downloading',
                                 'elapsed': time_now - start,
                                 'speed': speed,
-                            }, info_dict)
+                            }
+                            self._hook_progress(progress_dict, info_dict)
                             cursor_in_new_line = False
                         elif self.params.get('verbose', False):
                             if not cursor_in_new_line:

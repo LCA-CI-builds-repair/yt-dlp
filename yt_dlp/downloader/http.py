@@ -293,13 +293,7 @@ class HttpFD(FileDownloader):
                 before = after
 
                 # Progress message
-                speed = self.calc_speed(start, now, byte_counter - ctx.resume_len)
-                if ctx.data_len is None:
-                    eta = None
-                else:
-                    eta = self.calc_eta(start, time.time(), ctx.data_len - ctx.resume_len, byte_counter - ctx.resume_len)
-
-                self._hook_progress({
+                progress_dict = {
                     'status': 'downloading',
                     'downloaded_bytes': byte_counter,
                     'total_bytes': ctx.data_len,
@@ -309,7 +303,15 @@ class HttpFD(FileDownloader):
                     'speed': speed,
                     'elapsed': now - ctx.start_time,
                     'ctx_id': info_dict.get('ctx_id'),
-                }, info_dict)
+                }
+                if ctx.data_len is None:
+                    progress_dict.pop('total_bytes')
+                self._hook_progress(progress_dict, info_dict)
+                speed = self.calc_speed(start, now, byte_counter - ctx.resume_len)
+                if ctx.data_len is None:
+                    eta = None
+                else:
+                    eta = self.calc_eta(start, time.time(), ctx.data_len - ctx.resume_len, byte_counter - ctx.resume_len)
 
                 if data_len is not None and byte_counter == data_len:
                     break
