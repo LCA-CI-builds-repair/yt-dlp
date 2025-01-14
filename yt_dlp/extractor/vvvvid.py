@@ -114,8 +114,11 @@ class VVVVIDIE(InfoExtractor):
     }]
     _conn_id = None
     _default_user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.50 Safari/537.37'
-    _blocked_user_agents_regex = r'^Mozilla/5\.0 \(Windows NT 10\.0; Win64; x64\) AppleWebKit/537\.36 \(KHTML, like Gecko\) Chrome/[\d.]+ Safari/537\.36$'
+    _blocked_user_agents_regex = r'^Mozilla/5\.0 \((?:Windows NT|Macintosh|X11|Android|iPhone|iPad).*?\) AppleWebKit/537\.36 \(KHTML, like Gecko\) Chrome/[\d.]+ (?:Mobile )?Safari/537\.36$'
     _headers = {}
+    _RETRIES = 3
+    _retry_sleep = 3
+    _error_retries = 1
 
     def _get_headers(self):
         geo_verification_headers = self.geo_verification_headers()
@@ -127,10 +130,20 @@ class VVVVIDIE(InfoExtractor):
         return headers
 
     def _real_initialize(self, *args, **kwargs):
-        self._headers = self._get_headers()
-        self._conn_id = self._download_json(
-            'https://www.vvvvid.it/user/login',
-            None, headers=self._headers)['data']['conn_id']
+        retries = self._RETRIES
+        while retries > 0:
+            try:
+                self._headers = self._get_headers()
+                response = self._download_json(
+                    'https://www.vvvvid.it/user/login',
+                    None, headers=self._headers, fatal=True)
+                if response.get('data', {}).get('conn_id'):
+                    self._conn_id = response['data']['conn_id']
+                    break
+            except ExtractorError as e:
+                retries -= 1
+                if retries == 0:
+                    raise e
 
     def _download_info(self, show_id, path, video_id, fatal=True, query=None):
         q = {
@@ -138,11 +151,21 @@ class VVVVIDIE(InfoExtractor):
         }
         if query:
             q.update(query)
-        response = self._download_json(
-            'https://www.vvvvid.it/vvvvid/ondemand/%s/%s' % (show_id, path),
-            video_id, headers=self._headers, query=q, fatal=fatal)
-        if not (response or fatal):
-            return
+            
+        retries = self._error_retries
+        while retries >= 0:
+            try:
+                response = self._download_json(
+                    'https://www.vvvvid.it/vvvvid/ondemand/%s/%s' % (show_id, path),
+                    video_id, headers=self._headers, query=q, fatal=fatal)
+                if not (response or fatal):
+                    return
+                break
+            except ExtractorError as e:
+                retries -= 1
+                if retries < 0:
+                    raise e
+                
         if response.get('result') == 'error':
             raise ExtractorError('%s said: %s' % (
                 self.IE_NAME, response['message']), expected=True)
