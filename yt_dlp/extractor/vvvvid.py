@@ -149,7 +149,7 @@ class VVVVIDIE(InfoExtractor):
         return response['data']
 
     def _extract_common_video_info(self, video_data):
-        return {
+        info = {
             'thumbnail': video_data.get('thumbnail'),
             'episode_id': str_or_none(video_data.get('id')),
         }
@@ -247,18 +247,21 @@ class VVVVIDIE(InfoExtractor):
                         'conn_id': self._conn_id,
                         'url': embed_code,
                     }, fatal=False) or {}
-                kenc_message = kenc.get('message')
-                if kenc_message:
-                    embed_code += '?' + ds(kenc_message)
-                formats.extend(self._extract_m3u8_formats(
-                    embed_code, video_id, 'mp4', m3u8_id='hls', fatal=False))
+                if kenc.get('result') == 'error':
+                    # Ignore kenc errors and continue with standard embed_code
+                    pass
+                else:
+                    kenc_message = kenc.get('message')
+                    if kenc_message:
+                        embed_code += '?' + ds(kenc_message)
+                    formats.extend(self._extract_m3u8_formats(
+                        embed_code, video_id, 'mp4', m3u8_id='hls', fatal=False))
             elif video_type == 'video/rcs':
                 formats.extend(self._extract_akamai_formats(embed_code, video_id))
             elif video_type == 'video/youtube':
                 info.update({
                     '_type': 'url_transparent',
                     'ie_key': YoutubeIE.ie_key(),
-                    'url': embed_code,
                 })
                 is_youtube = True
                 break
