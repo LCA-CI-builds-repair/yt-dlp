@@ -263,8 +263,12 @@ class VVVVIDIE(InfoExtractor):
                 is_youtube = True
                 break
             elif video_type == 'video/dash':
+                # TODO: Verify the decryption and URL construction for video/dash embed_code
+                if not embed_code.startswith('http'):
+                    embed_code = 'https://or.vvvvid.it/or/' + embed_code
+
                 formats.extend(self._extract_m3u8_formats(
-                    embed_code, video_id, 'mp4', m3u8_id='hls', fatal=False))
+                    embed_code.replace('.mpd', '.m3u8'), video_id, 'mp4', m3u8_id='hls', fatal=False))
             else:
                 formats.extend(self._extract_wowza_formats(
                     'http://sb.top-ix.org/videomg/_definst_/mp4:%s/playlist.m3u8' % embed_code, video_id, skip_protocols=['f4m']))
