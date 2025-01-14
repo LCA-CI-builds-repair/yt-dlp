@@ -77,9 +77,9 @@ class Mx3BaseIE(InfoExtractor):
         }
 
 
-class Mx3IE(Mx3BaseIE):
+class Mx3IE(InfoExtractor):
     _DOMAIN = 'mx3.ch'
-    _VALID_URL = _Mx3BaseIE._VALID_URL_TMPL % re.escape(_DOMAIN)
+    _VALID_URL = Mx3BaseIE._VALID_URL_TMPL % re.escape(_DOMAIN)
     _TESTS = [{
         'url': 'https://mx3.ch/t/1Cru',
         'md5': '7ba09e9826b4447d4e1ce9d69e0e295f',
@@ -129,9 +129,9 @@ class Mx3IE(Mx3BaseIE):
     }]
 
 
-class Mx3NeoIE(Mx3BaseIE):
+class Mx3NeoIE(InfoExtractor):
     _DOMAIN = 'neo.mx3.ch'
-    _VALID_URL = _Mx3BaseIE._VALID_URL_TMPL % re.escape(_DOMAIN)
+    _VALID_URL = Mx3BaseIE._VALID_URL_TMPL % re.escape(_DOMAIN)
     _TESTS = [{
         'url': 'https://neo.mx3.ch/t/1hpd',
         'md5': '6d9986bbae5cac3296ec8813bf965eb2',
