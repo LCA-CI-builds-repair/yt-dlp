@@ -235,6 +235,7 @@ class VVVVIDIE(InfoExtractor):
         video_type = video_data.get('video_type')
         is_youtube = False
         for quality in ('', '_sd'):
+            print(f'Checking video_type: {video_type}')
             embed_code = video_data.get('embed_info' + quality)
             if not embed_code:
                 continue
@@ -250,6 +251,7 @@ class VVVVIDIE(InfoExtractor):
                 kenc_message = kenc.get('message')
                 if kenc_message:
                     embed_code += '?' + ds(kenc_message)
+                    print(f'Modifying kenc embed_code: {embed_code}')
                 formats.extend(self._extract_m3u8_formats(
                     embed_code, video_id, 'mp4', m3u8_id='hls', fatal=False))
             elif video_type == 'video/rcs':
@@ -257,6 +259,7 @@ class VVVVIDIE(InfoExtractor):
             elif video_type == 'video/youtube':
                 info.update({
                     '_type': 'url_transparent',
+                    print(f'Setting video_type to youtube')
                     'ie_key': YoutubeIE.ie_key(),
                     'url': embed_code,
                 })
@@ -286,6 +289,7 @@ class VVVVIDIE(InfoExtractor):
             'like_count': int_or_none(video_data.get('video_likes')),
             'repost_count': int_or_none(video_data.get('video_shares')),
         })
+        print(f'Updating video_info: {info}')
         return info
 
 
