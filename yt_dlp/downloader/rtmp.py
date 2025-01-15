@@ -95,6 +95,9 @@ class RtmpFD(FileDownloader):
                 raise
 
         url = info_dict['url']
+        if not url:
+            raise ValueError("Invalid or missing URL. 'info_dict' must include a valid 'url' key.")
+
         player_url = info_dict.get('player_url')
         page_url = info_dict.get('page_url')
         app = info_dict.get('app')

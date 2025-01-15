@@ -27,6 +27,9 @@ from ..utils.networking import HTTPHeaderDict
 class HttpFD(FileDownloader):
     def real_download(self, filename, info_dict):
         url = info_dict['url']
+        if not url:
+            raise ValueError("Invalid or missing URL. 'info_dict' must include a valid 'url' key.")
+
         request_data = info_dict.get('request_data', None)
 
         class DownloadContext(dict):
