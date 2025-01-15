@@ -12,7 +12,7 @@ from ..utils import (
 from ..utils.traversal import traverse_obj
 
 
-class Mx3BaseIE(InfoExtractor):
+class _Mx3BaseIE(InfoExtractor):
     _VALID_URL_TMPL = r'https?://(?:www\.)?%s/t/(?P<id>\w+)'
     _FORMATS = [{
         'url': 'player_asset',
@@ -77,7 +77,7 @@ class Mx3BaseIE(InfoExtractor):
         }
 
 
-class Mx3IE(Mx3BaseIE):
+class Mx3IE(_Mx3BaseIE):
     _DOMAIN = 'mx3.ch'
     _VALID_URL = _Mx3BaseIE._VALID_URL_TMPL % re.escape(_DOMAIN)
     _TESTS = [{
