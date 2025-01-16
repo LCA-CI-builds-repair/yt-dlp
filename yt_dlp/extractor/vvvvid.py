@@ -260,6 +260,9 @@ class VVVVIDIE(InfoExtractor):
                     'ie_key': YoutubeIE.ie_key(),
                     'url': embed_code,
                 })
+
+    if video_data.get('video_type') == 'video/dash':
+        info['formats'] = formats
                 is_youtube = True
                 break
             elif video_type == 'video/dash':
