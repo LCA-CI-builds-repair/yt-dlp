@@ -62,8 +62,7 @@ class Mx3BaseIE(InfoExtractor):
         return {
             'id': track_id,
             'formats': self._extract_formats(track_id),
-            'genre': self._html_search_regex(
-                r'<div\b[^>]+class="single-band-genre"[^>]*>([^<]+)</div>', webpage, 'genre', default=None),
+            'genre': get_info_field('Genre'),
             'release_year': int_or_none(get_info_field('Year of creation')),
             'description': get_info_field('Description'),
             'tags': try_call(lambda: get_info_field('Tag').split(', '), list),
