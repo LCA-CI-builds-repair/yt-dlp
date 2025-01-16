@@ -261,10 +261,20 @@ class VVVVIDIE(InfoExtractor):
                     'url': embed_code,
                 })
                 is_youtube = True
+                if not embed_code:
+                    raise ExtractorError(
+                        f"Video type is 'video/youtube' but no embed URL found for video ID {video_id}.",
+                        expected=True
+                    )
                 break
             elif video_type == 'video/dash':
                 formats.extend(self._extract_m3u8_formats(
                     embed_code, video_id, 'mp4', m3u8_id='hls', fatal=False))
+            elif not formats:
+                raise ExtractorError(
+                    f"Unsupported or unknown video type '{video_type}' for video ID {video_id}.",
+                    expected=True
+                )
             else:
                 formats.extend(self._extract_wowza_formats(
                     'http://sb.top-ix.org/videomg/_definst_/mp4:%s/playlist.m3u8' % embed_code, video_id, skip_protocols=['f4m']))
@@ -272,6 +282,11 @@ class VVVVIDIE(InfoExtractor):
 
         if not is_youtube:
             info['formats'] = formats
+        if not formats:
+            raise ExtractorError(
+                f"No valid formats found for video ID {video_id}. The video might be unavailable or region-blocked.",
+                expected=True
+            )
 
         metadata_from_url(video_data.get('thumbnail'))
         info.update(self._extract_common_video_info(video_data))
