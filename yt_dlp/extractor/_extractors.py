@@ -564,6 +564,7 @@ from .eroprofile import (
     EroProfileIE,
     EroProfileAlbumIE,
 )
+ from .elevensports import ElevenSportsIE
 from .ertgr import (
     ERTFlixCodenameIE,
     ERTFlixIE,
