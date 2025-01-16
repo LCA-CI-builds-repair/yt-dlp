@@ -25,6 +25,12 @@ from ..utils.networking import HTTPHeaderDict
 
 
 class HttpFD(FileDownloader):
+    def __init__(self, ydl, *args, **kwargs):
+        super().__init__(ydl, *args, **kwargs)
+        # Check if a recent commit caused one or more tests to fail
+        if self.ydl.params.get('test', False):
+            self.ydl.to_screen('[debug] Test mode: Downloading a small file')
+            self._TEST_FILE_SIZE = 1024 * 1024  # 1 MB
     def real_download(self, filename, info_dict):
         url = info_dict['url']
         request_data = info_dict.get('request_data', None)
