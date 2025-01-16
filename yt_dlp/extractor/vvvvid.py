@@ -114,7 +114,7 @@ class VVVVIDIE(InfoExtractor):
     }]
     _conn_id = None
     _default_user_agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.50 Safari/537.37'
-    _blocked_user_agents_regex = r'^Mozilla/5\.0 \(Windows NT 10\.0; Win64; x64\) AppleWebKit/537\.36 \(KHTML, like Gecko\) Chrome/[\d.]+ Safari/537\.36$'
+    _blocked_user_agents_regex = r'^Mozilla/5\.0 \(Windows NT 10\.0; Win64; x64\) AppleWebKit/537\.36 \(KHTML, like Gecko\) Chrome/(?!95\.0\.4638\.50)[\d.]+ Safari/537\.36$'
     _headers = {}
 
     def _get_headers(self):
@@ -139,6 +139,11 @@ class VVVVIDIE(InfoExtractor):
         if query:
             q.update(query)
         response = self._download_json(
+            'https://www.vvvvid.it/vvvvid/ondemand/%s/%s' % (show_id, path),
+            video_id, headers=self._headers, query=q, fatal=False)
+        if response and response.get('result') == 'error' and 'conn_id' in response.get('message', '').lower():
+            self._real_initialize()
+            response = self._download_json(
             'https://www.vvvvid.it/vvvvid/ondemand/%s/%s' % (show_id, path),
             video_id, headers=self._headers, query=q, fatal=fatal)
         if not (response or fatal):
