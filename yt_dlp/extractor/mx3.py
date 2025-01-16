@@ -13,6 +13,7 @@ from ..utils.traversal import traverse_obj
 
 
 class Mx3BaseIE(InfoExtractor):
+    _mx3baseie = None
     _VALID_URL_TMPL = r'https?://(?:www\.)?%s/t/(?P<id>\w+)'
     _FORMATS = [{
         'url': 'player_asset',
