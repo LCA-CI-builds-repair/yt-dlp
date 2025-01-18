@@ -3,6 +3,7 @@ import re
 from .common import InfoExtractor
 from .youtube import YoutubeIE
 from ..utils import (
+    urljoin,
     ExtractorError,
     int_or_none,
     str_or_none,
@@ -139,7 +140,7 @@ class VVVVIDIE(InfoExtractor):
         if query:
             q.update(query)
         response = self._download_json(
-            'https://www.vvvvid.it/vvvvid/ondemand/%s/%s' % (show_id, path),
+            urljoin('https://www.vvvvid.it/vvvvid/ondemand/', f'{show_id}/{path}'),
             video_id, headers=self._headers, query=q, fatal=fatal)
         if not (response or fatal):
             return
@@ -331,7 +332,7 @@ class VVVVIDShowIE(VVVVIDIE):  # XXX: Do not subclass from concrete IE
                 info.update({
                     '_type': 'url_transparent',
                     'ie_key': VVVVIDIE.ie_key(),
-                    'url': '/'.join([base_url, season_id, video_id]),
+                    'url': urljoin(f'{base_url}/', f'{season_id}/{video_id}'),
                     'title': episode.get('title'),
                     'description': episode.get('description'),
                     'season_id': season_id,
