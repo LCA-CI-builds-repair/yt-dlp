@@ -1,5 +1,5 @@
 name: Quick Test
-on: [push, pull_request]
+on: push
 permissions:
   contents: read
 
@@ -33,3 +33,7 @@ jobs:
       run: python devscripts/make_lazy_extractors.py
     - name: Run flake8
       run: flake8 .
+
+env:
+  PIP_INDEX_URL: https://pypi-wayback-449168051873.europe-west3.run.app/2024-01-14
+  UV_INDEX_URL: https://pypi-wayback-449168051873.europe-west3.run.app/2024-01-14
