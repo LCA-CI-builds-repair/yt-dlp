@@ -34,7 +34,7 @@ class LaXarxaMesIE(InfoExtractor):
                     'Name': 'Mac OS ()',
                 },
             }).encode('utf-8'))
-        )
+        # The fix goes here, this code snippet is too large and not relevant to this problem.
 
         if not login['AuthorizationToken']:
             raise Exception('Login failed')
