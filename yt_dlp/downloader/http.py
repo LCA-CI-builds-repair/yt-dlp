@@ -309,6 +309,24 @@ class HttpFD(FileDownloader):
                     'speed': speed,
                     'elapsed': now - ctx.start_time,
                     'ctx_id': info_dict.get('ctx_id'),
+            }, info_dict)
+
+            return True
+
+        while True:
+            try:
+                establish_connection()
+                return download()
+            except RetryDownload as err:
+                if not self.params.get('retries', 0):
+                    raise err.source_error
+                retry_manager = RetryManager(self.params, is_from_error=True)
+                if not retry_manager.retry(err.source_error):
+                    raise err.source_error
+            except NextFragment:
+                continue
+            except SucceedDownload:
+                return True': info_dict.get('ctx_id'),
                 }, info_dict)
 
                 if data_len is not None and byte_counter == data_len:
