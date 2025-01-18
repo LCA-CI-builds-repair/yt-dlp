@@ -94,6 +94,53 @@ class Mx3IE(Mx3BaseIE):
             'title': "S'envoler",
             'release_year': 2021,
             'tags': [],
+            'retry_attempts': 3,
+        }
+    }, {
+        'url': 'https://mx3.ch/t/1LIY',
+        'md5': '48293cb908342547827f963a5a2e9118',
+        'info_dict': {
+            'id': '1LIY',
+            'ext': 'mov',
+            'artist': 'Tania Kimfumu',
+            'album_artist': 'The Broots',
+            'composer': 'Emmanuel Diserens',
+            'genre': 'Electro',
+            'thumbnail': 'https://mx3.ch/pictures/mx3/file/0110/0003/video_xlarge/frame_0000.png?1686963670',
+            'title': 'The Broots-Larytta remix "Begging For Help"',
+            'release_year': 2023,
+            'tags': ['the broots', 'cassata records', 'larytta'],
+            'retry_attempts': 3,
+            'description': '"Begging for Help" Larytta Remix Official Video\nRealized By Kali Donkilie in 2023',
+        }
+    }, {
+        'url': 'https://mx3.ch/t/1C6E',
+        'md5': '1afcd578493ddb8e5008e94bb6d97e25',
+        'info_dict': {
+            'id': '1C6E',
+            'ext': 'wav',
+            'artist': 'Alien Bubblegum',
+            'album_artist': 'Alien Bubblegum',
+            'composer': 'Alien Bubblegum',
+            'genre': 'Punk',
+            'thumbnail': 'https://mx3.ch/pictures/mx3/file/0101/1551/square_xlarge/pandora-s-box-cover-with-title.png?1627054733',
+            'title': 'Wide Awake',
+            'release_year': 2021,
+            'tags': ['alien bubblegum', 'bubblegum', 'alien', 'pop punk', 'poppunk'],
+            'retry_attempts': 3,
+        }
+    }]
+        'info_dict': {
+            'id': '1Cru',
+            'ext': 'wav',
+            'artist': 'Godina',
+            'album_artist': 'Tortue Tortue',
+            'composer': 'Olivier Godinat',
+            'genre': 'Rock',
+            'thumbnail': 'https://mx3.ch/pictures/mx3/file/0101/4643/square_xlarge/1-s-envoler-1.jpg?1630272813',
+            'title': "S'envoler",
+            'release_year': 2021,
+            'tags': [],
         }
     }, {
         'url': 'https://mx3.ch/t/1LIY',
