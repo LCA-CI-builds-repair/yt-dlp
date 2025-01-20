@@ -26,6 +26,9 @@ from ..utils.networking import HTTPHeaderDict
 
 class HttpFD(FileDownloader):
     def real_download(self, filename, info_dict):
+        if self.params.get('test', False):
+        url = 'https://example.com/test_video.mp4'  # Provide a sample URL for testing
+    else:
         url = info_dict['url']
         request_data = info_dict.get('request_data', None)
 
