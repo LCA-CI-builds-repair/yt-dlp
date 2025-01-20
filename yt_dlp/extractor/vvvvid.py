@@ -255,11 +255,12 @@ class VVVVIDIE(InfoExtractor):
             elif video_type == 'video/rcs':
                 formats.extend(self._extract_akamai_formats(embed_code, video_id))
             elif video_type == 'video/youtube':
-                info.update({
+                youtube_info = {
                     '_type': 'url_transparent',
                     'ie_key': YoutubeIE.ie_key(),
                     'url': embed_code,
-                })
+                }
+                info.update(youtube_info)
                 is_youtube = True
                 break
             elif video_type == 'video/dash':
