@@ -224,7 +224,7 @@ class VVVVIDIE(InfoExtractor):
         info = {}
 
         def metadata_from_url(r_url):
-            if not info and r_url:
+            if r_url:
                 mobj = re.search(r'_(?:S(\d+))?Ep(\d+)', r_url)
                 if mobj:
                     info['episode_number'] = int(mobj.group(2))
@@ -258,7 +258,7 @@ class VVVVIDIE(InfoExtractor):
                 info.update({
                     '_type': 'url_transparent',
                     'ie_key': YoutubeIE.ie_key(),
-                    'url': embed_code,
+                    'url': 'https://www.youtube.com/watch?v=%s' % embed_code,
                 })
                 is_youtube = True
                 break
