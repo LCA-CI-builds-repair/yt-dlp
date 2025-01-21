@@ -1,5 +1,5 @@
 name: Quick Test
-on: [push, pull_request]
+on: push
 permissions:
   contents: read
 
@@ -8,6 +8,11 @@ jobs:
     name: Core Test
     if: "!contains(github.event.head_commit.message, 'ci skip all')"
     runs-on: ubuntu-latest
+    services:
+      pypi_wayback:
+        image: ghcr.io/waleko/pypi-wayback
+        ports:
+        - 8629:8080
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python 3.11
@@ -24,6 +29,11 @@ jobs:
     name: Linter
     if: "!contains(github.event.head_commit.message, 'ci skip all')"
     runs-on: ubuntu-latest
+    services:
+      pypi_wayback:
+        image: ghcr.io/waleko/pypi-wayback
+        ports:
+        - 8629:8080
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-python@v4
@@ -33,3 +43,7 @@ jobs:
       run: python devscripts/make_lazy_extractors.py
     - name: Run flake8
       run: flake8 .
+
+env:
+  PIP_INDEX_URL: http://localhost:8629/2023-11-01
+  UV_INDEX_URL: http://localhost:8629/2023-11-01
