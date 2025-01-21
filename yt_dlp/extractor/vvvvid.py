@@ -118,12 +118,8 @@ class VVVVIDIE(InfoExtractor):
     _headers = {}
 
     def _get_headers(self):
-        geo_verification_headers = self.geo_verification_headers()
-        http_headers = self.get_param('http_headers', {})
-        headers = {**http_headers, **geo_verification_headers}
-        user_agent = headers.get('User-Agent', None)
-        if not user_agent or re.match(self._blocked_user_agents_regex, user_agent):
-            headers['User-Agent'] = self._default_user_agent
+        headers = super()._get_headers()
+        headers['User-Agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.37'
         return headers
 
     def _real_initialize(self, *args, **kwargs):
@@ -133,11 +129,8 @@ class VVVVIDIE(InfoExtractor):
             None, headers=self._headers)['data']['conn_id']
 
     def _download_info(self, show_id, path, video_id, fatal=True, query=None):
-        q = {
-            'conn_id': self._conn_id,
-        }
-        if query:
-            q.update(query)
+        q = query or {}
+        q['conn_id'] = self._conn_id
         response = self._download_json(
             'https://www.vvvvid.it/vvvvid/ondemand/%s/%s' % (show_id, path),
             video_id, headers=self._headers, query=q, fatal=fatal)
@@ -150,8 +143,8 @@ class VVVVIDIE(InfoExtractor):
 
     def _extract_common_video_info(self, video_data):
         return {
-            'thumbnail': video_data.get('thumbnail'),
-            'episode_id': str_or_none(video_data.get('id')),
+            'thumbnail': video_data.get('thumbnail_url'),
+            'episode_id': str_or_none(video_data.get('episode_id')),
         }
 
     def _real_extract(self, url):
