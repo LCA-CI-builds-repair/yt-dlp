@@ -34,7 +34,7 @@ class LaXarxaMesIE(InfoExtractor):
                     'Name': 'Mac OS ()',
                 },
             }).encode('utf-8'))
-        )
+        )  # Ensure this closing parenthesis matches the correct opening one
 
         if not login['AuthorizationToken']:
             raise Exception('Login failed')
