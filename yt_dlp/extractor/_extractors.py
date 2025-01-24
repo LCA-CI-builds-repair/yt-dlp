@@ -541,7 +541,7 @@ from .eighttracks import EightTracksIE
 from .einthusan import EinthusanIE
 from .eitb import EitbIE
 from .elemental_tv import ElementalTVIE
-from .elevensports import ElevenSportsIE
+from .elevensport import ElevenSportIE
 from .ellentube import (
     EllenTubeIE,
     EllenTubeVideoIE,
