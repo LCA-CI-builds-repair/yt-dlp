@@ -531,6 +531,7 @@ from .dw import (
     DWArticleIE,
 )
 from .eagleplatform import EaglePlatformIE, ClipYouEmbedIE
+from .elevensports import ElevenSportsIE
 from .ebaumsworld import EbaumsWorldIE
 from .ebay import EbayIE
 from .egghead import (
