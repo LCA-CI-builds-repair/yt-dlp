@@ -545,6 +545,7 @@ from .elevensports import ElevenSportsIE
 from .ellentube import (
     EllenTubeIE,
     EllenTubeVideoIE,
+    ElevenSportsIE,
     EllenTubePlaylistIE,
 )
 from .elonet import ElonetIE
