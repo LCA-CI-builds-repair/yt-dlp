@@ -548,6 +548,7 @@ from .ellentube import (
     EllenTubePlaylistIE,
 )
 from .elonet import ElonetIE
+from .elevensports import ElevenSportsIE
 from .elpais import ElPaisIE
 from .eltrecetv import ElTreceTVIE
 from .embedly import EmbedlyIE
